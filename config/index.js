@@ -10,13 +10,10 @@ const config = {
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: [],
-  defineConstants: {
-  },
+  defineConstants: {},
   copy: {
-    patterns: [
-    ],
-    options: {
-    }
+    patterns: [],
+    options: {}
   },
   framework: 'react',
   compiler: 'webpack5',
@@ -27,9 +24,7 @@ const config = {
     postcss: {
       pxtransform: {
         enable: true,
-        config: {
-
-        }
+        config: {}
       },
       url: {
         enable: true,
@@ -52,8 +47,7 @@ const config = {
     postcss: {
       autoprefixer: {
         enable: true,
-        config: {
-        }
+        config: {}
       },
       cssModules: {
         enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
@@ -62,7 +56,21 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    }
+    },
+    esnextModules: ['taro-ui'],
+    // devServer: {
+    //   host: '192.168.3.24',
+    //   port: 10086,
+    //   proxy: {
+    //       '/butterfly/': {
+    //         target: "https://wormhole.dcyy.cc",
+    //         // pathRewrite: {
+    //         //   '^/butterfly/': '/'
+    //         // },
+    //         changeOrigin: true
+    //       }
+    //     }
+    // }
   },
   rn: {
     appName: 'taroDemo',
