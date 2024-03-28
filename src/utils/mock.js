@@ -1,4 +1,61 @@
 module.exports = {
+  getMockDPostList() {
+    return [
+      {
+        id: 1,
+        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/534de8d0631b5d093da7e878e90e279b.png?x-oss-process=image/resize,m_fill,h_224,w_165',
+        type: 'image',
+        theme: '春',
+      },
+      {
+        id: 2,
+        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
+        type: 'post',
+        title: '飞花令：春',
+        theme: '春',
+        desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+      },
+      {
+        id: 3,
+        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
+        type: 'post',
+        title: '飞花令：春',
+        theme: '春',
+        desc: '分享带有「夏」字的一句古诗词即可。',
+      },
+      {
+        id: 4,
+        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
+        type: 'post',
+        title: '飞花令：春',
+        theme: '春',
+        desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+      },
+      {
+        id: 5,
+        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
+        type: 'post',
+        title: '飞花令：春',
+        theme: '春',
+        desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+      },
+      {
+        id: 6,
+        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/534de8d0631b5d093da7e878e90e279b.png?x-oss-process=image/resize,m_fill,h_224,w_165',
+        type: 'image',
+        title: '春',
+        theme: '春',
+      },
+      {
+        id: 7,
+        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
+        type: 'post',
+        title: '飞花令：春',
+        theme: '春',
+        desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，体裁为诗、词、曲。',
+      },
+    ]
+  },
   getMockRecCard() {
     return {
       title: ['今日主题：灯火'],

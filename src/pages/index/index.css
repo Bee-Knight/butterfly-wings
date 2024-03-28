@@ -1,11 +1,29 @@
+.index-background-image-mask {
+  position: absolute;
+  margin-top: -70px;
+  height: 596px;
+  width: 100%;
+
+  z-index: -1;
+}
+
+.index-background-view {
+  position: absolute;
+  margin-top: -70px;
+  height: 596px;
+  width: 100%;
+
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.70) 0%, #F5F6F7 100%);
+  backdrop-filter: blur(15px);
+  z-index: -1;
+}
+
 .index-view {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
 
-  /*background: -webkit-linear-gradient(bottom, white, darkgrey);*/
-  background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 0.70) 0%, #F5F6F7 100%);
-  /*backdrop-filter: blur(15px);*/
+  z-index: 1;
 }
 
 .index-mswiper {
@@ -17,6 +35,7 @@
 }
 
 .index-post-list {
+  background-color: #F5F6F7;
 }
 
 .index-fab {

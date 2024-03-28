@@ -55,10 +55,13 @@
   margin-left: 20px;
   margin-right: 20px;
   width: 100%;
+  height: 480px;
   /*align-self: stretch;*/
 
   border-bottom-left-radius: 24px;
   border-top-right-radius: 24px;
+
+  z-index: 1;
 }
 
 .rec-card-cover-mask {
@@ -78,6 +81,8 @@
   border-bottom-left-radius: 24px;
   border-top-right-radius: 24px;
   filter: blur(10px);
+
+  z-index: -1;
 }
 
 

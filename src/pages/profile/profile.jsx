@@ -1,6 +1,7 @@
 import React from 'react'
 import {Text, View} from '@tarojs/components'
 import './profile.css'
+import '../../app.scss'
 
 class Profile extends React.Component {
   config = {
