@@ -21,11 +21,11 @@
 
 .index-fab {
   position: fixed;
-  bottom: 160px;
-  right: 60px;
+  bottom: 80px;
+  right: 40px;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 60px;
+  height: 60px;
   background-color: #ffc062;
 
   display: flex;
@@ -34,7 +34,7 @@
 }
 
 .index-fab-text {
-  font-size: 60px;
+  font-size: 30px;
   color: #ffffff;
   font-weight: 500;
 }

@@ -53,11 +53,9 @@ class Index extends React.Component {
           <PostList posts={posts} loading={loading}/>
         </View>
         {/*悬浮button*/}
-        <View className="index-fab" onClick={this.onCreatePost}>
-          {/*<AtFab className="atfab">*/}
-          <Text className="index-fab-text">+</Text>
-          {/*</AtFab>*/}
-        </View>
+        {/*<View className="index-fab" onClick={this.onCreatePost}>*/}
+        {/*  <Text className="index-fab-text">+</Text>*/}
+        {/*</View>*/}
       </View>
     )
   }

@@ -1,11 +1,12 @@
 const config = {
   projectName: 'butterfly-wings',
   date: '2024-3-20',
-  designWidth: 750,
+  designWidth: 375,
   deviceRatio: {
+    375: 2 / 1,
     640: 2.34 / 2,
     750: 1,
-    828: 1.81 / 2
+    828: 1.81 / 2,
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
