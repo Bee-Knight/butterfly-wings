@@ -4,7 +4,7 @@ import 'taro-ui/dist/style/index.scss'
 import './utils/requtil'
 // import requests from './utils/requtil';
 // import api from './utils/api'
-// import {getStorageSync, setStorageSync} from "@tarojs/taro-h5";
+import {getStorageSync, getSystemInfoSync, setStorageSync} from "@tarojs/taro-h5";
 
 class App extends Component<PropsWithChildren> {
 

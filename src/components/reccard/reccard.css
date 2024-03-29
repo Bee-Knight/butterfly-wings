@@ -64,6 +64,42 @@
   z-index: 1;
 }
 
+.rec-card-cover-image-theme1 {
+  position: absolute;
+  padding-left: 64px;
+  padding-top: 55px;
+
+  weight: 48px;
+  height: 54px;
+
+  color: #FFF;
+  font-family: FZZJ-DNXSJW;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  z-index: 5;
+}
+
+.rec-card-cover-image-theme2 {
+  position: absolute;
+  padding-left: 97px;
+  padding-top: 86px;
+
+  weight: 48px;
+  height: 54px;
+
+  color: #FFF;
+  font-family: FZZJ-DNXSJW;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  z-index: 5;
+}
+
 .rec-card-cover-mask {
   position: absolute;
   height: 488px;
@@ -82,7 +118,7 @@
   border-top-right-radius: 24px;
   filter: blur(10px);
 
-  z-index: -1;
+  z-index: 0;
 }
 
 

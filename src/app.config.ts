@@ -3,7 +3,7 @@ export default defineAppConfig({
     'pages/index/index',
     'pages/ground/ground',
     'pages/profile/profile',
-    'pages/createpost/createpost'
+    'pages/createpost/createpost',
   ],
   tabBar: {
     // "custom": true,
@@ -34,8 +34,9 @@ export default defineAppConfig({
   },
   window: {
     backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
+    navigationBarBackgroundColor: '#FFF',
     navigationBarTitleText: '飞花一夏',
-    navigationBarTextStyle: 'black'
+    navigationBarTextStyle: 'black',
+    navigationStyle: 'custom',
   }
 })

@@ -26,6 +26,36 @@
   z-index: 1;
 }
 
+.index-nav-title {
+  display: flex;
+  flex-wrap: wrap;
+  /*flex-wrap: wrap;*/
+  /*flex-direction: column;*/
+  /*background-color: #ffc062;*/
+
+  /*height: 78px;*/
+  width: 100%;
+
+  z-index: 5;
+}
+
+.index-nav-title-title {
+  /*display: flex;*/
+  /*flex-wrap: wrap;*/
+  /*flex-direction: column;*/
+
+  padding-left: 20px;
+  color: #191919;
+
+  font-family: "Source Han Serif CN";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 900;
+  height: 32px;
+  line-height: 32px;
+  width: 100%;
+}
+
 .index-mswiper {
   width: 100%;
   height: 500px;

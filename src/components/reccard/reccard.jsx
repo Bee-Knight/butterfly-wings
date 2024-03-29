@@ -27,6 +27,8 @@ class RecCard extends React.Component {
           {/*图片*/}
           <View className="rec-card-cover-image">
             <Image src={url} mode="scaleToFill" className="rec-card-cover-image-image"/>
+            <View className="rec-card-cover-image-theme1">灯</View>
+            <View className="rec-card-cover-image-theme2">火</View>
           </View>
         </View>
         {/*todo:文字浮层*/}

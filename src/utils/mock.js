@@ -57,10 +57,13 @@ module.exports = {
     ]
   },
   getMockRecCard() {
+    let d_url = new Date().getTime() % 2 === 0
+      ? 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/534de8d0631b5d093da7e878e90e279b.png'
+      : 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/Rectangle%202.png';
     return {
       title: ['今日主题：灯火'],
       date: '2024/05/26',
-      url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/Rectangle%202.png',
+      url: d_url,
     }
   },
   getMockPosts() {

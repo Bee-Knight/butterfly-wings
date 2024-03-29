@@ -40,9 +40,10 @@
   /*height: 126px;*/
 
   border-bottom-right-radius: 24px;
-  background-color: #fffff8;
-  /*background-color: #4682b4;*/
-  opacity: 0.75;
+  /*background-color: #fffff8;*/
+  /*opacity: 0.75;*/
+
+  background-color: #ffffff;
   overflow: hidden;
 }
 
