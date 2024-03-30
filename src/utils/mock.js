@@ -1,4 +1,11 @@
 module.exports = {
+  getMockUserProfile() {
+    return {
+      avatar: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg',
+      nickname: '泰州小李杜',
+      desc: '人生得意须尽欢，莫使金樽空对月。'
+    }
+  },
   getMockDPostList() {
     return [
       {
