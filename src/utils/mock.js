@@ -1,4 +1,43 @@
 module.exports = {
+  getCommentList() {
+    return [
+      {
+        "id": "1",
+        "avatar": 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg',
+        "nickname": "泰州小李杜",
+        "poetry": "想眼中能有多少泪珠儿， \n怎禁得秋流到冬尽， \n春流到夏!",
+        "lastModified": "5天前",
+        "author": "曹雪芹《红楼梦十二曲·其三·枉凝眉》",
+      },
+      {
+        "id": "2",
+        "avatar": 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg',
+        "nickname": "泰州小李杜",
+        "poetry": "绝怜首夏清和句，\n一字其间几个知",
+        "lastModified": "5天前",
+        "author": "曹雪芹《红楼梦十二曲·其三·枉凝眉》",
+      },
+      {
+        "id": "3",
+        "avatar": 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg',
+        "nickname": "泰州小李杜",
+        "poetry": "想眼中能有多少泪珠儿， \n怎禁得秋流到冬尽， \n春流到夏!",
+        "lastModified": "5天前",
+        "author": "曹雪芹《红楼梦十二曲·其三·枉凝眉》",
+      },
+    ]
+  },
+  getMockPostDetail() {
+    return {
+      id: "testid",
+      cover: 'https://img.cjyun.org.cn/a/10008/201805/90a8a8e76ab9de005e34f0778367ae22.jpeg',
+      title: '飞花令：春',
+      repliesCount: 2863,
+      desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+      mode: '公开',
+      playersCount: 593
+    }
+  },
   getMockUserProfile() {
     return {
       avatar: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg',

@@ -1,0 +1,122 @@
+.detail-card-cover {
+  display: flex;
+  width: 100%;
+  height: 162px;
+}
+
+.detail-card-cover-image {
+  display: flex;
+  width: 100%;
+  height: 162px;
+
+  border-radius: 6px;
+}
+
+.detail-card-title {
+  width: 100%;
+  display: flex;
+  height: 26px;
+
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.detail-card-title-title {
+  display: flex;
+  align-items: flex-start;
+
+  color: #000;
+  font-family: "PingFang SC";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.detail-card-title-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 72px;
+  text-align: center;
+  justify-content: center;
+
+  border-radius: 28px;
+  background: rgba(0, 0, 0, 0.02);
+
+  color: rgba(0, 0, 0, 0.52);
+  font-family: "PingFang SC";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.detail-card-desc {
+  width: 100%;
+
+  color: rgba(0, 0, 0, 0.70);
+  font-family: "PingFang SC";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+
+  /*文本超长打点*/
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: break-spaces;
+}
+
+.detail-card-extra {
+  width: 100%;
+  display: flex;
+  height: 28px;
+
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.detail-card-extra-mode {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 10px;
+  width: 64px;
+
+  border-radius: 28px;
+  background: rgba(0, 0, 0, 0.10);
+
+  color: rgba(0, 0, 0, 0.52);
+  font-family: "PingFang SC";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.detail-card-extra-players {
+
+}
+
+.detail-card-extra-players-players {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #000;
+  font-family: "PingFang SC";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 157.143% */
+}
+
+.detail-card-extra-players-avatar {
+
+}

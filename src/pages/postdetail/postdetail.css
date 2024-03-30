@@ -1,0 +1,17 @@
+body {
+  background-color: #F5F6F7;
+}
+
+.post-detail-parent {
+  background-color: #F5F6F7;
+}
+
+.post-detail {
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+.post-comment-list {
+  margin-left: 14px;
+  margin-right: 14px;
+}

@@ -4,6 +4,7 @@ export default defineAppConfig({
     'pages/ground/ground',
     'pages/profile/profile',
     'pages/createpost/createpost',
+    'pages/postdetail/postdetail'
   ],
   tabBar: {
     // "custom": true,
