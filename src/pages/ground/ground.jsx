@@ -1,11 +1,9 @@
 import React from 'react'
-import {Text, View} from '@tarojs/components'
+import {View} from '@tarojs/components'
 import './ground.css'
 import mocks from "../../utils/mock";
 import Taro from "@tarojs/taro";
 import {DPostList} from "../../components/dpostlist/dpostlist";
-
-import './ground.css'
 import {getStorageSync} from "@tarojs/taro-h5";
 
 class Ground extends React.Component {
@@ -81,8 +79,8 @@ class Ground extends React.Component {
             {/*筛选器*/}
             <View className="ground-nav-title-selector">+</View>
           </View>
-
           <View style="height:8px"/>
+
           <View style="height:20px"/>
           {/*帖子列表*/}
           <View className="ground-d-post-list">
