@@ -18,6 +18,8 @@
 }
 
 .ground-d-post-list {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .ground-nav-title {
@@ -33,9 +35,10 @@
   margin-left: 20px;
 
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   background-color: #53A591;
+  color: #FFF;
 
   display: flex;
   align-items: center;

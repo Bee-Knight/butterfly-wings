@@ -40,7 +40,7 @@ class DetailCard extends React.Component {
 
         <View style="height: 11px"/>
 
-        {/*规则*/}
+        {/*详情*/}
         <View className="detail-card-desc">{desc}</View>
 
         <View style="height: 13px"/>

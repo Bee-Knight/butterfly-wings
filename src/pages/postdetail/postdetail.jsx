@@ -59,15 +59,13 @@ class PostDetail extends React.Component {
 
     console.log("statusBarHeight: " + statusBarHeightOrDefault)
     console.log("navBarHeight: " + navBarHeight)
-
   }
 
   render() {
     const {id, cover, title, repliesCount, mode, desc, playersCount} = this.state.detail
     let comments = this.state.comments
 
-    {/*导航栏*/
-    }
+    //导航栏
     let nav = <View/>
     if (process.env.TARO_ENV === 'weapp') {
       nav = <View className="index-nav-title" style={`height: ${this.state.navBarHeight}px`}>

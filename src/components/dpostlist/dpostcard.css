@@ -1,51 +1,47 @@
-.d-post-card-cover {
-  display: flex;
-  width: 100%;
-  height: 85px;
-  overflow: hidden;
-}
-
 .d-post-card-cover-image {
-  width: 100%;
-  height: 100%;
+  position: absolute;
 
-  /*margin-left: 20px;*/
-  /*margin-right: 20px;*/
+  height: 85px;
 
-  border-top-left-radius: 24px;
+  padding-right: 20px;
+
+  border-top-right-radius: 24px;
+
+  z-index: 0
 }
 
 .d-post-card-cover-mask {
-  position: absolute;
-
   width: 100%;
-  height: 100%;
+  height: 85px;
 
   background: rgba(152, 201, 190, 0.50);
   backdrop-filter: blur(5px);
-  /*margin-left: 20px;*/
-  /*margin-right: 20px;*/
+  border-top-right-radius: 24px;
 
-  border-top-left-radius: 24px;
+  z-index: 2
 }
 
 .d-post-card-cover-theme {
   position: absolute;
-  gap: 5px;
-  margin-top: 36px;
-  margin-right: 28px;
+  padding-top: 36px;
+  right: 48px;
 
   color: #FFF;
   font-family: FZZJ-DNXSJW;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
-  line-height: 22px;
+
+  z-index: 5
 }
 
-.d-post-card-cover-title {
-  gap: 5px;
-  margin-left: 12px;
+.d-post-card-detail {
+  background-color: #fff;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.d-post-card-detail-title {
   height: 26px;
 
   color: #332A28;
@@ -54,34 +50,24 @@
   font-style: normal;
   font-weight: 700;
   line-height: 26px;
-}
 
-.d-post-card-detail {
-  background-color: #fffff8;
-  opacity: 0.75;
+  /*文本超长打点*/
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
   overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: break-spaces;
 }
 
 .d-post-card-detail-desc {
-  width: 100%;
-  display: flex;
-}
-
-.d-post-card-detail-desc-desc {
-  padding-left: 12px;
-  display: flex;
-  align-items: flex-start;
-
   color: #595250;
   font-family: "Source Han Serif CN";
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: 18px;
-
-  /*word-break: break-all;*/
-  /*line-break: anywhere;*/
-  /*white-space: pre-line;*/
 
   /*文本超长打点*/
   -webkit-box-orient: vertical;
@@ -91,4 +77,36 @@
   text-overflow: ellipsis;
   word-wrap: break-word;
   white-space: break-spaces;
+}
+
+.d-post-card-detail-extra {
+  width: 100%;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.d-post-card-detail-extra-date {
+  display: flex;
+  align-items: flex-start;
+
+  color: #999696;
+  font-family: "Source Han Serif CN";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+
+.d-post-card-detail-extra-mode {
+  display: flex;
+  align-items: center;
+
+  color: #999696;
+  font-family: "Source Han Serif CN";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
 }

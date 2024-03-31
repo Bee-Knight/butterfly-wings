@@ -31,7 +31,6 @@ class RecCard extends React.Component {
             <View className="rec-card-cover-image-theme2">火</View>
           </View>
         </View>
-        {/*todo:文字浮层*/}
       </View>
     )
   }

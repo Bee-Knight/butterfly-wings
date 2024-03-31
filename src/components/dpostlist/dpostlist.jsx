@@ -19,22 +19,44 @@ class DPostList extends React.Component {
     }
 
     const element = posts.map((post, index) => {
-      return (
-        <View>
-          <DPostCard
-            type={post.type}
-            title={post.title}
-            url={post.url}
-            desc={post.desc}
-            theme={post.theme}
-            key={post.id}
-          />
-        </View>
-      )
+      if (index === posts.length - 1) {
+        return (
+          <View>
+            <DPostCard
+              type={post.type}
+              title={post.title}
+              url={post.url}
+              desc={post.desc}
+              theme={post.theme}
+              lastModified={post.lastModified}
+              mode={post.mode}
+              key={post.id}
+            />
+          </View>
+        )
+      } else {
+        return (
+          <View>
+            <DPostCard
+              type={post.type}
+              title={post.title}
+              url={post.url}
+              desc={post.desc}
+              theme={post.theme}
+              lastModified={post.lastModified}
+              mode={post.mode}
+              key={post.id}
+            />
+            <View style="height:12px"/>
+          </View>
+        )
+      }
     })
 
     return (
-      <View className="d-post-list">{element}</View>
+      <View className="d-post-list">
+        {element}
+      </View>
     )
   }
 }

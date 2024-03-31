@@ -60,6 +60,8 @@ module.exports = {
         title: '飞花令：春',
         theme: '春',
         desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+        lastModified: '5天前',
+        mode: '公开'
       },
       {
         id: 3,
@@ -68,6 +70,8 @@ module.exports = {
         title: '飞花令：春',
         theme: '春',
         desc: '分享带有「夏」字的一句古诗词即可。',
+        lastModified: '5天前',
+        mode: '公开'
       },
       {
         id: 4,
@@ -76,6 +80,8 @@ module.exports = {
         title: '飞花令：春',
         theme: '春',
         desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+        lastModified: '5天前',
+        mode: '公开'
       },
       {
         id: 5,
@@ -84,6 +90,8 @@ module.exports = {
         title: '飞花令：春',
         theme: '春',
         desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+        lastModified: '5天前',
+        mode: '公开'
       },
       {
         id: 6,
@@ -99,6 +107,8 @@ module.exports = {
         title: '飞花令：春',
         theme: '春',
         desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，体裁为诗、词、曲。',
+        lastModified: '5天前',
+        mode: '公开'
       },
     ]
   },
