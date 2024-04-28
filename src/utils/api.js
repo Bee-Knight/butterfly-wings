@@ -1,6 +1,51 @@
 let base = "https://wormhole.dcyy.cc"
 
 module.exports = {
+  // activity
+  getNewDailyFly() {
+    return base + "/butterfly/activity/new-daily-fly"
+  },
+  getFindTodayFly() {
+    return base + "/butterfly/activity/find-today-fly"
+  },
+
+  // application
+  getApply() {
+    return base + "/butterfly/application/apply"
+  },
+  getReject() {
+    return base + "/butterfly/application/reject"
+  },
+  getAgree() {
+    return base + "/butterfly/application/agree"
+  },
+
+  // community
+  getNewFeedback() {
+    return base + "/butterfly/community/feedback/new"
+  },
+  getNewReply() {
+    return base + "/butterfly/community/feedback/new-reply"
+  },
+  getFindAll() {
+    return base + "/butterfly/community/feedback/find-all"
+  },
+
+  // file
+  getPutFile() {
+    return base + "/butterfly/file/put"
+  },
+  getFindDefaultAvatars() {
+    return base + "/butterfly/file/find-default-avatars"
+  },
+  getFindDefaultUserBgs() {
+    return base + "/butterfly/file/find-default-user-backgrounds"
+  },
+  getFindDefaultFlyCovers() {
+    return base + "/butterfly/file/find-default-fly-arena-covers"
+  },
+
+  // fly-arena
   getCreatePost() {
     return base + "/butterfly/fly-arena/new"
   },
@@ -13,16 +58,25 @@ module.exports = {
   getEndPost() {
     return base + "/butterfly/fly-arena/end"
   },
+  getReadPost() {
+    return base + "/butterfly/fly-arena/read"
+  },
   getPostList() {
     return base + "/butterfly/fly-arena/find-taken-part"
   },
   getPostListByMode() {
     return base + "/butterfly/fly-arena/find-by-take-part-mode"
   },
-
-  getRegisterFromWechat() {
-    return base + "/butterfly/s/register-from-wechat"
+  getPostDetail() {
+    return base + "/butterfly/fly-arena/detail"
   },
+
+  // poetry
+  getFindPoetry() {
+    return base + "/butterfly/poetry/find"
+  },
+
+  // sign
   getRegisterFromWechatAndLogin() {
     return base + "/butterfly/s/register-from-wechat-and-sign-in"
   },
@@ -30,6 +84,7 @@ module.exports = {
     return base + "/butterfly/s/d-sign-in"
   },
 
+  // user
   getModifyUser() {
     return base + "/butterfly/user/modify"
   },
@@ -37,6 +92,7 @@ module.exports = {
     return base + "/butterfly/user/find-info"
   },
 
+  // wechat
   getCode2Session() {
     return base + "/butterfly/wechat/code2session"
   },
