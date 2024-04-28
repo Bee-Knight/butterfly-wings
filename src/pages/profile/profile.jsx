@@ -20,7 +20,7 @@ class Profile extends React.Component {
     // await requests.get(api.getPostList(), {}).then((res) => {
     //   console.log(res)
     // })
-    let {avatar, nickname, desc} = mocks.getMockUserProfile()
+    let {avatar, nickname, desc, bg} = mocks.getMockUserProfile()
     if (avatar === undefined || avatar === '') {
       avatar = "https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg"
     }
@@ -30,7 +30,8 @@ class Profile extends React.Component {
     this.setState({
       avatar: avatar,
       nickname: nickname,
-      user_desc: desc
+      user_desc: desc,
+      cover: bg
     })
   }
 

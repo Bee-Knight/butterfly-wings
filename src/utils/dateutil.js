@@ -14,6 +14,11 @@ const formatTime = date => {
   return `${[year, month, day].map(formatNumber).join('/')} ${[hour, minute, second].map(formatNumber).join(':')}`
 }
 
+const getTimeText = str => {
+  return '1天前'//todo
+}
+
 module.exports = {
-  formatTime
+  formatTime,
+  getTimeText
 }

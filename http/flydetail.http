@@ -1,0 +1,4 @@
+###
+GET {{buttfly}}/fly-arena/detail?id={{last_fly_arena_id}}
+Content-Type: application/json
+X-Token: {{auth_token}}

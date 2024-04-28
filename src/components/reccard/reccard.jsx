@@ -1,5 +1,5 @@
 import {Image, View} from '@tarojs/components'
-import React from "react";
+import React from "react"
 import mocks from '../../utils/mock'
 
 import './reccard.css'

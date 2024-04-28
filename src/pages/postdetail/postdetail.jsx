@@ -5,8 +5,8 @@ import '../../app.scss'
 import mocks from '../../utils/mock'
 import {DetailCard} from '../../components/detailcard/detailcard'
 import {CommentList} from '../../components/commentcard/commentlist'
-import {getStorageSync} from "@tarojs/taro-h5";
-import Taro from "@tarojs/taro";
+import {getStorageSync} from "@tarojs/taro-h5"
+import Taro from "@tarojs/taro"
 
 class PostDetail extends React.Component {
   config = {
@@ -27,13 +27,13 @@ class PostDetail extends React.Component {
     if (process.env.TARO_ENV !== 'weapp') {
       this.setState({
         detail: mocks.getMockPostDetail(),
-        comments: mocks.getCommentList()
+        comments: mocks.getMockCommentList()
       })
       return
     }
 
-    let statusBarHeightOrDefault = 44;
-    let sysInfo = getStorageSync('sys_info');
+    let statusBarHeightOrDefault = 44
+    let sysInfo = getStorageSync('sys_info')
     if (sysInfo && sysInfo.statusBarHeight && sysInfo.statusBarHeight > 0) {
       statusBarHeightOrDefault = sysInfo.statusBarHeight
     } else {
@@ -52,7 +52,7 @@ class PostDetail extends React.Component {
 
     this.setState({
       detail: mocks.getMockPostDetail(),
-      comments: mocks.getCommentList(),
+      comments: mocks.getMockCommentList(),
       statusBarHeight: statusBarHeightOrDefault,
       navBarHeight: navBarHeight
     })

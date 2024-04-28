@@ -2,12 +2,12 @@ import React from 'react'
 import {Image, View} from '@tarojs/components'
 import {PostList} from '../../components/postlist/postlist'
 import mocks from '../../utils/mock'
-import RecCard from "../../components/reccard/reccard";
+import RecCard from "../../components/reccard/reccard"
 // import requests from '../../utils/requtil'
 // import api from '../../utils/api'
 import './index.css'
-import Taro from "@tarojs/taro";
-import {getStorageSync} from "@tarojs/taro-h5";
+import Taro from "@tarojs/taro"
+import {getStorageSync} from "@tarojs/taro-h5"
 
 class Index extends React.Component {
   config = {
@@ -31,15 +31,15 @@ class Index extends React.Component {
     if (process.env.TARO_ENV !== 'weapp') {
       this.setState({
         // posts: res.data,
-        posts: mocks.getMockPosts(),
+        posts: mocks.getMockPostList(),
         rec: mocks.getMockRecCard(),
         loading: false,
       })
       return
     }
 
-    let statusBarHeightOrDefault = 44;
-    let sysInfo = getStorageSync('sys_info');
+    let statusBarHeightOrDefault = 44
+    let sysInfo = getStorageSync('sys_info')
     if (sysInfo && sysInfo.statusBarHeight && sysInfo.statusBarHeight > 0) {
       statusBarHeightOrDefault = sysInfo.statusBarHeight
     } else {
@@ -58,7 +58,7 @@ class Index extends React.Component {
 
     this.setState({
       // posts: res.data,
-      posts: mocks.getMockPosts(),
+      posts: mocks.getMockPostList(),
       rec: mocks.getMockRecCard(),
       loading: false,
       statusBarHeight: statusBarHeightOrDefault,

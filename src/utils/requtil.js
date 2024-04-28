@@ -1,8 +1,9 @@
-// import axios from 'axios';
-import {getStorageSync} from "@tarojs/taro-h5";
+// import axios from 'axios'
+import {getStorageSync} from "@tarojs/taro-h5"
 import logs from './logutil'
-import Taro from "@tarojs/taro";
-import errors from './commonerror';
+import Taro from "@tarojs/taro"
+import errors from './commonerror'
+import validators from './validator'
 
 /**
  * request.js 封装一个Taro请求
@@ -23,13 +24,9 @@ const request = function (url, options) {
     method: options.method,
     data: options.data,
     header: headers,
-    mode: 'no-cors',
     success: (res) => {
-      if (res.data?.success !== true) {
+      if (validators.isNull(res.data) || validators.isFalse(res.data.success)) {
         logs.logErr("BizErr", url, res.data)
-      }
-      if (res.data?.success === true) {
-        return res.data
       }
     },
     fail: (err) => {
@@ -46,7 +43,7 @@ const request = function (url, options) {
       })
       return logs.logErr("APIErr", url, err)
     }
-  });
+  })
 }
 
 /**
@@ -71,13 +68,13 @@ const request = function (url, options) {
 //       headers: headers
 //     }).then(res => {
 //       if (res.data) {
-//         resolve(res.data);
+//         resolve(res.data)
 //       } else {
-//         reject(res);
+//         reject(res)
 //       }
 //     })
 //       .catch(error => {
-//         reject(error);
+//         reject(error)
 //       })
 //   })
 // }

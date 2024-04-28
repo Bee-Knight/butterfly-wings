@@ -7,7 +7,7 @@ export function get(url, options) {
       'Accept': 'application/json',
     },
     timeout = 5000
-  } = options;
+  } = options
 
   return fetch(url, {
     method: 'GET',
@@ -16,7 +16,7 @@ export function get(url, options) {
   }).then(response => handleResponse(response)
   ).then(data => data)
     .catch(error => {
-      return error;
+      return error
     })
 }
 
@@ -30,7 +30,7 @@ export function post(url, options) {
       'Accept': 'application/json',
     },
     timeout = 5000
-  } = options;
+  } = options
 
   return fetch(url, {
     method: method,
@@ -41,14 +41,14 @@ export function post(url, options) {
   }).then(response => handleResponse(response)
   ).then(data => data)
     .catch(error => {
-      return error;
+      return error
     })
 }
 
 function handleResponse(response) {
   if (response && response.status === 200) {
-    return response.json();
+    return response.json()
   } else {
-    return {error: {message: errors.getCommonNetworkErr()}};
+    return {error: {message: errors.getCommonNetworkErr()}}
   }
 }

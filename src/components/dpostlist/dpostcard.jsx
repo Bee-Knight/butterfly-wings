@@ -2,8 +2,8 @@ import React from 'react'
 import {Image, View} from '@tarojs/components'
 
 import './dpostcard.css'
-import {DImageCard} from "./dimagecard";
-import Taro from "@tarojs/taro";
+import {DImageCard} from "./dimagecard"
+import Taro from "@tarojs/taro"
 
 class DPostCard extends React.Component {
   handleNavigate = () => {

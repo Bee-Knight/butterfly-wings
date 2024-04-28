@@ -1,5 +1,20 @@
 module.exports = {
-  getCommentList() {
+  getDefaultFlyCover() {
+    return 'https://img.cjyun.org.cn/a/10008/201805/90a8a8e76ab9de005e34f0778367ae22.jpeg'
+  },
+  getDefaultUserBg() {
+    return 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/profile-cover.png'
+  },
+  getDefaultUserAvatar() {
+    return 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg'
+  },
+  getDefaultUserNickname() {
+    return '微信用户'
+  },
+  getDefaultUserIntroduce() {
+    return '该用户暂时还没有介绍哦～'
+  },
+  getMockCommentList() {
     return [
       {
         "id": "1",
@@ -42,7 +57,8 @@ module.exports = {
     return {
       avatar: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg',
       nickname: '泰州小李杜',
-      desc: '人生得意须尽欢，莫使金樽空对月。'
+      desc: '人生得意须尽欢，莫使金樽空对月。',
+      bg: this.getDefaultUserBg()
     }
   },
   getMockDPostList() {
@@ -115,14 +131,14 @@ module.exports = {
   getMockRecCard() {
     let d_url = new Date().getTime() % 2 === 0
       ? 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/534de8d0631b5d093da7e878e90e279b.png'
-      : 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/Rectangle%202.png';
+      : 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/Rectangle%202.png'
     return {
       title: ['今日主题：灯火'],
       date: '2024/05/26',
       url: d_url,
     }
   },
-  getMockPosts() {
+  getMockPostList() {
     return [
       {
         "id": "1",

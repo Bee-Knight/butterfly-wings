@@ -1,12 +1,5 @@
 ###
-GET {{buttfly}}/fly-arena/find-taken-part
-Content-Type: application/json
-X-Token: {{token}}
-
-{}
-
-###
-POST {{buttfly}}/s/register-from-wechat
+POST {{buttfly}}/s/register-from-wechat-and-sign-in
 Content-Type: application/json
 
 {
@@ -14,6 +7,8 @@ Content-Type: application/json
   "nickname": "xjl",
   "avatar": "https://i.pinimg.com/236x/ae/f3/35/aef3359d6d36e4042a2f9f0c2027a048.jpg"
 }
+
+> {% client.global.set('auth_token', response.body.data.token.id); %}
 
 ###
 POST {{buttfly}}/s/d-sign-in
@@ -24,16 +19,7 @@ Content-Type: application/json
   "channel": "Wechat"
 }
 
-###
-POST {{buttfly}}/fly-arena/new
-Content-Type: application/json
-X-Token: TOKEN1711221220E35CE428E8C04140BCDE65EA9981B6C3
-
-{
-  "theme": "花",
-  "flyRule": "Common",
-  "mode": "Open"
-}
+> {% client.global.set('auth_token', response.body.data.token.id); %}
 
 ###
 OPTIONS https://wormhole.dcyy.cc/butterfly/s/d-sign-in
@@ -53,6 +39,3 @@ accept-language: zh-CN,zh;q=0.9
   "channelId": "testopenid",
   "channel": "Wechat"
 }
-
-###
-

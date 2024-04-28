@@ -1,0 +1,6 @@
+###
+GET {{buttfly}}/user/find-info
+Content-Type: application/json
+X-Token: {{auth_token}}
+
+{}

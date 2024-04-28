@@ -1,5 +1,5 @@
 import {Image, Swiper, SwiperItem} from '@tarojs/components'
-import React from "react";
+import React from "react"
 
 import './mswiper.css'
 

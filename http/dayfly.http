@@ -1,0 +1,24 @@
+###
+GET {{buttfly}}/activity/find-today-fly
+Content-Type: application/json
+X-Token: {{auth_token}}
+
+{}
+
+
+###
+POST {{buttfly}}/activity/new-daily-fly
+Content-Type: application/json
+X-Token: {{auth_token}}
+
+{
+  "theme": "花",
+  "flyRule": "Common",
+  "date": "20240428",
+  "background": "default-daily.png"
+}
+
+###
+GET {{buttfly}}/file/find-default-fly-arena-covers
+Content-Type: application/json
+X-Token: {{auth_token}}

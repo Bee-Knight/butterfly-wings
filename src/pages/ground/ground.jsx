@@ -1,10 +1,10 @@
 import React from 'react'
 import {View} from '@tarojs/components'
 import './ground.css'
-import mocks from "../../utils/mock";
-import Taro from "@tarojs/taro";
-import {DPostList} from "../../components/dpostlist/dpostlist";
-import {getStorageSync} from "@tarojs/taro-h5";
+import mocks from "../../utils/mock"
+import Taro from "@tarojs/taro"
+import {DPostList} from "../../components/dpostlist/dpostlist"
+import {getStorageSync} from "@tarojs/taro-h5"
 
 class Ground extends React.Component {
   config = {
