@@ -1,5 +1,20 @@
 .d-post-list {
-  display: flex;
+  /*display: flex;*/
   width: 100%;
-  flex-direction: column;
+  /*flex-direction: column;*/
+
+  /*列数*/
+  -webkit-column-count: 2;
+  column-count: 2;
+  /*列间距*/
+  -webkit-column-gap: 8px;
+  column-gap: 8px;
+
+}
+
+.d-post-list-card {
+  /*!*禁止跨列*!*/
+  break-inside: avoid;
+  /*-webkit-column-span: none;*/
+  /*column-span: none;*/
 }

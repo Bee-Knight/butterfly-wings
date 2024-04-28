@@ -21,7 +21,7 @@ class PostList extends React.Component {
     const element = posts.map((post, index) => {
       if (index === posts.length - 1) {
         return (
-          <View>
+          <View key={post.id}>
             <PostCard
               key={post.id}
               cover={post.cover}
@@ -37,7 +37,7 @@ class PostList extends React.Component {
         )
       } else {
         return (
-          <View>
+          <View key={post.id}>
             <PostCard
               key={post.id}
               cover={post.cover}

@@ -21,7 +21,7 @@ class DPostList extends React.Component {
     const element = posts.map((post, index) => {
       if (index === posts.length - 1) {
         return (
-          <View>
+          <View key={post.id} className="d-post-list-card">
             <DPostCard
               type={post.type}
               title={post.title}
@@ -36,7 +36,7 @@ class DPostList extends React.Component {
         )
       } else {
         return (
-          <View>
+          <View key={post.id} className="d-post-list-card">
             <DPostCard
               type={post.type}
               title={post.title}

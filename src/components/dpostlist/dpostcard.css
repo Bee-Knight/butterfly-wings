@@ -3,7 +3,7 @@
 
   height: 85px;
 
-  padding-right: 20px;
+  /*padding-right: 20px;*/
 
   border-top-right-radius: 24px;
 
@@ -24,7 +24,7 @@
 .d-post-card-cover-theme {
   position: absolute;
   padding-top: 36px;
-  right: 48px;
+  padding-left: 28px;
 
   color: #FFF;
   font-family: FZZJ-DNXSJW;
