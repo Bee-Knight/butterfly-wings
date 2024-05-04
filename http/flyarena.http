@@ -11,6 +11,20 @@ Content-Type: application/json
 X-Token: {{auth_token}}
 
 {
+  "theme": "春",
+  "flyRule": "Common",
+  "mode": "Internal",
+  "background": "https://img.cjyun.org.cn/a/10008/201805/90a8a8e76ab9de005e34f0778367ae22.jpeg"
+}
+
+> {% client.global.set('last_fly_arena_id', response.body.data.id); %}
+
+###
+POST {{buttfly}}/fly-arena/new
+Content-Type: application/json
+X-Token: {{auth_token}}
+
+{
   "theme": "夏",
   "flyRule": "Common",
   "mode": "Open",
@@ -25,7 +39,7 @@ Content-Type: application/json
 X-Token: {{auth_token}}
 
 {
-  "flyArenaId": 1784620004482572288,
+  "flyArenaId": 1786690053938737152,
   "pollen": "春城无处不飞花，寒食东风御柳斜",
   "title": "",
   "author": ""
@@ -37,7 +51,7 @@ Content-Type: application/json
 X-Token: {{auth_token}}
 
 {
-  "flyArenaId": 1784620004482572288,
+  "flyArenaId": 1786690053938737152,
   "pollen": "想眼中能有多少泪珠儿，\n怎禁得秋流到冬尽，\n春流到夏!",
   "title": "",
   "author": ""
@@ -49,8 +63,8 @@ Content-Type: application/json
 X-Token: {{auth_token}}
 
 {
-  "flyArenaId": 1784620004482572288,
+  "flyArenaId": 1786690053938737152,
   "pollen": "想眼中能有多少泪珠儿，\n怎禁得秋流到冬尽，\n春流到夏! 春流到夏!",
   "title": "曹雪芹《红楼梦十二曲·其三·枉凝眉》",
-  "author": "这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。这是飞花令的规则。"
+  "author": ""
 }

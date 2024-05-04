@@ -18,6 +18,13 @@ module.exports = {
     return arr[0]
   },
 
+  last(arr) {
+    if (this.isArrayNullOrEmpty(arr)) {
+      return null
+    }
+    return arr[arr.length - 1]
+  },
+
   isArrayNullOrEmpty(arr) {
     return arr === undefined || arr === null || this.isNumberNullOrEmpty(arr.length)
   },

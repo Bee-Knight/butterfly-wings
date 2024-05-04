@@ -15,11 +15,9 @@ class PostCard extends React.Component {
   render() {
     const {id, cover, title, lastModified, repliesCount, mode, desc, author, poetry} = this.props
 
-    let tag = null
+    let tag = ''
     if (mode) {
       tag = <AtTag size='small'>{mode}</AtTag>
-    } else {
-      tag = ''
     }
     return (
       <View onClick={this.handleNavigate}>

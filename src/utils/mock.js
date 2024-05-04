@@ -1,4 +1,9 @@
-module.exports = {
+import dates from './dateutil'
+
+export default {
+  getDefaultFlyPoetry() {
+    return '还没有开始飞～快来飞一句吧~'
+  },
   getDefaultFlyCover() {
     return 'https://img.cjyun.org.cn/a/10008/201805/90a8a8e76ab9de005e34f0778367ae22.jpeg'
   },
@@ -9,7 +14,7 @@ module.exports = {
     return 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg'
   },
   getDefaultUserNickname() {
-    return '微信用户'
+    return '飞花君'
   },
   getDefaultUserIntroduce() {
     return '该用户暂时还没有介绍哦～'
@@ -132,9 +137,11 @@ module.exports = {
     let d_url = new Date().getTime() % 2 === 0
       ? 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/534de8d0631b5d093da7e878e90e279b.png'
       : 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/Rectangle%202.png'
+    let formatTime = dates.formatSimpleTime(new Date())
     return {
-      title: ['今日主题：灯火'],
-      date: '2024/05/26',
+      title: '今日主题：灯火',
+      theme: '灯火',
+      date: formatTime,
       url: d_url,
     }
   },

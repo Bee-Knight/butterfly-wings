@@ -8,7 +8,7 @@ import './postlist.css'
 class PostList extends React.Component {
   static defaultProps = {
     posts: [],
-    loading: true,
+    loading: false,
   }
 
   render() {

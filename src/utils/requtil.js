@@ -1,5 +1,5 @@
 // import axios from 'axios'
-import {getStorageSync} from "@tarojs/taro-h5"
+// import {getStorageSync} from "@tarojs/taro-h5"
 import logs from './logutil'
 import Taro from "@tarojs/taro"
 import errors from './commonerror'
@@ -11,7 +11,7 @@ import validators from './validator'
  * options    包含请求方式method，请求参数的配置对象data
  */
 const request = function (url, options) {
-  let token = getStorageSync("x-token")
+  let token = Taro.getStorageSync("x-token")
   let headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
@@ -52,7 +52,7 @@ const request = function (url, options) {
  * options    包含请求方式method，请求参数的配置对象data
  */
 // const request = function (url, options) {
-//   let token = getStorageSync("x-token")
+//   let token = Taro.getStorageSync("x-token")
 //   let headers = {
 //     'Content-Type': 'application/json',
 //     'Accept': 'application/json'

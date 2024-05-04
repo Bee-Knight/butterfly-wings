@@ -4,7 +4,7 @@ import dates from './dateutil'
 
 let mockSwitch = false
 
-module.exports = {
+export default {
   getUserProfile(data) {
     if (mockSwitch) {
       return mocks.getMockUserProfile()
@@ -30,7 +30,7 @@ module.exports = {
       return validators.emptyArray()
     }
     return data.map((item, i) => {
-      let firstPollen = validators.first(item.flyArena.pollens)
+      let firstPollen = validators.last(item.flyArena.pollens)
       let author = !validators.isNull(firstPollen) && !validators.isStrNullOrEmpty(firstPollen.author) ? firstPollen.author : validators.emptyStr()
       let title = !validators.isNull(firstPollen) && !validators.isStrNullOrEmpty(firstPollen.title) ? firstPollen.title : validators.emptyStr()
 
@@ -41,10 +41,9 @@ module.exports = {
         cover: validators.isStrNullOrEmpty(item.flyArena.style.background) ? mocks.getDefaultFlyCover() : item.flyArena.style.background,
         repliesCount: validators.isArrayNullOrEmpty(item.flyArena.pollens) ? 0 : item.flyArena.pollens.length,
         mode: validators.isStrNullOrEmpty(item.flyArena.takePartMode) || item.flyArena.takePartMode === 'Open' ? "公开" : "私有",
-        poetry: validators.isNull(firstPollen) ? validators.emptyStr() : firstPollen.value,
-        lastModified: validators.isNull(firstPollen) ? '' : dates.getTimeText(firstPollen.ts),
+        poetry: validators.isNull(firstPollen) ? mocks.getDefaultFlyPoetry() : firstPollen.value,
+        lastModified: validators.isNull(firstPollen) ? dates.getTimeText(item.flyArena.beginAt) : dates.getTimeText(firstPollen.ts),
         author: author + " " + title,
-        desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',//todo
         flyRule: item.flyArena.flyRule
       }
     })
@@ -56,10 +55,14 @@ module.exports = {
     if (validators.isNull(data) || validators.isNull(data.style) || validators.isStrNullOrEmpty(data.style.background)) {
       return mocks.getMockRecCard()
     }
+    if (validators.isNull(data.date) || validators.isNull(data.flyArena) || validators.isNull(data.flyArena.flyTheme)) {
+      return mocks.getMockRecCard()
+    }
     let ts = data.date
     return {
-      title: ['今日主题：' + data.flyArena.flyTheme.theme],
-      date: data.date.substr(0, 4) + '/' + data.date.substr(4, 2) + '/' + data.date.substr(6, 2),
+      title: '今日主题：' + data.flyArena.flyTheme.theme,
+      theme: data.flyArena.flyTheme.theme,
+      date: ts.substr(0, 4) + '/' + ts.substr(4, 2) + '/' + ts.substr(6, 2),
       url: data.style.background
     }
   },
@@ -81,5 +84,28 @@ module.exports = {
       mode: validators.isStrNullOrEmpty(data.takePartMode) || data.takePartMode === 'Open' ? "公开" : "私有",
       playersCount: validators.isArrayNullOrEmpty(data.players) ? 0 : data.players.length,
     }
+  },
+
+  getCommentList(data) {
+    if (mockSwitch) {
+      return mocks.getMockCommentList()
+    }
+    if (validators.isNull(data) || validators.isArrayNullOrEmpty(data.pollens)) {
+      return validators.emptyArray()
+    }
+
+    return data.pollens.map((item, i) => {
+      let avatar = validators.isNull(item.player) ? mocks.getDefaultUserAvatar() : item.player.avatar
+      let nickname = validators.isNull(item.player) ? mocks.getDefaultUserNickname() : item.player.nickname
+
+      return {
+        id: i,
+        avatar: avatar,
+        nickname: nickname,
+        poetry: item.value,
+        lastModified: dates.formatSimpleTime(item.ts),
+        author: validators.isStrNullOrEmpty(item.author) ? '' : item.author,
+      }
+    }).reverse()
   }
 }

@@ -12,10 +12,10 @@ Content-Type: application/json
 X-Token: {{auth_token}}
 
 {
-  "theme": "花",
+  "theme": "灯",
   "flyRule": "Common",
-  "date": "20240428",
-  "background": "default-daily.png"
+  "date": "20240504",
+  "background": "https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/534de8d0631b5d093da7e878e90e279b.png"
 }
 
 ###

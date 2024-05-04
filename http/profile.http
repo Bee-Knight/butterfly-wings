@@ -4,3 +4,12 @@ Content-Type: application/json
 X-Token: {{auth_token}}
 
 {}
+
+###
+POST {{buttfly}}/user/modify-user
+Content-Type: application/json
+X-Token: {{auth_token}}
+
+{
+  "avatar": "http://tmp/dOmaCYVIJ3mgc1967f37790ac3dc437d5be40cb75777.jpeg"
+}

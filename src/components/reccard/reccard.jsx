@@ -1,15 +1,33 @@
 import {Image, View} from '@tarojs/components'
 import React from "react"
-import mocks from '../../utils/mock'
+import validators from '../../utils/validator'
 
 import './reccard.css'
 
 class RecCard extends React.Component {
 
-  static defaultProps = mocks.getMockRecCard()
+  // static defaultProps = mocks.getMockRecCard()
+
+  static defaultProps = {
+    title: '',
+    url: '',
+    date: ''
+  }
 
   render() {
-    const {title, url, date} = this.props
+    const {title, theme, url, date} = this.props
+
+    let themeView1 = <View/>
+    let themeView2 = <View/>
+    if (!validators.isStrNullOrEmpty(theme)) {
+      if (theme.length >= 1) {
+        themeView1 = <View className="rec-card-cover-image-theme1">{theme[0]}</View>
+      }
+      if (theme.length >= 2) {
+        themeView2 = <View className="rec-card-cover-image-theme2">{theme[1]}</View>
+      }
+    }
+
     return (
       <View>
         <View className="rec-card-title">
@@ -27,8 +45,10 @@ class RecCard extends React.Component {
           {/*图片*/}
           <View className="rec-card-cover-image">
             <Image src={url} mode="scaleToFill" className="rec-card-cover-image-image"/>
-            <View className="rec-card-cover-image-theme1">灯</View>
-            <View className="rec-card-cover-image-theme2">火</View>
+            {themeView1}
+            {themeView2}
+            {/*<View className="rec-card-cover-image-theme1">灯</View>*/}
+            {/*<View className="rec-card-cover-image-theme2">火</View>*/}
           </View>
         </View>
       </View>

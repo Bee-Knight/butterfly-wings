@@ -1,13 +1,14 @@
 import React from 'react'
 import {Image, View} from '@tarojs/components'
 import {PostList} from '../../components/postlist/postlist'
-import mocks from '../../utils/mock'
 import RecCard from "../../components/reccard/reccard"
-// import requests from '../../utils/requtil'
-// import api from '../../utils/api'
+import requests from '../../utils/requtil'
+import api from '../../utils/api'
+import convertors from '../../utils/convertor'
 import './index.css'
 import Taro from "@tarojs/taro"
 import {getStorageSync} from "@tarojs/taro-h5"
+import validators from "../../utils/validator";
 
 class Index extends React.Component {
   config = {
@@ -15,26 +16,44 @@ class Index extends React.Component {
   }
 
   state = {
-    loading: true,
+    loading: false,
     posts: [],
     rec: {},
     statusBarHeight: 0,
     navBarHeight: 0
   }
 
-
   async componentDidMount() {
-    // await requests.get(api.getPostList(), {}).then((res) => {
-    //   console.log(res)
-    // })
+    await requests.get(api.getFindTodayFly(), {}).then((res) => {
+      console.log(res.data)
+      if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
+        let result = convertors.getRecCard(res.data.data)
+        console.log(result)
+        if (!validators.isNull(result)) {
+          this.setState({
+            rec: result
+          })
+        }
+      }
+    })
+    await requests.get(api.getPostList(), {}).then((res) => {
+      console.log(res.data)
+      if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
+        let result = convertors.getPostList(res.data.data)
+        console.log(result)
+        if (!validators.isArrayNullOrEmpty(result)) {
+          this.setState({
+            posts: result
+          })
+        }
+      }
+    })
 
     if (process.env.TARO_ENV !== 'weapp') {
-      this.setState({
-        // posts: res.data,
-        posts: mocks.getMockPostList(),
-        rec: mocks.getMockRecCard(),
-        loading: false,
-      })
+      // this.setState({
+      //   posts: mocks.getMockPostList(),
+      //   rec: mocks.getMockRecCard(),
+      // })
       return
     }
 
@@ -57,10 +76,8 @@ class Index extends React.Component {
       : statusBarHeightOrDefault + 44
 
     this.setState({
-      // posts: res.data,
-      posts: mocks.getMockPostList(),
-      rec: mocks.getMockRecCard(),
-      loading: false,
+      // posts: mocks.getMockPostList(),
+      // rec: mocks.getMockRecCard(),
       statusBarHeight: statusBarHeightOrDefault,
       navBarHeight: navBarHeight
     })
@@ -88,6 +105,16 @@ class Index extends React.Component {
         <View className="index-nav-title-title">诗辞大会</View>
       </View>
     }
+
+    let postView = <View style="height:20px"/>
+    if (!validators.isArrayNullOrEmpty(posts)) {
+      postView = (<View className="index-post-list">
+        <View style="height:24px"/>
+        <PostList posts={posts} loading={loading}/>
+        <View style="height:20px"/>
+      </View>)
+    }
+
     return (
       <View>
         {/*图片底层*/}
@@ -108,15 +135,12 @@ class Index extends React.Component {
 
           {/*每日推荐*/}
           <View className="index-rec-card">
-            <RecCard/>
+            <RecCard title={rec.title} theme={rec.theme} url={rec.url} date={rec.date}/>
           </View>
 
           {/*我参与的*/}
-          <View className="index-post-list">
-            <View style="height:24px"/>
-            <PostList posts={posts} loading={loading}/>
-            <View style="height:20px"/>
-          </View>
+          {postView}
+
           {/*悬浮button*/}
           {/*<View className="index-fab" onClick={this.onCreatePost}>*/}
           {/*  <Text className="index-fab-text">+</Text>*/}

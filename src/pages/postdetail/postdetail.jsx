@@ -7,6 +7,10 @@ import {DetailCard} from '../../components/detailcard/detailcard'
 import {CommentList} from '../../components/commentcard/commentlist'
 import {getStorageSync} from "@tarojs/taro-h5"
 import Taro from "@tarojs/taro"
+import requests from '../../utils/requtil'
+import api from '../../utils/api'
+import convertors from '../../utils/convertor'
+import validators from "../../utils/validator";
 
 class PostDetail extends React.Component {
   config = {
@@ -21,9 +25,18 @@ class PostDetail extends React.Component {
   }
 
   async componentDidMount() {
-    // await requests.get(api.getPostList(), {}).then((res) => {
-    //   console.log(res)
-    // })
+    await requests.get(api.getPostDetail(), {}).then((res) => {
+      console.log(res.data)
+      if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
+        let result = convertors.getPostDetail(res.data.data)
+        let commentResult = convertors.getCommentList(res.data.data)
+        console.log(result)
+        if (!validators.isNull(result)) {
+          this.setState({})
+        }
+      }
+    })
+
     if (process.env.TARO_ENV !== 'weapp') {
       this.setState({
         detail: mocks.getMockPostDetail(),

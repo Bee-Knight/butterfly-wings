@@ -2,7 +2,10 @@ import React from 'react'
 import {Button, Image, View} from '@tarojs/components'
 import './profile.css'
 import '../../app.scss'
-import mocks from '../../utils/mock'
+import api from '../../utils/api'
+import requests from '../../utils/requtil'
+import validators from "../../utils/validator";
+import convertors from "../../utils/convertor";
 
 class Profile extends React.Component {
   config = {
@@ -13,39 +16,46 @@ class Profile extends React.Component {
     avatar: '',
     nickname: '',
     user_desc: '',
-    cover: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/profile-cover.png'
+    cover: ''
   }
 
   async componentDidMount() {
-    // await requests.get(api.getPostList(), {}).then((res) => {
-    //   console.log(res)
-    // })
-    let {avatar, nickname, desc, bg} = mocks.getMockUserProfile()
-    if (avatar === undefined || avatar === '') {
-      avatar = "https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg"
-    }
-    if (nickname === undefined || nickname === '') {
-      nickname = "微信用户"
-    }
-    this.setState({
-      avatar: avatar,
-      nickname: nickname,
-      user_desc: desc,
-      cover: bg
+    await requests.get(api.getUserProfile(), {}).then((res) => {
+      console.log(res.data)
+      if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
+        let result = convertors.getUserProfile(res.data.data)
+        console.log(result)
+        if (!validators.isNull(result)) {
+          this.setState({
+            avatar: result.avatar,
+            nickname: result.nickname,
+            user_desc: result.desc,
+            cover: result.bg
+          })
+        }
+      }
     })
+
+    this.onChooseAvatar = this.onChooseAvatar.bind(this)
+    //todo change nickname, desc
   }
 
   onChooseAvatar(e) {
-    console.log(e)
     const {avatarUrl} = e.detail
-    if (avatarUrl === undefined || avatarUrl === '') {
+    if (validators.isStrNullOrEmpty(avatarUrl)) {
       return
     }
 
+    console.log(avatarUrl)
     this.setState({
       avatar: avatarUrl
     })
-    //todo send request to update
+
+    requests.post(api.getModifyUser(), {
+      avatar: avatarUrl
+    }).then((res) => {
+      console.log(res)
+    })
   }
 
   render() {
@@ -54,7 +64,7 @@ class Profile extends React.Component {
     let avatarButton
     if (process.env.TARO_ENV === 'weapp') {
       avatarButton =
-        <Button className="profile-avatar-button" openType="chooseAvatar" onChooseAvatar="onChooseAvatar">
+        <Button className="profile-avatar-button" openType="chooseAvatar" onChooseAvatar={this.onChooseAvatar}>
           <Image mode='scaleToFill' src={avatar} className='profile-avatar-image'/>
         </Button>
     } else {
