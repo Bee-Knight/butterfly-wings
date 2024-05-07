@@ -4,7 +4,7 @@ import './ground.css'
 import mocks from "../../utils/mock"
 import Taro from "@tarojs/taro"
 import {DPostList} from "../../components/dpostlist/dpostlist"
-import {getStorageSync} from "@tarojs/taro-h5"
+import navutil from "../../utils/navutil";
 
 class Ground extends React.Component {
   config = {
@@ -30,34 +30,18 @@ class Ground extends React.Component {
       return
     }
 
-    let statusBarHeightOrDefault = 44;
-    let sysInfo = getStorageSync('sys_info');
-    if (sysInfo && sysInfo.statusBarHeight && sysInfo.statusBarHeight > 0) {
-      statusBarHeightOrDefault = sysInfo.statusBarHeight
-    } else {
-      const {statusBarHeight} = Taro.getSystemInfoSync()
-      if (statusBarHeight > 0) {
-        statusBarHeightOrDefault = statusBarHeight
-      }
+    let navinfo = navutil.getNavInfo()
+    if (!navinfo) {
+      return
     }
-
-    // 获取胶囊信息
-    const {width, height, left, top, right} = Taro.getMenuButtonBoundingClientRect()
-    console.log(Taro.getMenuButtonBoundingClientRect())
-    let navBarHeight = top > statusBarHeightOrDefault && height > 0
-      ? statusBarHeightOrDefault + (top - statusBarHeightOrDefault) * 2 + height
-      : statusBarHeightOrDefault + 44
 
     this.setState({
       // posts: res.data,
       posts: mocks.getMockDPostList(),
       loading: false,
-      statusBarHeight: statusBarHeightOrDefault,
-      navBarHeight: navBarHeight
+      statusBarHeight: navinfo.statusBarHeight,
+      navBarHeight: navinfo.navBarHeight
     })
-
-    console.log("statusBarHeight: " + statusBarHeightOrDefault)
-    console.log("navBarHeight: " + navBarHeight)
   }
 
   onCreatePost() {

@@ -5,12 +5,11 @@ import '../../app.scss'
 import mocks from '../../utils/mock'
 import {DetailCard} from '../../components/detailcard/detailcard'
 import {CommentList} from '../../components/commentcard/commentlist'
-import {getStorageSync} from "@tarojs/taro-h5"
-import Taro from "@tarojs/taro"
 import requests from '../../utils/requtil'
 import api from '../../utils/api'
 import convertors from '../../utils/convertor'
 import validators from "../../utils/validator";
+import navutil from "../../utils/navutil";
 
 class PostDetail extends React.Component {
   config = {
@@ -45,33 +44,17 @@ class PostDetail extends React.Component {
       return
     }
 
-    let statusBarHeightOrDefault = 44
-    let sysInfo = getStorageSync('sys_info')
-    if (sysInfo && sysInfo.statusBarHeight && sysInfo.statusBarHeight > 0) {
-      statusBarHeightOrDefault = sysInfo.statusBarHeight
-    } else {
-      const {statusBarHeight} = Taro.getSystemInfoSync()
-      if (statusBarHeight > 0) {
-        statusBarHeightOrDefault = statusBarHeight
-      }
+    let navinfo = navutil.getNavInfo()
+    if (!navinfo) {
+      return
     }
-
-    // 获取胶囊信息
-    const {width, height, left, top, right} = Taro.getMenuButtonBoundingClientRect()
-    console.log(Taro.getMenuButtonBoundingClientRect())
-    let navBarHeight = top > statusBarHeightOrDefault && height > 0
-      ? statusBarHeightOrDefault + (top - statusBarHeightOrDefault) * 2 + height
-      : statusBarHeightOrDefault + 44
 
     this.setState({
       detail: mocks.getMockPostDetail(),
       comments: mocks.getMockCommentList(),
-      statusBarHeight: statusBarHeightOrDefault,
-      navBarHeight: navBarHeight
+      statusBarHeight: navinfo.statusBarHeight,
+      navBarHeight: navinfo.navBarHeight
     })
-
-    console.log("statusBarHeight: " + statusBarHeightOrDefault)
-    console.log("navBarHeight: " + navBarHeight)
   }
 
   render() {

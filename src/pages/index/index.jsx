@@ -7,8 +7,8 @@ import api from '../../utils/api'
 import convertors from '../../utils/convertor'
 import './index.css'
 import Taro from "@tarojs/taro"
-import {getStorageSync} from "@tarojs/taro-h5"
 import validators from "../../utils/validator";
+import navutil from "../../utils/navutil";
 
 class Index extends React.Component {
   config = {
@@ -50,40 +50,18 @@ class Index extends React.Component {
     })
 
     if (process.env.TARO_ENV !== 'weapp') {
-      // this.setState({
-      //   posts: mocks.getMockPostList(),
-      //   rec: mocks.getMockRecCard(),
-      // })
       return
     }
 
-    let statusBarHeightOrDefault = 44
-    let sysInfo = getStorageSync('sys_info')
-    if (sysInfo && sysInfo.statusBarHeight && sysInfo.statusBarHeight > 0) {
-      statusBarHeightOrDefault = sysInfo.statusBarHeight
-    } else {
-      const {statusBarHeight} = Taro.getSystemInfoSync()
-      if (statusBarHeight > 0) {
-        statusBarHeightOrDefault = statusBarHeight
-      }
+    let navinfo = navutil.getNavInfo()
+    if (!navinfo) {
+      return
     }
 
-    // 获取胶囊信息
-    const {width, height, left, top, right} = Taro.getMenuButtonBoundingClientRect()
-    console.log(Taro.getMenuButtonBoundingClientRect())
-    let navBarHeight = top > statusBarHeightOrDefault && height > 0
-      ? statusBarHeightOrDefault + (top - statusBarHeightOrDefault) * 2 + height
-      : statusBarHeightOrDefault + 44
-
     this.setState({
-      // posts: mocks.getMockPostList(),
-      // rec: mocks.getMockRecCard(),
-      statusBarHeight: statusBarHeightOrDefault,
-      navBarHeight: navBarHeight
+      statusBarHeight: navinfo.statusBarHeight,
+      navBarHeight: navinfo.navBarHeight
     })
-
-    console.log("statusBarHeight: " + statusBarHeightOrDefault)
-    console.log("navBarHeight: " + navBarHeight)
   }
 
   onCreatePost() {

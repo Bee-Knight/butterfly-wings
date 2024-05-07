@@ -1,5 +1,4 @@
 // import axios from 'axios'
-// import {getStorageSync} from "@tarojs/taro-h5"
 import logs from './logutil'
 import Taro from "@tarojs/taro"
 import errors from './commonerror'

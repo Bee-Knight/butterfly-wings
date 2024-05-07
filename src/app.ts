@@ -7,10 +7,12 @@ import api from './utils/api'
 import validators from './utils/validator'
 // import {getStorageSync, setStorageSync} from "@tarojs/taro-h5"
 import Taro from '@tarojs/taro'
+import navutil from "./utils/navutil";
 
 class App extends Component<PropsWithChildren> {
 
   async componentDidMount() {
+    navutil.getNavInfo()
     await this.refreshToken()
   }
 
@@ -32,6 +34,9 @@ class App extends Component<PropsWithChildren> {
           console.log(res.data)
           token = ''
         }
+      }).catch((err) => {
+        console.log(err)
+        token = ''
       })
     }
 
@@ -47,6 +52,8 @@ class App extends Component<PropsWithChildren> {
         if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
           Taro.setStorageSync('x-token', res.data.data.token.id)
         }
+      }).catch((err) => {
+        console.log(err)
       })
     }
   }
