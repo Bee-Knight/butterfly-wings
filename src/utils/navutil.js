@@ -4,7 +4,7 @@ import {getStorageSync} from "@tarojs/taro-h5"
 export default {
   getNavInfo() {
     if (process.env.TARO_ENV !== 'weapp') {
-      return
+      return null
     }
 
     let navinfo = Taro.getStorageSync('navinfo')

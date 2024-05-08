@@ -32,8 +32,6 @@ class UpdateNickname extends React.Component {
 
     let inst = getCurrentInstance()
     let defaulted = inst.router.params.df
-    console.log(inst.router.params)
-    console.log(inst.router.params.df)
     if (!validators.isStrNullOrEmpty(defaulted) && defaulted === 'false') {
       this.setState({
         nickname: inst.router.params.nickname
