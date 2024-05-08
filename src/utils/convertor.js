@@ -19,7 +19,9 @@ export default {
       desc: validators.isStrNullOrEmpty(data.introduction) ? mocks.getDefaultUserIntroduce() : data.introduction,
       gender: validators.emptyStr(),
       bg: mocks.getDefaultUserBg(),
-      registeredAt: validators.emptyStr()
+      registeredAt: validators.emptyStr(),
+      default_nn: validators.isStrNullOrEmpty(data.nickname),
+      default_desc: validators.isStrNullOrEmpty(data.introduction)
     }
   },
   getPostList(data) {

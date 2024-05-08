@@ -6,6 +6,7 @@ import api from '../../utils/api'
 import requests from '../../utils/requtil'
 import validators from "../../utils/validator";
 import convertors from "../../utils/convertor";
+import Taro from "@tarojs/taro";
 
 class Profile extends React.Component {
   config = {
@@ -16,7 +17,9 @@ class Profile extends React.Component {
     avatar: '',
     nickname: '',
     user_desc: '',
-    cover: ''
+    cover: '',
+    default_nn: false,
+    default_desc: false
   }
 
   async componentDidMount() {
@@ -30,14 +33,17 @@ class Profile extends React.Component {
             avatar: result.avatar,
             nickname: result.nickname,
             user_desc: result.desc,
-            cover: result.bg
+            cover: result.bg,
+            default_nn: result.default_nn,
+            default_desc: result.default_desc
           })
         }
       }
     })
 
     this.onChooseAvatar = this.onChooseAvatar.bind(this)
-    //todo change nickname, desc
+    this.handleNavigateUpdateNickname = this.handleNavigateUpdateNickname.bind(this)
+    this.handleNavigateUpdateDesc = this.handleNavigateUpdateDesc.bind(this)
   }
 
   onChooseAvatar(e) {
@@ -55,6 +61,18 @@ class Profile extends React.Component {
       avatar: avatarUrl
     }).then((res) => {
       console.log(res)
+    })
+  }
+
+  handleNavigateUpdateNickname = () => {
+    Taro.navigateTo({
+      url: '/pages/updatenickname/updatenickname?nickname=' + this.state.nickname + '&df=' + this.state.default_nn,
+    })
+  }
+
+  handleNavigateUpdateDesc = () => {
+    Taro.navigateTo({
+      url: '/pages/updatedesc/updatedesc?desc=' + this.state.user_desc + '&df=' + this.state.default_desc,
     })
   }
 
@@ -81,10 +99,10 @@ class Profile extends React.Component {
           {avatarButton}
           {/*<Image mode='scaleToFill' src={avatar} className='profile-avatar-image'/>*/}
         </View>
-        <View className='profile-nickname'>
+        <View className='profile-nickname' onClick={this.handleNavigateUpdateNickname}>
           {nickname}
         </View>
-        <View className='profile-userdesc'>
+        <View className='profile-userdesc' onClick={this.handleNavigateUpdateDesc}>
           {user_desc}
         </View>
       </View>

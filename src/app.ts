@@ -29,32 +29,24 @@ class App extends Component<PropsWithChildren> {
     let token = Taro.getStorageSync('x-token')
     if (token) {
       console.log('x-token:' + token)
-      await requests.get(api.getUserProfile()).then((res) => {
-        if (validators.isNull(res.data) || validators.isFalse(res.data.success)) {
-          console.log(res.data)
-          token = ''
-        }
-      }).catch((err) => {
-        console.log(err)
+      let result = await requests.get(api.getUserProfile())
+      if (validators.isNull(result) || validators.isNull(result.data) || validators.isFalse(result.data.success)) {
+        console.log(result)
         token = ''
-      })
+      }
     }
 
     if (token) {
       console.log('x-token:' + token)
     } else {
-      await requests.post(api.getRegisterFromWechatAndLogin(), {
+      let loginresult = await requests.post(api.getRegisterFromWechatAndLogin(), {
         "openId": "testopenid",
         "nickname": "微信用户",
         "avatar": "default-avatar.png"
-      }).then((res) => {
-        console.log(res.data)
-        if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
-          Taro.setStorageSync('x-token', res.data.data.token.id)
-        }
-      }).catch((err) => {
-        console.log(err)
       })
+      if (!validators.isNull(loginresult) && !validators.isNull(loginresult.data) && validators.isTrue(loginresult.data.success)) {
+        Taro.setStorageSync('x-token', loginresult.data.data.token.id)
+      }
     }
   }
 

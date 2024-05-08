@@ -49,19 +49,15 @@ class Index extends React.Component {
       }
     })
 
-    if (process.env.TARO_ENV !== 'weapp') {
-      return
+    if (process.env.TARO_ENV === 'weapp') {
+      let navinfo = navutil.getNavInfo()
+      if (navinfo) {
+        this.setState({
+          statusBarHeight: navinfo.statusBarHeight,
+          navBarHeight: navinfo.navBarHeight
+        })
+      }
     }
-
-    let navinfo = navutil.getNavInfo()
-    if (!navinfo) {
-      return
-    }
-
-    this.setState({
-      statusBarHeight: navinfo.statusBarHeight,
-      navBarHeight: navinfo.navBarHeight
-    })
   }
 
   onCreatePost() {

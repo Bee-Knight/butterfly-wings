@@ -35,6 +35,10 @@
   border-radius: 50%;
 }
 
+.profile-avatar-button::after {
+  border: none;
+}
+
 .profile-avatar-image {
   width: 64px;
   height: 64px;
