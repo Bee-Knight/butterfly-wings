@@ -48,8 +48,8 @@
 .profile-nickname {
   display: flex;
   margin-top: 16px;
-  padding-left: 75px;
-  padding-right: 75px;
+  padding-left: 55px;
+  padding-right: 55px;
   height: 30px;
 
   text-align: center;
@@ -68,9 +68,9 @@
 .profile-userdesc {
   display: flex;
   margin-top: 4px;
-  padding-left: 75px;
-  padding-right: 75px;
-  height: 20px;
+  padding-left: 35px;
+  padding-right: 35px;
+  height: auto;
 
   text-align: center;
   justify-content: center;
@@ -82,4 +82,8 @@
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
+}
+
+.profile-userdesc.text {
+
 }

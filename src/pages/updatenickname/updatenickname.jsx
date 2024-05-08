@@ -16,7 +16,7 @@ class UpdateNickname extends React.Component {
 
   state = {
     nickname: '',
-    maxlength: 20
+    maxlength: 10
   }
 
   async componentDidMount() {
