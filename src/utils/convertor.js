@@ -35,7 +35,14 @@ export default {
       let firstPollen = validators.last(item.flyArena.pollens)
       let author = !validators.isNull(firstPollen) && !validators.isStrNullOrEmpty(firstPollen.author) ? firstPollen.author : validators.emptyStr()
       let title = !validators.isNull(firstPollen) && !validators.isStrNullOrEmpty(firstPollen.title) ? firstPollen.title : validators.emptyStr()
-
+      let text = '';
+      if (!validators.isStrNullOrEmpty(author) && !validators.isStrNullOrEmpty(title)) {
+        text = author + "・" + title
+      } else if (!validators.isStrNullOrEmpty(author)) {
+        text = author
+      } else if (!validators.isStrNullOrEmpty(title)) {
+        text = title
+      }
       return {
         id: item.flyArena.id,
         title: '飞花令：' + item.flyArena.flyTheme.theme,
@@ -45,7 +52,7 @@ export default {
         mode: validators.isStrNullOrEmpty(item.flyArena.takePartMode) || item.flyArena.takePartMode === 'Open' ? "公开" : "私有",
         poetry: validators.isNull(firstPollen) ? mocks.getDefaultFlyPoetry() : firstPollen.value,
         lastModified: validators.isNull(firstPollen) ? dates.getTimeText(item.flyArena.beginAt) : dates.getTimeText(firstPollen.ts),
-        author: author + " " + title,
+        author: text,
         flyRule: item.flyArena.flyRule
       }
     })
@@ -99,6 +106,16 @@ export default {
     return data.pollens.map((item, i) => {
       let avatar = validators.isNull(item.player) ? mocks.getDefaultUserAvatar() : item.player.avatar
       let nickname = validators.isNull(item.player) ? mocks.getDefaultUserNickname() : item.player.nickname
+      let author = validators.isStrNullOrEmpty(item.author) ? '' : item.author
+      let title = validators.isStrNullOrEmpty(item.title) ? '' : item.title
+      let text = '';
+      if (!validators.isStrNullOrEmpty(author) && !validators.isStrNullOrEmpty(title)) {
+        text = author + "・" + title
+      } else if (!validators.isStrNullOrEmpty(author)) {
+        text = author
+      } else if (!validators.isStrNullOrEmpty(title)) {
+        text = title
+      }
 
       return {
         id: i,
@@ -106,7 +123,7 @@ export default {
         nickname: nickname,
         poetry: item.value,
         lastModified: dates.getTimeText(new Date(item.ts)),
-        author: validators.isStrNullOrEmpty(item.author) ? '' : item.author,
+        author: text
       }
     }).reverse()
   }

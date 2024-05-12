@@ -13,6 +13,7 @@
 }
 
 .comment-card-user-nickname {
+  padding-left: 8px;
   color: rgba(0, 0, 0, 0.40);
   font-family: "PingFang SC";
   font-size: 14px;
@@ -56,14 +57,20 @@
 }
 
 .comment-card-detail-extra {
+  height: 16px;
   width: 100%;
   display: flex;
 
   justify-content: space-between;
   align-items: flex-end;
+
+  overflow: hidden;
 }
 
 .comment-card-detail-extra-date {
+  width: auto;
+  height: 16px;
+
   display: flex;
   align-items: flex-start;
 
@@ -76,6 +83,11 @@
 }
 
 .comment-card-detail-extra-author {
+  height: 16px;
+  width: 204px;
+
+  padding-left: 12px;
+
   display: flex;
   align-items: center;
   gap: 2px;
@@ -86,4 +98,13 @@
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 133.333% */
+
+  /*文本超长打点*/
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: break-spaces;
 }

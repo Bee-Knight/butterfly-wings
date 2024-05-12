@@ -5,7 +5,6 @@ X-Token: {{auth_token}}
 
 {}
 
-
 ###
 POST {{buttfly}}/activity/new-daily-fly
 Content-Type: application/json
