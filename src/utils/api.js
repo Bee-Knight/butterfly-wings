@@ -67,8 +67,8 @@ module.exports = {
   getPostListByMode() {
     return base + "/butterfly/fly-arena/find-by-take-part-mode"
   },
-  getPostDetail() {
-    return base + "/butterfly/fly-arena/detail"
+  getPostDetail(id) {
+    return base + "/butterfly/fly-arena/detail?id=" + id
   },
 
   // poetry

@@ -105,7 +105,7 @@ export default {
         avatar: avatar,
         nickname: nickname,
         poetry: item.value,
-        lastModified: dates.formatSimpleTime(item.ts),
+        lastModified: dates.getTimeText(new Date(item.ts)),
         author: validators.isStrNullOrEmpty(item.author) ? '' : item.author,
       }
     }).reverse()

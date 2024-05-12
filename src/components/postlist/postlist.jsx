@@ -24,6 +24,7 @@ class PostList extends React.Component {
           <View key={post.id}>
             <PostCard
               key={post.id}
+              id={post.id}
               cover={post.cover}
               title={post.title}
               lastModified={post.lastModified}
@@ -40,6 +41,7 @@ class PostList extends React.Component {
           <View key={post.id}>
             <PostCard
               key={post.id}
+              id={post.id}
               cover={post.cover}
               title={post.title}
               lastModified={post.lastModified}

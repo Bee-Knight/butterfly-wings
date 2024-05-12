@@ -10,6 +10,7 @@ import api from '../../utils/api'
 import convertors from '../../utils/convertor'
 import validators from "../../utils/validator";
 import navutil from "../../utils/navutil";
+import {getCurrentInstance} from "@tarojs/runtime";
 
 class PostDetail extends React.Component {
   config = {
@@ -24,23 +25,29 @@ class PostDetail extends React.Component {
   }
 
   async componentDidMount() {
-    await requests.get(api.getPostDetail(), {}).then((res) => {
-      console.log(res.data)
+    let inst = getCurrentInstance()
+    let id = inst.router.params.id
+
+    await requests.get(api.getPostDetail(id), {}).then((res) => {
       if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
         let result = convertors.getPostDetail(res.data.data)
         let commentResult = convertors.getCommentList(res.data.data)
         console.log(result)
+        console.log(commentResult)
         if (!validators.isNull(result)) {
-          this.setState({})
+          this.setState({
+            detail: result
+          })
+        }
+        if (!validators.isArrayNullOrEmpty(commentResult)) {
+          this.setState({
+            comments: commentResult
+          })
         }
       }
     })
 
     if (process.env.TARO_ENV !== 'weapp') {
-      this.setState({
-        detail: mocks.getMockPostDetail(),
-        comments: mocks.getMockCommentList()
-      })
       return
     }
 
@@ -50,8 +57,8 @@ class PostDetail extends React.Component {
     }
 
     this.setState({
-      detail: mocks.getMockPostDetail(),
-      comments: mocks.getMockCommentList(),
+      // detail: mocks.getMockPostDetail(),
+      // comments: mocks.getMockCommentList(),
       statusBarHeight: navinfo.statusBarHeight,
       navBarHeight: navinfo.navBarHeight
     })
