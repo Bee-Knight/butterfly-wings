@@ -11,6 +11,7 @@ import convertors from '../../utils/convertor'
 import validators from "../../utils/validator";
 import navutil from "../../utils/navutil";
 import {getCurrentInstance} from "@tarojs/runtime";
+import {Nav} from '../../components/nav/nav'
 
 class PostDetail extends React.Component {
   config = {
@@ -69,19 +70,18 @@ class PostDetail extends React.Component {
     let comments = this.state.comments
 
     //导航栏
-    let nav = <View/>
-    if (process.env.TARO_ENV === 'weapp') {
-      nav = <View className="index-nav-title" style={`height: ${this.state.navBarHeight}px`}>
-        <View style={`height: ${this.state.statusBarHeight}px`}/>
-        {/*<View style="height: 44px"/>*/}
-        {/*<View className="index-nav-title-title">诗辞大会</View>*/}
-      </View>
-    }
+    // let nav = <View/>
+    // if (process.env.TARO_ENV === 'weapp') {
+    //   nav = <View className="index-nav-title" style={`height: ${this.state.navBarHeight}px`}>
+    //     <View style={`height: ${this.state.statusBarHeight}px`}/>
+    //   </View>
+    // }
 
     return (
       <View className="post-detail-parent">
         {/*导航栏*/}
-        {nav}
+        {/*{nav}*/}
+        <Nav left={14}/>
         <View style="height:16px"/>
         <View className='post-detail'>
           <DetailCard

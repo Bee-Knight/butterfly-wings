@@ -8,6 +8,7 @@ import requests from '../../utils/requtil'
 import api from '../../utils/api'
 import Taro from '@tarojs/taro'
 import {getCurrentInstance} from "@tarojs/runtime";
+import {Nav} from '../../components/nav/nav'
 
 class UpdateNickname extends React.Component {
   config = {
@@ -62,17 +63,18 @@ class UpdateNickname extends React.Component {
 
   render() {
     //导航栏
-    let nav = <View/>
-    if (process.env.TARO_ENV === 'weapp') {
-      nav =
-        <View style={`height: ${this.state.navBarHeight}px`}>
-          <View style={`height: ${this.state.statusBarHeight}px`}/>
-        </View>
-    }
+    // let nav = <View/>
+    // if (process.env.TARO_ENV === 'weapp') {
+    //   nav =
+    //     <View style={`height: ${this.state.navBarHeight}px`}>
+    //       <View style={`height: ${this.state.statusBarHeight}px`}/>
+    //     </View>
+    // }
 
     return (
       <View>
-        {nav}
+        <Nav/>
+        {/*{nav}*/}
         <View className='user-nickname-update'>
           <Input
             className='minput'

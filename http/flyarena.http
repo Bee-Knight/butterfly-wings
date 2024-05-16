@@ -39,7 +39,7 @@ Content-Type: application/json
 X-Token: {{auth_token}}
 
 {
-  "flyArenaId": 1786690053938737152,
+  "flyArenaId": {{last_fly_arena_id}},
   "pollen": "春城无处不飞花",
   "title": "",
   "author": ""
@@ -53,7 +53,7 @@ Content-Type: application/json
 X-Token: {{auth_token}}
 
 {
-  "flyArenaId": 1786690053938737152,
+  "flyArenaId": {{last_fly_arena_id}},
   "pollen": "想眼中能有多少泪珠儿，\n怎禁得秋流到冬尽，\n春流到夏!",
   "title": "",
   "author": ""
@@ -67,7 +67,7 @@ Content-Type: application/json
 X-Token: {{auth_token}}
 
 {
-  "flyArenaId": 1786690053938737152,
+  "flyArenaId": {{last_fly_arena_id}},
   "pollen": "想眼中能有多少泪珠儿，\n怎禁得秋流到冬尽，\n春流到夏! 春流到夏!春流到夏!",
   "title": "曹雪芹《红楼梦十二曲·其三·枉凝眉》",
   "author": ""

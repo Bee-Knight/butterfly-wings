@@ -50,7 +50,7 @@ export default {
         cover: validators.isStrNullOrEmpty(item.flyArena.style.background) ? mocks.getDefaultFlyCover() : item.flyArena.style.background,
         repliesCount: validators.isArrayNullOrEmpty(item.flyArena.pollens) ? 0 : item.flyArena.pollens.length,
         mode: validators.isStrNullOrEmpty(item.flyArena.takePartMode) || item.flyArena.takePartMode === 'Open' ? "公开" : "私有",
-        poetry: validators.isNull(firstPollen) ? mocks.getDefaultFlyPoetry() : firstPollen.value,
+        poetry: validators.isNull(firstPollen) ? mocks.getDefaultFlyPoetry() : firstPollen.verse,
         lastModified: validators.isNull(firstPollen) ? dates.getTimeText(item.flyArena.beginAt) : dates.getTimeText(firstPollen.ts),
         author: text,
         flyRule: item.flyArena.flyRule
@@ -121,7 +121,7 @@ export default {
         id: i,
         avatar: avatar,
         nickname: nickname,
-        poetry: item.value,
+        poetry: item.verse,
         lastModified: dates.getTimeText(new Date(item.ts)),
         author: text
       }

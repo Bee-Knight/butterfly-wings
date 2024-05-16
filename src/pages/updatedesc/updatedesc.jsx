@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Input, Text, View} from '@tarojs/components'
+import {Button, Input, Text, View, Textarea} from '@tarojs/components'
 import './updatedesc.css'
 import '../../app.scss'
 import navutil from "../../utils/navutil";
@@ -8,6 +8,7 @@ import requests from '../../utils/requtil'
 import api from '../../utils/api'
 import Taro from '@tarojs/taro'
 import {getCurrentInstance} from "@tarojs/runtime";
+import {Nav} from '../../components/nav/nav'
 
 class UpdateDesc extends React.Component {
   config = {
@@ -61,20 +62,21 @@ class UpdateDesc extends React.Component {
 
   render() {
     //导航栏
-    let nav = <View/>
-    if (process.env.TARO_ENV === 'weapp') {
-      nav =
-        <View style={`height: ${this.state.navBarHeight}px`}>
-          <View style={`height: ${this.state.statusBarHeight}px`}/>
-        </View>
-    }
+    // let nav = <View/>
+    // if (process.env.TARO_ENV === 'weapp') {
+    //   nav =
+    //     <View style={`height: ${this.state.navBarHeight}px`}>
+    //       <View style={`height: ${this.state.statusBarHeight}px`}/>
+    //     </View>
+    // }
 
     return (
       <View>
-        {nav}
+        {/*{nav}*/}
+        <Nav/>
         <View className='user-desc-update'>
-          <Input
-            className='minput'
+          <Textarea
+            className='minput-desc'
             type='text'
             value={this.state.desc}
             onInput={this.handleChange}
