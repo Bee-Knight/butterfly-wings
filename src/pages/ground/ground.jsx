@@ -1,5 +1,5 @@
 import React from 'react'
-import {View} from '@tarojs/components'
+import {Button, View} from '@tarojs/components'
 import './ground.css'
 import mocks from "../../utils/mock"
 import Taro from "@tarojs/taro"
@@ -59,7 +59,8 @@ class Ground extends React.Component {
 
           <View className="ground-nav-title">
             {/*创建*/}
-            <View className="ground-nav-title-create">+</View>
+            {/*<View className="ground-nav-title-create">+</View>*/}
+            <Button className="ground-nav-title-create">+</Button>
             {/*筛选器*/}
             <View className="ground-nav-title-selector">+</View>
           </View>

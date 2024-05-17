@@ -85,9 +85,9 @@ class UpdateDesc extends React.Component {
           />
           <View style="height:30px;width:100%"/>
           <Button
-            className='mbutton'
+            className='mbutton-desc'
             onClick={this.onConfirm}>
-            <Text style="color: white;">确认</Text>
+            <Text className='mbutton-desc-text'>确认</Text>
           </Button>
         </View>
       </View>

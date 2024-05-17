@@ -25,6 +25,11 @@
   height: 50px;
   background-color: #ffc062;
   border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .mbutton::after {
