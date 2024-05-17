@@ -22,7 +22,7 @@ class Profile extends React.Component {
     default_desc: false
   }
 
-  async componentDidMount() {
+  async load() {
     await requests.get(api.getUserProfile(), {}).then((res) => {
       console.log(res.data)
       if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
@@ -40,6 +40,14 @@ class Profile extends React.Component {
         }
       }
     })
+  }
+
+  async componentDidShow() {
+    await this.load()
+  }
+
+  async componentDidMount() {
+    await this.load()
 
     this.onChooseAvatar = this.onChooseAvatar.bind(this)
     this.handleNavigateUpdateNickname = this.handleNavigateUpdateNickname.bind(this)

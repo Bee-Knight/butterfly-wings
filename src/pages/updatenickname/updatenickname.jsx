@@ -52,7 +52,10 @@ class UpdateNickname extends React.Component {
   }
 
   onConfirm(e) {
-    let nickname = validators.isStrNullOrEmpty(this.state.nickname) ? '' : this.state.nickname
+    if (validators.isStrNullOrEmpty(this.state.nickname)) {
+      return
+    }
+    let nickname = this.state.nickname
     requests.post(api.getModifyUser(), {
       nickname: nickname
     }).then((res) => {
