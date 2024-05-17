@@ -1,8 +1,7 @@
 import React from 'react'
-import {View} from '@tarojs/components'
+import {Input, View} from '@tarojs/components'
 import './postdetail.css'
 import '../../app.scss'
-import mocks from '../../utils/mock'
 import {DetailCard} from '../../components/detailcard/detailcard'
 import {CommentList} from '../../components/commentcard/commentlist'
 import requests from '../../utils/requtil'
@@ -98,7 +97,23 @@ class PostDetail extends React.Component {
         <View className="post-comment-list">
           <CommentList comments={comments}/>
         </View>
-        <View style="height:20px"/>
+        <View style="height:20px;width:100%"/>
+        {/*评论组件*/}
+        <View style="height:44px;width: 100%"/>
+        <View style="position: fixed;bottom: 0px;width: 100%;background-color: #fff">
+          <View style="padding: 8px;padding-left:8px;padding-right:8px">
+            <View style="display: flex;flex-direction: row">
+              <Input
+                type='text'
+                placeholder='快来飞一句吧～'
+                style='background-color: #F5F6F7;border-radius: 28px;padding:8px;padding-left:14px;padding-right:14px;width: 100%;font-size: 12px;min-height:12px;height:12px'
+              />
+              {/*<View style='color: #000;font-size: 12px;width:25%;display:flex;text-align:center;justify-content:center;align-items:center'>*/}
+              {/*  确认*/}
+              {/*</View>*/}
+            </View>
+          </View>
+        </View>
       </View>
     )
   }
