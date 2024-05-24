@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Input, Text, View} from '@tarojs/components'
+import {Button, Input, Text, View, Textarea} from '@tarojs/components'
 import './updatenickname.css'
 import '../../app.scss'
 import navutil from "../../utils/navutil";
@@ -79,7 +79,7 @@ class UpdateNickname extends React.Component {
         <Nav/>
         {/*{nav}*/}
         <View className='user-nickname-update'>
-          <Input
+          <Textarea
             className='minput'
             type='text'
             value={this.state.nickname}
