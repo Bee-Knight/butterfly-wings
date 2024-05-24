@@ -7,7 +7,6 @@ import './postcard.css'
 
 class PostCard extends React.Component {
   handleNavigate = () => {
-    console.log(this.props)
     Taro.navigateTo({
       url: '/pages/postdetail/postdetail?id='+this.props.id,
     })

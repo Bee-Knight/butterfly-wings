@@ -1,7 +1,6 @@
 // import axios from 'axios'
 import logs from './logutil'
 import Taro from "@tarojs/taro"
-import errors from './commonerror'
 import validators from './validator'
 
 /**
@@ -29,18 +28,10 @@ const request = function (url, options) {
       }
     },
     fail: (err) => {
-      Taro.showToast({
-        title: errors.getCommonNetworkErr(),
-        showCancel: false
-      })
-      return logs.logErr("APIErr", url, err)
+      logs.logErr("APIErr", url, err)
     },
     error: (err) => {
-      Taro.showToast({
-        title: errors.getCommonNetworkErr(),
-        showCancel: false
-      })
-      return logs.logErr("APIErr", url, err)
+      logs.logErr("APIErr", url, err)
     }
   })
 }

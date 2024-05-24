@@ -12,7 +12,7 @@ export default {
       return navinfo
     }
 
-    let statusBarHeightOrDefault = 44
+    let statusBarHeightOrDefault = 20
     let sysInfo = getStorageSync('sys_info')
     if (sysInfo && sysInfo.statusBarHeight && sysInfo.statusBarHeight > 0) {
       statusBarHeightOrDefault = sysInfo.statusBarHeight
@@ -27,7 +27,7 @@ export default {
     const {width, height, left, top, right} = Taro.getMenuButtonBoundingClientRect()
     console.log(Taro.getMenuButtonBoundingClientRect())
     let navBarHeight = top > statusBarHeightOrDefault && height > 0
-      ? statusBarHeightOrDefault + (top - statusBarHeightOrDefault) * 2 + height
+      ? statusBarHeightOrDefault + (top - statusBarHeightOrDefault) * 3 + height
       : statusBarHeightOrDefault + 44
     let result = {
       statusBarHeight: statusBarHeightOrDefault,

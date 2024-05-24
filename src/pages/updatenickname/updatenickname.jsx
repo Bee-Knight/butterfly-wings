@@ -76,7 +76,7 @@ class UpdateNickname extends React.Component {
 
     return (
       <View>
-        <Nav/>
+        <Nav title='修改昵称'/>
         {/*{nav}*/}
         <View className='user-nickname-update'>
           <Textarea

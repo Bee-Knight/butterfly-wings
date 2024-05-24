@@ -47,7 +47,7 @@ class Profile extends React.Component {
   }
 
   async componentDidMount() {
-    await this.load()
+    // await this.load()
 
     this.onChooseAvatar = this.onChooseAvatar.bind(this)
     this.handleNavigateUpdateNickname = this.handleNavigateUpdateNickname.bind(this)

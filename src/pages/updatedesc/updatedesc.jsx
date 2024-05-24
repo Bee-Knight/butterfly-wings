@@ -73,7 +73,7 @@ class UpdateDesc extends React.Component {
     return (
       <View>
         {/*{nav}*/}
-        <Nav/>
+        <Nav title='修改简介'/>
         <View className='user-desc-update'>
           <Textarea
             className='minput-desc'

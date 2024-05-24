@@ -8,7 +8,6 @@ class CommentCard extends React.Component {
   render() {
     const {id, avatar, nickname, poetry, lastModified, author} = this.props
 
-    console.log(this.props)
     return (
       <View>
         <View className="comment-card-user">

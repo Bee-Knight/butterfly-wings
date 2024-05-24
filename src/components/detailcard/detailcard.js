@@ -1,6 +1,7 @@
 import React from 'react'
 import {Image, View} from '@tarojs/components'
 import {AtTag} from 'taro-ui'
+import validators from '../../utils/validator'
 
 import './detailcard.css'
 
@@ -9,18 +10,32 @@ class DetailCard extends React.Component {
   render() {
     const {id, cover, title, repliesCount, mode, desc, playersCount} = this.props
 
-    let repliesTag = null
+    let repliesTag = ''
     if (repliesCount) {
       repliesTag = <AtTag size='small'>{repliesCount}</AtTag>
-    } else {
-      repliesTag = ''
     }
 
-    let modeTag = null
+    let modeTag = ''
     if (playersCount) {
       modeTag = <AtTag size='small'>{mode}</AtTag>
-    } else {
-      modeTag = ''
+    }
+
+    let commentCountView = ''
+    if (repliesCount > 0) {
+      commentCountView = <View className="detail-card-title-tag">{repliesCount}条</View>
+    }
+
+    let modeView = ''
+    if (!validators.isStrNullOrEmpty(mode)) {
+      modeView = <View className="detail-card-extra-mode">{mode}</View>
+    }
+
+    let playersView = ''
+    if (playersCount > 0) {
+      playersView =
+        <View className="detail-card-extra-players">
+          <View className="detail-card-extra-players-players">{playersCount}人参与</View>
+        </View>
     }
 
     return (
@@ -35,7 +50,7 @@ class DetailCard extends React.Component {
         {/*标题、评论数*/}
         <View className="detail-card-title">
           <View className="detail-card-title-title">{title}</View>
-          <View className="detail-card-title-tag">{repliesCount}条</View>
+          {commentCountView}
         </View>
 
         <View style="height: 11px"/>
@@ -47,10 +62,8 @@ class DetailCard extends React.Component {
 
         {/*模式、参与人数*/}
         <View className="detail-card-extra">
-          <View className="detail-card-extra-mode">{mode}</View>
-          <View className="detail-card-extra-players">
-            <View className="detail-card-extra-players-players">{playersCount}人参与</View>
-          </View>
+          {modeView}
+          {playersView}
         </View>
       </View>
     )

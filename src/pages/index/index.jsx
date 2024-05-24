@@ -23,7 +23,7 @@ class Index extends React.Component {
     navBarHeight: 0
   }
 
-  async componentDidMount() {
+  async load() {
     await requests.get(api.getFindTodayFly(), {}).then((res) => {
       console.log(res.data)
       if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
@@ -48,7 +48,13 @@ class Index extends React.Component {
         }
       }
     })
+  }
 
+  async componentDidShow() {
+    await this.load()
+  }
+
+  async componentDidMount() {
     if (process.env.TARO_ENV === 'weapp') {
       let navinfo = navutil.getNavInfo()
       if (navinfo) {

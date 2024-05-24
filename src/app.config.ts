@@ -41,5 +41,6 @@ export default defineAppConfig({
     navigationBarTitleText: '飞花一夏',
     navigationBarTextStyle: 'black',
     navigationStyle: 'custom',
+    enablePullDownRefresh: false
   }
 })
