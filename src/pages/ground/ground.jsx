@@ -82,7 +82,7 @@ class Ground extends React.Component {
           </View>
 
           {/*填充*/}
-          <View style="height:20px"/>
+          {/*<View style="height:20px"/>*/}
         </View>
       </View>
     )

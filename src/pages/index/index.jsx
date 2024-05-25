@@ -88,7 +88,7 @@ class Index extends React.Component {
       postView = (<View className="index-post-list">
         <View style="height:24px"/>
         <PostList posts={posts} loading={loading}/>
-        <View style="height:20px"/>
+        <View style="height:12px"/>
       </View>)
     }
 

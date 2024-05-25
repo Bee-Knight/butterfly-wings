@@ -20,7 +20,7 @@ class DPostCard extends React.Component {
       card = <DImageCard theme={theme} url={url}/>
     } else {
       card =
-        <View onClick={this.handleNavigate}>
+        <View className="d-post-card-view" onClick={this.handleNavigate}>
           {/*主题*/}
           <View className="d-post-card-cover-theme">{theme}</View>
 

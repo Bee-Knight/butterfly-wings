@@ -1,3 +1,7 @@
+.d-post-card-view {
+  position: relative;
+}
+
 .d-post-card-cover-view {
   position: relative;
   /*width: auto;*/
