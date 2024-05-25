@@ -25,10 +25,8 @@ class Index extends React.Component {
 
   async load() {
     await requests.get(api.getFindTodayFly(), {}).then((res) => {
-      console.log(res.data)
       if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
         let result = convertors.getRecCard(res.data.data)
-        console.log(result)
         if (!validators.isNull(result)) {
           this.setState({
             rec: result
@@ -37,7 +35,6 @@ class Index extends React.Component {
       }
     })
     await requests.get(api.getPostList(), {}).then((res) => {
-      console.log(res.data)
       if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
         let result = convertors.getPostList(res.data.data)
         console.log(result)

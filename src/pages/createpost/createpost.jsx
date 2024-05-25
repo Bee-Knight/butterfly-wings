@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Image, Swiper, SwiperItem, Switch, Text, Textarea, View} from '@tarojs/components'
+import {Button, Image, Swiper, SwiperItem, Switch, Text, Textarea, View, Input} from '@tarojs/components'
 
 import './createpost.css'
 import validators from "../../utils/validator";
@@ -88,7 +88,7 @@ class CreatePost extends React.Component {
           <View className='create-post-title-view'>
             <View className='create-post-title'>主题</View>
             <View style="height:15px;width:100%"/>
-            <Textarea
+            <Input
               className='create-post-title-view-input'
               type='text'
               value={this.state.title}
