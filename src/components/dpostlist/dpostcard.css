@@ -1,7 +1,14 @@
+.d-post-card-cover-view {
+  position: relative;
+  /*width: auto;*/
+  height: 85px;
+}
+
 .d-post-card-cover-image {
   position: absolute;
 
   height: 85px;
+  width: 100%;
 
   /*padding-right: 20px;*/
 
@@ -15,6 +22,7 @@
   height: 85px;
 
   background: rgba(152, 201, 190, 0.50);
+  /*background: rgba(198, 212, 223, 0.50);*/
   backdrop-filter: blur(5px);
   border-top-right-radius: 24px;
 

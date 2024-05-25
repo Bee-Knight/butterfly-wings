@@ -42,7 +42,8 @@ class App extends Component<PropsWithChildren> {
     } else {
       let loginresult = await requests.post(api.getRegisterFromWechatAndLogin(), {
         "openId": "testopenid",
-        "nickname": "微信用户"
+        "nickname": "微信用户",
+        "avatar": "default-avatar.png"
       }).then((res) => {
         return res
       })

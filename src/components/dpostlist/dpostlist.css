@@ -1,15 +1,17 @@
 .d-post-list {
+  /*一列布局*/
   /*display: flex;*/
-  width: 100%;
+  /*width: 100%;*/
   /*flex-direction: column;*/
 
+  /*两列布局*/
+  width: 100%;
   /*列数*/
   -webkit-column-count: 2;
   column-count: 2;
   /*列间距*/
   -webkit-column-gap: 8px;
   column-gap: 8px;
-
 }
 
 .d-post-list-card {

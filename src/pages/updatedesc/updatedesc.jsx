@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Input, Text, View, Textarea} from '@tarojs/components'
+import {Button, Text, Textarea, View} from '@tarojs/components'
 import './updatedesc.css'
 import '../../app.scss'
 import navutil from "../../utils/navutil";

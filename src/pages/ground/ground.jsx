@@ -5,43 +5,50 @@ import mocks from "../../utils/mock"
 import Taro from "@tarojs/taro"
 import {DPostList} from "../../components/dpostlist/dpostlist"
 import navutil from "../../utils/navutil";
+import requests from "../../utils/requtil";
+import api from "../../utils/api";
+import validators from "../../utils/validator";
+import convertors from "../../utils/convertor";
 
 class Ground extends React.Component {
   config = {
-    navigationBarTitleText: '发现',
+    navigationBarTitleText: '',
   }
 
   state = {
-    loading: true,
+    loading: false,
     posts: []
   }
 
-  async componentDidMount() {
-    // await requests.get(api.getPostList(), {}).then((res) => {
-    //   console.log(res)
-    // })
-
-    if (process.env.TARO_ENV !== 'weapp') {
-      this.setState({
-        // posts: res.data,
-        posts: mocks.getMockDPostList(),
-        loading: false,
-      })
-      return
-    }
-
-    let navinfo = navutil.getNavInfo()
-    if (!navinfo) {
-      return
-    }
-
-    this.setState({
-      // posts: res.data,
-      posts: mocks.getMockDPostList(),
-      loading: false,
-      statusBarHeight: navinfo.statusBarHeight,
-      navBarHeight: navinfo.navBarHeight
+  async load() {
+    await requests.get(api.getPostList(), {}).then((res) => {
+      if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
+        let result = convertors.getPostList(res.data.data)
+        console.log(result)
+        if (!validators.isArrayNullOrEmpty(result)) {
+          this.setState({
+            posts: result
+            // posts: mocks.getMockDPostList()
+          })
+        }
+      }
     })
+  }
+
+  async componentDidShow() {
+    await this.load()
+  }
+
+  async componentDidMount() {
+    if (process.env.TARO_ENV === 'weapp') {
+      let navinfo = navutil.getNavInfo()
+      if (navinfo) {
+        this.setState({
+          statusBarHeight: navinfo.statusBarHeight,
+          navBarHeight: navinfo.navBarHeight
+        })
+      }
+    }
   }
 
   onCreatePost() {

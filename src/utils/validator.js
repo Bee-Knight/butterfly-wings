@@ -47,5 +47,12 @@ module.exports = {
 
   emptyStr() {
     return ''
+  },
+
+  containsNewLineChar(str) {
+    if (this.isStrNullOrEmpty(str)) {
+      return false;
+    }
+    return /\n|\r\n|\r/.test(str)
   }
 }

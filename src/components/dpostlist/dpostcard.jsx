@@ -8,7 +8,7 @@ import Taro from "@tarojs/taro"
 class DPostCard extends React.Component {
   handleNavigate = () => {
     Taro.navigateTo({
-      url: '/pages/postdetail/postdetail',
+      url: '/pages/postdetail/postdetail?id=' + this.props.id,
     })
   }
 
@@ -23,10 +23,13 @@ class DPostCard extends React.Component {
         <View onClick={this.handleNavigate}>
           {/*主题*/}
           <View className="d-post-card-cover-theme">{theme}</View>
-          {/*封面*/}
-          <Image src={url} mode="scaleToFill" className="d-post-card-cover-image"/>
-          {/*遮罩*/}
-          <View className="d-post-card-cover-mask"/>
+
+          <View className="d-post-card-cover-view">
+            {/*封面*/}
+            <Image src={url} mode="scaleToFill" className="d-post-card-cover-image"/>
+            {/*遮罩*/}
+            <View className="d-post-card-cover-mask"/>
+          </View>
 
           <View className="d-post-card-detail">
             {/*标题*/}

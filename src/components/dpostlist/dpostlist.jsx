@@ -8,7 +8,7 @@ import './dpostlist.css'
 class DPostList extends React.Component {
   static defaultProps = {
     posts: [],
-    loading: true,
+    loading: false,
   }
 
   render() {
@@ -25,12 +25,13 @@ class DPostList extends React.Component {
             <DPostCard
               type={post.type}
               title={post.title}
-              url={post.url}
+              url={post.cover}
               desc={post.desc}
               theme={post.theme}
               lastModified={post.lastModified}
               mode={post.mode}
               key={post.id}
+              id={post.id}
             />
           </View>
         )
@@ -40,12 +41,13 @@ class DPostList extends React.Component {
             <DPostCard
               type={post.type}
               title={post.title}
-              url={post.url}
+              url={post.cover}
               desc={post.desc}
               theme={post.theme}
               lastModified={post.lastModified}
               mode={post.mode}
               key={post.id}
+              id={post.id}
             />
             <View style="height:12px"/>
           </View>

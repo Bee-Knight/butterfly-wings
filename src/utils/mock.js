@@ -70,13 +70,13 @@ export default {
     return [
       {
         id: 1,
-        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/534de8d0631b5d093da7e878e90e279b.png?x-oss-process=image/resize,m_fill,h_224,w_165',
+        cover: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/534de8d0631b5d093da7e878e90e279b.png?x-oss-process=image/resize,m_fill,h_224,w_165',
         type: 'image',
         theme: '春',
       },
       {
         id: 2,
-        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
+        cover: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
         type: 'post',
         title: '飞花令：春',
         theme: '春',
@@ -86,7 +86,7 @@ export default {
       },
       {
         id: 3,
-        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
+        cover: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
         type: 'post',
         title: '飞花令：春',
         theme: '春',
@@ -96,7 +96,7 @@ export default {
       },
       {
         id: 4,
-        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
+        cover: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
         type: 'post',
         title: '飞花令：春',
         theme: '春',
@@ -106,7 +106,7 @@ export default {
       },
       {
         id: 5,
-        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
+        cover: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
         type: 'post',
         title: '飞花令：春',
         theme: '春',
@@ -116,14 +116,14 @@ export default {
       },
       {
         id: 6,
-        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/534de8d0631b5d093da7e878e90e279b.png?x-oss-process=image/resize,m_fill,h_224,w_165',
+        cover: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/534de8d0631b5d093da7e878e90e279b.png?x-oss-process=image/resize,m_fill,h_224,w_165',
         type: 'image',
         title: '春',
         theme: '春',
       },
       {
         id: 7,
-        url: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
+        cover: 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/d1ab62f0a83fbb5863d84b6667694a28.png?x-oss-process=image/resize,m_fill,h_85,w_163',
         type: 'post',
         title: '飞花令：春',
         theme: '春',
