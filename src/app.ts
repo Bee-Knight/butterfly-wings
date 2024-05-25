@@ -28,21 +28,23 @@ class App extends Component<PropsWithChildren> {
     // }
     let token = Taro.getStorageSync('x-token')
     if (token) {
-      console.log('x-token:' + token)
-      let result = await requests.get(api.getUserProfile())
+      console.log('check x-token:' + token)
+      let result = await requests.get(api.getUserProfile()).then((res) => {
+        return res
+      })
       if (validators.isNull(result) || validators.isNull(result.data) || validators.isFalse(result.data.success)) {
-        console.log(result)
         token = ''
       }
     }
 
     if (token) {
-      console.log('x-token:' + token)
+      console.log('current x-token:' + token)
     } else {
       let loginresult = await requests.post(api.getRegisterFromWechatAndLogin(), {
         "openId": "testopenid",
-        "nickname": "微信用户",
-        "avatar": "default-avatar.png"
+        "nickname": "微信用户"
+      }).then((res) => {
+        return res
       })
       if (!validators.isNull(loginresult) && !validators.isNull(loginresult.data) && validators.isTrue(loginresult.data.success)) {
         Taro.setStorageSync('x-token', loginresult.data.data.token.id)
