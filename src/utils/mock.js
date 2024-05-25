@@ -1,6 +1,9 @@
 import dates from './dateutil'
 
 export default {
+  getDefaultRuleDesc(str) {
+    return '分享带有「' + str + '」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。'
+  },
   getDefaultFlyPoetry() {
     return '还没有开始飞～快来飞一句吧~'
   },
@@ -18,6 +21,14 @@ export default {
   },
   getDefaultUserIntroduce() {
     return '该用户暂时还没有介绍哦～'
+  },
+  getDefaultFlyCoverList() {
+    return [
+      "https://img.cjyun.org.cn/a/10008/201805/90a8a8e76ab9de005e34f0778367ae22.jpeg",
+      "https://b0.bdstatic.com/b6ee3fcd2886b8c03443b4d8415476d1.jpg@h_1280",
+      "https://img0.baidu.com/it/u=3394380960,655644128&fm=253&fmt=auto&app=138&f=JPEG?w=678&h=380",
+      "https://img2.baidu.com/it/u=3601527929,3353747448&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=400"
+    ]
   },
   getMockCommentList() {
     return [

@@ -1,0 +1,75 @@
+.create-post-parent-view {
+  display: flex;
+  flex-wrap: wrap;
+  /*box-sizing: border-box;*/
+  /*flex-direction: row;*/
+  margin: 30px;
+}
+
+.create-post-title-view {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  flex-direction: row;
+}
+
+.create-post-title {
+  font-size: 15px;
+}
+
+.create-post-title-view-input {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  min-height: 20px;
+
+  font-size: 14px;
+
+  background-color: #F5F6F7;
+}
+
+.create-post-rule-view {
+
+}
+
+.create-post-rule-view-text {
+  font-size: 14px;
+  color: grey
+}
+
+.create-post-mode-view {
+
+}
+
+.create-post-cover-view {
+  width: 100%
+}
+
+.create-post-cover-swiper-view {
+  border-radius: 15px;
+  overflow: hidden;
+
+  width: 100%
+}
+
+.create-post-cover-swiper {
+  border-radius: 15px;
+
+  width: 100%
+}
+
+.create-post-button {
+  width: 100%;
+  height: 50px;
+  background-color: #ffc062;
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.create-post-button::after {
+  border: none;
+}

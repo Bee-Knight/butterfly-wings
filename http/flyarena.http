@@ -6,6 +6,13 @@ X-Token: {{auth_token}}
 {}
 
 ###
+GET {{buttfly}}/fly-arena/find-by-take-part-mode?mode=Open
+Content-Type: application/json
+X-Token: {{auth_token}}
+
+{}
+
+###
 POST {{buttfly}}/fly-arena/new
 Content-Type: application/json
 X-Token: {{auth_token}}

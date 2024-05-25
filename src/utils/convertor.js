@@ -24,6 +24,7 @@ export default {
       default_desc: validators.isStrNullOrEmpty(data.introduction)
     }
   },
+
   getPostList(data) {
     if (mockSwitch) {
       return mocks.getMockPostList()
@@ -31,7 +32,7 @@ export default {
     if (validators.isArrayNullOrEmpty(data)) {
       return validators.emptyArray()
     }
-    return data.map((item, i) => {
+    let result = data.map((item, i) => {
       let firstPollen = validators.last(item.flyArena.pollens)
       let author = !validators.isNull(firstPollen) && !validators.isStrNullOrEmpty(firstPollen.author) ? firstPollen.author : validators.emptyStr()
       let title = !validators.isNull(firstPollen) && !validators.isStrNullOrEmpty(firstPollen.title) ? firstPollen.title : validators.emptyStr()
@@ -43,6 +44,7 @@ export default {
       } else if (!validators.isStrNullOrEmpty(title)) {
         text = title
       }
+      let lastModifiedTime = validators.isNull(firstPollen) ? item.flyArena.beginAt : firstPollen.ts
       return {
         id: item.flyArena.id,
         title: '飞花令：' + item.flyArena.flyTheme.theme,
@@ -52,12 +54,18 @@ export default {
         mode: validators.isStrNullOrEmpty(item.flyArena.takePartMode) || item.flyArena.takePartMode === 'Open' ? "公开" : "私有",
         poetry: validators.isNull(firstPollen) ? mocks.getDefaultFlyPoetry() : firstPollen.verse,
         lastModified: validators.isNull(firstPollen) ? dates.getTimeText(item.flyArena.beginAt) : dates.getTimeText(firstPollen.ts),
+        sortIndex: new Date(lastModifiedTime).getTime(),
         author: text,
         flyRule: item.flyArena.flyRule,
-        desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+        desc: mocks.getDefaultRuleDesc(item.flyArena.flyTheme.theme),
       }
     })
+    if (!validators.isArrayNullOrEmpty(result)) {
+      result.sort((a, b) => b.sortIndex - a.sortIndex)
+    }
+    return result
   },
+
   getDPostList(data) {
     if (mockSwitch) {
       return mocks.getMockDPostList()
@@ -65,7 +73,49 @@ export default {
     if (validators.isArrayNullOrEmpty(data)) {
       return validators.emptyArray()
     }
-    return data.map((item, i) => {
+    let result = data.map((item, i) => {
+      let firstPollen = validators.last(item.pollens)
+      let author = !validators.isNull(firstPollen) && !validators.isStrNullOrEmpty(firstPollen.author) ? firstPollen.author : validators.emptyStr()
+      let title = !validators.isNull(firstPollen) && !validators.isStrNullOrEmpty(firstPollen.title) ? firstPollen.title : validators.emptyStr()
+      let text = '';
+      if (!validators.isStrNullOrEmpty(author) && !validators.isStrNullOrEmpty(title)) {
+        text = author + "・" + title
+      } else if (!validators.isStrNullOrEmpty(author)) {
+        text = author
+      } else if (!validators.isStrNullOrEmpty(title)) {
+        text = title
+      }
+      let lastModifiedTime = validators.isNull(firstPollen) ? item.beginAt : firstPollen.ts
+      return {
+        type: 'post',
+        id: item.id,
+        title: '飞花令：' + item.flyTheme.theme,
+        theme: item.flyTheme.theme,
+        cover: validators.isStrNullOrEmpty(item.style.background) ? mocks.getDefaultFlyCover() : item.style.background,
+        repliesCount: validators.isArrayNullOrEmpty(item.pollens) ? 0 : item.pollens.length,
+        mode: validators.isStrNullOrEmpty(item.takePartMode) || item.takePartMode === 'Open' ? "公开" : "私有",
+        poetry: validators.isNull(firstPollen) ? mocks.getDefaultFlyPoetry() : firstPollen.verse,
+        lastModified: validators.isNull(firstPollen) ? dates.getTimeText(item.beginAt) : dates.getTimeText(firstPollen.ts),
+        sortIndex: new Date(lastModifiedTime).getTime(),
+        author: text,
+        flyRule: item.flyRule,
+        desc: mocks.getDefaultRuleDesc(item.flyTheme.theme),
+      }
+    })
+    if (!validators.isArrayNullOrEmpty(result)) {
+      result.sort((a, b) => b.sortIndex - a.sortIndex)
+    }
+    return result
+  },
+
+  getDPostListOld(data) {
+    if (mockSwitch) {
+      return mocks.getMockDPostList()
+    }
+    if (validators.isArrayNullOrEmpty(data)) {
+      return validators.emptyArray()
+    }
+    let result = data.map((item, i) => {
       let firstPollen = validators.last(item.flyArena.pollens)
       let author = !validators.isNull(firstPollen) && !validators.isStrNullOrEmpty(firstPollen.author) ? firstPollen.author : validators.emptyStr()
       let title = !validators.isNull(firstPollen) && !validators.isStrNullOrEmpty(firstPollen.title) ? firstPollen.title : validators.emptyStr()
@@ -77,6 +127,7 @@ export default {
       } else if (!validators.isStrNullOrEmpty(title)) {
         text = title
       }
+      let lastModifiedTime = validators.isNull(firstPollen) ? item.flyArena.beginAt : firstPollen.ts
       return {
         type: 'post',
         id: item.flyArena.id,
@@ -87,12 +138,18 @@ export default {
         mode: validators.isStrNullOrEmpty(item.flyArena.takePartMode) || item.flyArena.takePartMode === 'Open' ? "公开" : "私有",
         poetry: validators.isNull(firstPollen) ? mocks.getDefaultFlyPoetry() : firstPollen.verse,
         lastModified: validators.isNull(firstPollen) ? dates.getTimeText(item.flyArena.beginAt) : dates.getTimeText(firstPollen.ts),
+        sortIndex: new Date(lastModifiedTime).getTime(),
         author: text,
         flyRule: item.flyArena.flyRule,
-        desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+        desc: mocks.getDefaultRuleDesc(item.flyArena.flyTheme.theme),
       }
     })
+    if (!validators.isArrayNullOrEmpty(result)) {
+      result.sort((a, b) => b.sortIndex - a.sortIndex)
+    }
+    return result
   },
+
   getRecCard(data) {
     if (mockSwitch) {
       return mocks.getMockRecCard()
@@ -111,6 +168,7 @@ export default {
       url: data.style.background
     }
   },
+
   getPostDetail(data) {
     if (mockSwitch) {
       return mocks.getMockPostDetail()
@@ -125,7 +183,7 @@ export default {
       title: '飞花令：' + data.flyTheme.theme,
       theme: data.flyTheme.theme,
       repliesCount: validators.isArrayNullOrEmpty(data.pollens) ? 0 : data.pollens.length,
-      desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+      desc: mocks.getDefaultRuleDesc(data.flyTheme.theme),
       mode: validators.isStrNullOrEmpty(data.takePartMode) || data.takePartMode === 'Open' ? "公开" : "私有",
       playersCount: validators.isArrayNullOrEmpty(data.players) ? 0 : data.players.length,
     }
@@ -162,5 +220,9 @@ export default {
         author: text
       }
     }).reverse()
-  }
+  },
+
+  getDefaultFlyCoverList(data) {
+    return mocks.getDefaultFlyCoverList()
+  },
 }

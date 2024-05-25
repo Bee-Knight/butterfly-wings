@@ -8,7 +8,7 @@ class Mswiper extends React.Component {
     const {images} = this.props
     return (
       <Swiper
-        className='swiper'
+        className='mswiper'
         indicatorColor='#ffffff'
         indicatorActiveColor='#ffc062'
         circular

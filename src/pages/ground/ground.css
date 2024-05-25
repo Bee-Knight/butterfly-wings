@@ -18,12 +18,15 @@
 }
 
 .ground-nav-title {
-  /*height: 30px;*/
+  height: 40px;
   width: 100%;
   display: flex;
 
-  justify-content: space-between;
-  align-items: flex-end;
+  /*justify-content: space-between;*/
+  /*align-items: flex-end;*/
+
+  align-items: center;
+  text-align: center;
 }
 
 .ground-nav-title-create {
