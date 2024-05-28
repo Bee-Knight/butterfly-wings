@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Image, Swiper, SwiperItem, Switch, Text, Textarea, View, Input} from '@tarojs/components'
+import {Button, Image, Input, Swiper, SwiperItem, Switch, Text, View} from '@tarojs/components'
 
 import './createpost.css'
 import validators from "../../utils/validator";
@@ -18,12 +18,13 @@ class CreatePost extends React.Component {
 
   state = {
     title: '',
-    titleMaxlength: 10,
+    titleMaxlength: 1,
     ruleCode: 'Common',
     ruleDesc: mocks.getDefaultRuleDesc('主题'),
     mode: 'Open',
     defaultCoverList: [],
-    coverIndex: 0
+    coverIndex: 0,
+    disable: true,
   }
 
   async load() {
@@ -43,8 +44,13 @@ class CreatePost extends React.Component {
   }
 
   handleChange(e) {
+    let disable = false
+    if (validators.isStrNullOrEmpty(e.detail.value)) {
+      disable = true
+    }
     this.setState({
-      title: e.detail.value
+      title: e.detail.value,
+      disable: disable
     })
   }
 
@@ -72,10 +78,13 @@ class CreatePost extends React.Component {
       mode: this.state.mode,
       background: bg
     }).then((res) => {
-      toasts.show(res, "创建成功")
-      if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
-        Taro.navigateBack({delta: 1})
-      }
+      toasts.show(res, "创建成功").then((r) => {
+        if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
+          setTimeout(() => {
+            Taro.navigateBack({delta: 1})
+          }, 350)
+        }
+      })
     })
   }
 
@@ -94,6 +103,7 @@ class CreatePost extends React.Component {
               value={this.state.title}
               onInput={this.handleChange}
               maxlength={this.state.titleMaxlength}
+              placeholder='请输入飞花主题~限一字符'
               focus
             />
           </View>
@@ -146,7 +156,8 @@ class CreatePost extends React.Component {
 
           <Button
             className='create-post-button'
-            onClick={this.onConfirm}>
+            onClick={this.onConfirm}
+            disabled={this.state.disable}>
             <Text style="color: white;">确认</Text>
           </Button>
 

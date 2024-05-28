@@ -5,30 +5,28 @@ import validators from './validator'
 export default {
   show(res, showTitleOnSuccess) {
     if (validators.isNull(res) || validators.isNull(res.data)) {
-      Taro.showToast({
+      return Taro.showToast({
         icon: 'none',
         title: errors.getCommonNetworkErr(),
         showCancel: false
       })
-      return
     }
     if (validators.isFalse(res.data.success)) {
       if (!validators.isStrNullOrEmpty(res.data.message)) {
-        Taro.showToast({
+        return Taro.showToast({
           icon: 'none',
           title: res.data.message,
           showCancel: false
         })
       } else {
-        Taro.showToast({
+        return Taro.showToast({
           title: errors.getCommonNetworkErr(),
           showCancel: false
         })
       }
-      return
     }
     if (!validators.isStrNullOrEmpty(showTitleOnSuccess)) {
-      Taro.showToast({
+      return Taro.showToast({
         title: showTitleOnSuccess,
         showCancel: false
       })

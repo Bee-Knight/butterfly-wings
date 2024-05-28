@@ -76,3 +76,8 @@
 .create-post-button::after {
   border: none;
 }
+
+.create-post-button[disabled] {
+  background-color: #eaeaea;
+  cursor: not-allowed;
+}
