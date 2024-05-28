@@ -3,6 +3,7 @@ import React from "react"
 import validators from '../../utils/validator'
 
 import './reccard.css'
+import Taro from "@tarojs/taro";
 
 class RecCard extends React.Component {
 
@@ -14,8 +15,16 @@ class RecCard extends React.Component {
     date: ''
   }
 
+  handleNavigate = () => {
+    if (!validators.isStrNullOrEmpty(this.props.id)) {
+      Taro.navigateTo({
+        url: '/pages/postdetail/postdetail?id='+this.props.id,
+      })
+    }
+  }
+
   render() {
-    const {title, theme, url, date} = this.props
+    const {id, title, theme, url, date} = this.props
 
     let themeView1 = <View/>
     let themeView2 = <View/>
@@ -29,7 +38,7 @@ class RecCard extends React.Component {
     }
 
     return (
-      <View>
+      <View onClick={this.handleNavigate}>
         <View className="rec-card-title">
           {/*每日推荐标题*/}
           <View className="rec-card-title-desc">{title}</View>

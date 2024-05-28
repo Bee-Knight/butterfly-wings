@@ -54,17 +54,6 @@ class PostDetail extends React.Component {
 
   async componentDidMount() {
     await this.load()
-
-    // if (process.env.TARO_ENV === 'weapp') {
-    //   let navinfo = navutil.getNavInfo()
-    //   if (navinfo) {
-    //     this.setState({
-    //       statusBarHeight: navinfo.statusBarHeight,
-    //       navBarHeight: navinfo.navBarHeight
-    //     })
-    //   }
-    // }
-
     this.handleChange = this.handleChange.bind(this)
     this.onConfirm = this.onConfirm.bind(this)
     this.load = this.load.bind(this)
@@ -79,9 +68,6 @@ class PostDetail extends React.Component {
   }
 
   onConfirm(e) {
-    this.setState({
-      commentContent: ''
-    })
     let content = e.detail.value
     if (validators.isStrNullOrEmpty(content)) {
       return
@@ -92,6 +78,9 @@ class PostDetail extends React.Component {
     }).then((res) => {
       toasts.show(res, '发布成功')
       if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
+        this.setState({
+          commentContent: ''
+        })
         this.load()
       }
     })

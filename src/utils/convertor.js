@@ -154,10 +154,7 @@ export default {
     if (mockSwitch) {
       return mocks.getMockRecCard()
     }
-    if (validators.isNull(data) || validators.isNull(data.style) || validators.isStrNullOrEmpty(data.style.background)) {
-      return mocks.getMockRecCard()
-    }
-    if (validators.isNull(data.date) || validators.isNull(data.flyArena) || validators.isNull(data.flyArena.flyTheme)) {
+    if (validators.isNull(data) || validators.isNull(data.flyArena) || validators.isNull(data.style)) {
       return mocks.getMockRecCard()
     }
     let ts = data.date
@@ -165,7 +162,8 @@ export default {
       title: '今日主题：' + data.flyArena.flyTheme.theme,
       theme: data.flyArena.flyTheme.theme,
       date: ts.substr(0, 4) + '/' + ts.substr(4, 2) + '/' + ts.substr(6, 2),
-      url: data.style.background
+      url: validators.isStrNullOrEmpty(data.style.background) ? mocks.getMockRecCard().url : data.style.background,
+      id: data.flyArena.id
     }
   },
 

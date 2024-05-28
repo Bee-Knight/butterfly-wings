@@ -115,7 +115,12 @@ class Index extends React.Component {
 
           {/*每日推荐*/}
           <View className="index-rec-card">
-            <RecCard title={rec.title} theme={rec.theme} url={rec.url} date={rec.date}/>
+            <RecCard
+              id={rec.id}
+              title={rec.title}
+              theme={rec.theme}
+              url={rec.url}
+              date={rec.date}/>
           </View>
 
           {/*我参与的*/}
