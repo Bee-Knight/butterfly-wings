@@ -23,7 +23,9 @@ class CommentCard extends React.Component {
           {/*额外信息*/}
           <View className="comment-card-detail-extra">
             <View className="comment-card-detail-extra-date">{lastModified}</View>
-            <View className="comment-card-detail-extra-author">{author}</View>
+            <View className="comment-card-detail-extra-author">
+              <View className="comment-card-detail-extra-author-text">{author}</View>
+            </View>
           </View>
         </View>
       </View>

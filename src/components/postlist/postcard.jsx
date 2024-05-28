@@ -43,7 +43,7 @@ class PostCard extends React.Component {
             </View>
             {/*作者*/}
             <View className="card-detail-author-author">
-              {author}
+              <View className="card-detail-author-author-text">{author}</View>
             </View>
           </View>
           <View style="height: 12px"/>

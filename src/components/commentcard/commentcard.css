@@ -88,10 +88,12 @@
 
   padding-left: 12px;
 
-  display: flex;
-  align-items: center;
-  gap: 2px;
+  /*position: relative;*/
+  text-align: right;
+}
 
+.comment-card-detail-extra-author-text {
+  gap: 2px;
   color: rgba(0, 0, 0, 0.40);
   font-family: "PingFang SC";
   font-size: 12px;

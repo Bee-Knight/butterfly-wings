@@ -54,6 +54,7 @@
 
 .card-detail-poetry-poetry {
   padding-left: 12px;
+  padding-right: 12px;
   display: flex;
   align-items: flex-start;
 
@@ -110,10 +111,13 @@
 
   padding-left: 12px;
   padding-right: 12px;
-  display: flex;
-  align-items: center;
-  gap: 2px;
 
+  /*position: relative;*/
+  text-align: right;
+}
+
+.card-detail-author-author-text {
+  gap: 2px;
   color: rgba(0, 0, 0, 0.40);
   font-family: "Source Han Serif CN";
   font-size: 12px;
