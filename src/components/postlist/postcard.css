@@ -18,6 +18,16 @@
   border-top-left-radius: 24px;
 }
 
+.card-cover-title-view {
+  position: absolute;
+  margin-top: 134px;
+  margin-left: 12px;
+  height: 26px;
+}
+
+.card-cover-title-mode-view {
+}
+
 .card-cover-title {
   position: absolute;
   gap: 5px;
