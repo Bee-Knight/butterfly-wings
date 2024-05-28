@@ -93,7 +93,7 @@ module.exports = {
   },
 
   // wechat
-  getCode2Session() {
-    return base + "/butterfly/wechat/code2session"
+  getCode2Session(code) {
+    return base + "/butterfly/wechat/code2session?code=" + code
   },
 }

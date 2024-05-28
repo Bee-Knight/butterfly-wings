@@ -8,8 +8,12 @@ import validators from './utils/validator'
 // import {getStorageSync, setStorageSync} from "@tarojs/taro-h5"
 import Taro from '@tarojs/taro'
 import navutil from "./utils/navutil";
+import refreshtokenutil from "./utils/refreshtokenutil";
 
 class App extends Component<PropsWithChildren> {
+
+  async componentWillMount() {
+  }
 
   async componentDidMount() {
     navutil.getNavInfo()
@@ -23,34 +27,18 @@ class App extends Component<PropsWithChildren> {
   }
 
   async refreshToken() {
-    // if (process.env.TARO_ENV !== 'weapp') {
-    //   return
-    // }
-    let token = Taro.getStorageSync('x-token')
-    if (token) {
-      console.log('check x-token:' + token)
-      let result = await requests.get(api.getUserProfile()).then((res) => {
-        return res
-      })
-      if (validators.isNull(result) || validators.isNull(result.data) || validators.isFalse(result.data.success)) {
-        token = ''
-      }
-    }
-
-    if (token) {
-      console.log('current x-token:' + token)
-    } else {
-      let loginresult = await requests.post(api.getRegisterFromWechatAndLogin(), {
-        "openId": "testopenid",
-        "nickname": "微信用户",
-        "avatar": "default-avatar.png"
-      }).then((res) => {
-        return res
+    if (process.env.TARO_ENV !== 'weapp') {
+      const loginresult = await requests.post(api.getRegisterFromWechatAndLogin(), {
+        "openId": "testopenid"
       })
       if (!validators.isNull(loginresult) && !validators.isNull(loginresult.data) && validators.isTrue(loginresult.data.success)) {
         Taro.setStorageSync('x-token', loginresult.data.data.token.id)
       }
+      return
     }
+
+    await refreshtokenutil.check()
+    Taro.eventCenter.trigger('LOGIN', {})
   }
 
   render() {

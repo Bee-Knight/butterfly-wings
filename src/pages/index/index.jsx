@@ -49,6 +49,9 @@ class Index extends React.Component {
 
   async componentDidShow() {
     await this.load()
+    Taro.eventCenter.on('LOGIN', (res) => {
+      this.load()
+    })
   }
 
   async componentDidMount() {

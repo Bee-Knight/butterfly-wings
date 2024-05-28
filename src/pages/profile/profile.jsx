@@ -24,10 +24,8 @@ class Profile extends React.Component {
 
   async load() {
     await requests.get(api.getUserProfile(), {}).then((res) => {
-      console.log(res.data)
       if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
         let result = convertors.getUserProfile(res.data.data)
-        console.log(result)
         if (!validators.isNull(result)) {
           this.setState({
             avatar: result.avatar,
