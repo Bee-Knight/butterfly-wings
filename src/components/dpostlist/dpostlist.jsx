@@ -19,7 +19,7 @@ class DPostList extends React.Component {
     }
 
     const element = posts.map((post, index) => {
-      if (index === posts.length - 1) {
+      if (index === posts.length - 1 && posts.length % 2 === 0) {
         return (
           <View key={post.id} className="d-post-list-card">
             <DPostCard
