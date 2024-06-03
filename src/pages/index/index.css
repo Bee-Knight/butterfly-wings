@@ -67,6 +67,16 @@
 .index-rec-card {
 }
 
+.index-post-create-hint {
+  font-size: 14px;
+  color: grey;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .index-post-list {
   background-color: #F5F6F7;
 }

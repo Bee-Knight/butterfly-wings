@@ -1,6 +1,9 @@
 import dates from './dateutil'
 
 export default {
+  getDefaultCreatePostHint() {
+    return '还没有参与过飞花令~快来“发现”吧~'
+  },
   getDefaultModeDesc() {
     return '“公开”所有用户均可参与，“私有”其他用户申请通过方可参与。'
   },

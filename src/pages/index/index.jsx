@@ -9,6 +9,7 @@ import './index.css'
 import Taro from "@tarojs/taro"
 import validators from "../../utils/validator";
 import navutil from "../../utils/navutil";
+import mocks from "../../utils/mock"
 
 class Index extends React.Component {
   config = {
@@ -20,7 +21,8 @@ class Index extends React.Component {
     posts: [],
     rec: {},
     statusBarHeight: 0,
-    navBarHeight: 0
+    navBarHeight: 0,
+    postView: <View style="height:12px"/>
   }
 
   async load() {
@@ -37,10 +39,28 @@ class Index extends React.Component {
     await requests.get(api.getPostList(), {}).then((res) => {
       if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
         let result = convertors.getPostList(res.data.data)
-        console.log(result)
         if (!validators.isArrayNullOrEmpty(result)) {
+          let postView =
+            (<View className="index-post-list">
+              <View style="height:24px"/>
+              <PostList posts={result} loading={false}/>
+              <View style="height:12px"/>
+            </View>)
           this.setState({
-            posts: result
+            posts: result,
+            postView: postView
+          })
+        } else {
+          let postView =
+            <View>
+              <View style="height:24px"/>
+              <View className="index-post-create-hint" onClick={this.onClickHint}>
+                {mocks.getDefaultCreatePostHint()}
+              </View>
+              <View style="height:12px"/>
+            </View>
+          this.setState({
+            postView: postView
           })
         }
       }
@@ -72,6 +92,12 @@ class Index extends React.Component {
     })
   }
 
+  onClickHint() {
+    Taro.switchTab({
+      url: '/pages/ground/ground',
+    })
+  }
+
   render() {
     const {loading, posts, rec} = this.state
 
@@ -86,14 +112,22 @@ class Index extends React.Component {
       </View>
     }
 
-    let postView = <View style="height:20px"/>
-    if (!validators.isArrayNullOrEmpty(posts)) {
-      postView = (<View className="index-post-list">
-        <View style="height:24px"/>
-        <PostList posts={posts} loading={loading}/>
-        <View style="height:12px"/>
-      </View>)
-    }
+    // let postView = <View/>;
+    // if (!validators.isArrayNullOrEmpty(posts)) {
+    //   postView = (<View className="index-post-list">
+    //     <View style="height:24px"/>
+    //     <PostList posts={posts} loading={loading}/>
+    //     <View style="height:12px"/>
+    //   </View>)
+    // } else {
+    //   postView = <View>
+    //     <View style="height:24px"/>
+    //     <View className="index-post-create-hint" onClick={this.onClickHint}>
+    //       {mocks.getDefaultCreatePostHint()}
+    //     </View>
+    //     <View style="height:20px"/>
+    //   </View>
+    // }
 
     return (
       <View>
@@ -124,7 +158,7 @@ class Index extends React.Component {
           </View>
 
           {/*我参与的*/}
-          {postView}
+          {this.state.postView}
 
           {/*悬浮button*/}
           {/*<View className="index-fab" onClick={this.onCreatePost}>*/}
