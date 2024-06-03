@@ -41,7 +41,15 @@
 }
 
 .create-post-mode-view {
+}
 
+.create-post-mode-switch-view {
+  width: 100%;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: row;
 }
 
 .create-post-cover-view {
@@ -80,4 +88,34 @@
 .create-post-button[disabled] {
   background-color: #eaeaea;
   cursor: not-allowed;
+}
+
+/*switch style*/
+.wx-switch-input {
+  width: 45px !important;
+  height: 23px !important;
+  box-sizing: border-box;
+  position: relative;
+  border: 0px !important;
+}
+
+.wx-switch-input::before {
+  width: 45px !important;
+  height: 23px !important;
+  background: #CCCCCC !important;
+  border: 0px solid #CCCCCC !important;
+  box-shadow: none !important;
+  left: 0px;
+  top: 0px;
+}
+
+.wx-switch-input::after {
+  width: 20px !important;
+  height: 18px !important;
+  top: 2px !important;
+  left: 2px !important;
+  opacity: 1 !important;
+  box-sizing: border-box;
+  box-shadow: none !important;
+  border: 0px !important;
 }

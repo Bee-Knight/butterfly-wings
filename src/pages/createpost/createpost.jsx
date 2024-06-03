@@ -1,6 +1,5 @@
 import React from 'react'
 import {Button, Image, Input, Swiper, SwiperItem, Switch, Text, View} from '@tarojs/components'
-
 import './createpost.css'
 import validators from "../../utils/validator";
 import mocks from "../../utils/mock"
@@ -121,9 +120,14 @@ class CreatePost extends React.Component {
           <View style="height:30px;width:100%"/>
 
           <View className='create-post-mode-view'>
-            <View className='create-post-title'>是否公开</View>
+            <View className='create-post-mode-switch-view'>
+              <View className='create-post-title'>是否公开</View>
+              <Switch checked color='#ffc062' onChange={this.onSwitchChange}/>
+            </View>
             <View style="height:15px;width:100%"/>
-            <Switch checked color='#ffc062' onChange={this.onSwitchChange}/>
+            <Text className='create-post-rule-view-text'>
+              {mocks.getDefaultModeDesc()}
+            </Text>
           </View>
 
           <View style="height:30px;width:100%"/>

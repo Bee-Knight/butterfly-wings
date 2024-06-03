@@ -1,6 +1,9 @@
 import dates from './dateutil'
 
 export default {
+  getDefaultModeDesc() {
+    return '“公开”所有用户均可参与，“私有”其他用户申请通过方可参与。'
+  },
   getDefaultRuleDesc(str) {
     return '分享带有「' + str + '」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。'
   },
@@ -145,7 +148,7 @@ export default {
     ]
   },
   getMockRecCard() {
-    let d_url = new Date().getTime() % 2 === 0
+    let d_url = new Date().getDay() % 2 === 0
       ? 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/534de8d0631b5d093da7e878e90e279b.png'
       : 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/Rectangle%202.png'
     let formatTime = dates.formatSimpleTime(new Date())
