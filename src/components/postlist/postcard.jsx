@@ -23,6 +23,10 @@ class PostCard extends React.Component {
     }
     return (
       <View onClick={this.handleNavigate}>
+        {/*遮罩*/}
+        <View className="card-cover-mask-view">
+          <View className="card-cover-mask"/>
+        </View>
         <View className="card-cover">
           {/*封面*/}
           <Image src={cover} mode="scaleToFill" className="card-cover-image"/>
