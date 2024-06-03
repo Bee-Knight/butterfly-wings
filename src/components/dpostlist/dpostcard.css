@@ -53,6 +53,24 @@
   padding: 12px;
 }
 
+.d-post-card-detail-title-view {
+  height: 26px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.d-post-card-detail-mode {
+  margin-right: 4px;
+  height: 26px;
+  width: 18px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
 .d-post-card-detail-title {
   height: 26px;
 

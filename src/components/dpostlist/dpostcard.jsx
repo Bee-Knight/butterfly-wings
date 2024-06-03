@@ -4,6 +4,7 @@ import {Image, View} from '@tarojs/components'
 import './dpostcard.css'
 import {DImageCard} from "./dimagecard"
 import Taro from "@tarojs/taro"
+import {ModeCard} from "../modecard/modecard";
 
 class DPostCard extends React.Component {
   handleNavigate = () => {
@@ -19,6 +20,13 @@ class DPostCard extends React.Component {
     if (type === 'image') {
       card = <DImageCard theme={theme} url={url}/>
     } else {
+      let modeView = <View/>
+      if (mode === '私有') {
+        modeView =
+          <View className="d-post-card-detail-mode">
+            <ModeCard mode={mode}/>
+          </View>
+      }
       card =
         <View className="d-post-card-view" onClick={this.handleNavigate}>
           {/*主题*/}
@@ -33,7 +41,10 @@ class DPostCard extends React.Component {
 
           <View className="d-post-card-detail">
             {/*标题*/}
-            <View className="d-post-card-detail-title">{title}</View>
+            <View className="d-post-card-detail-title-view">
+              {modeView}
+              <View className="d-post-card-detail-title">{title}</View>
+            </View>
             <View style="height:8px"/>
             {/*描述*/}
             <View className="d-post-card-detail-desc">{desc}</View>
@@ -41,7 +52,7 @@ class DPostCard extends React.Component {
             {/*额外信息*/}
             <View className="d-post-card-detail-extra">
               <View className="d-post-card-detail-extra-date">{lastModified}</View>
-              <View className="d-post-card-detail-extra-mode">{mode}</View>
+              {/*<View className="d-post-card-detail-extra-mode">{mode}</View>*/}
             </View>
           </View>
         </View>

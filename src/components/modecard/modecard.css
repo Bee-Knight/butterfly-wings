@@ -1,0 +1,21 @@
+.mode-card-view {
+  width: 18px;
+  height: 18px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-top-right-radius: 6px;
+  background: rgba(178, 55, 16, 0.08);
+}
+
+.mode-card-text {
+  color: #B23710;
+  font-family: "Source Han Serif CN";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 12px; /* 100% */
+}

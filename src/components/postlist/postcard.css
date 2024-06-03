@@ -23,17 +23,27 @@
   margin-top: 134px;
   margin-left: 12px;
   height: 26px;
+
+  display: flex;
+  flex-direction: row;
 }
 
 .card-cover-title-mode-view {
+  margin-right: 4px;
+  height: 26px;
+  width: 18px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
 
 .card-cover-title {
-  position: absolute;
+  /*position: absolute;*/
   gap: 5px;
-  margin-top: 134px;
-  margin-left: 12px;
-
+  /*margin-top: 134px;*/
+  /*margin-left: 34px;*/
   color: #FFFFFF;
   font-family: "Source Han Serif CN";
   font-size: 18px;

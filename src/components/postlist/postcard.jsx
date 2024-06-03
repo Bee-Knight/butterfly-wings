@@ -1,31 +1,38 @@
 import Taro from '@tarojs/taro'
 import React from 'react'
 import {Image, Text, View} from '@tarojs/components'
-import {AtTag} from 'taro-ui'
 
 import './postcard.css'
+import {ModeCard} from "../modecard/modecard";
 
 class PostCard extends React.Component {
   handleNavigate = () => {
     Taro.navigateTo({
-      url: '/pages/postdetail/postdetail?id='+this.props.id,
+      url: '/pages/postdetail/postdetail?id=' + this.props.id,
     })
   }
 
   render() {
     const {id, cover, title, lastModified, repliesCount, mode, desc, author, poetry} = this.props
-
-    let tag = ''
-    if (mode) {
-      tag = <AtTag size='small'>{mode}</AtTag>
+    let modeView = <View/>
+    if (mode === '私有') {
+      modeView =
+        <View className="card-cover-title-mode-view">
+          <ModeCard mode={mode}/>
+        </View>
     }
     return (
       <View onClick={this.handleNavigate}>
         <View className="card-cover">
           {/*封面*/}
           <Image src={cover} mode="scaleToFill" className="card-cover-image"/>
-          {/*标题*/}
-          <View className="card-cover-title">{title}</View>
+          {/*mode & 标题*/}
+          <View className="card-cover-title-view">
+            {/*mode*/}
+            {modeView}
+            {/*标题*/}
+            <View className="card-cover-title">{title}</View>
+          </View>
         </View>
         <View className="card-detail">
           {/*<View className="tag"><Text className="title">{title}</Text>{tag}</View>*/}
