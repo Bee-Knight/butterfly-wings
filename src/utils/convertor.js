@@ -174,6 +174,14 @@ export default {
     if (validators.isNull(data)) {
       return validators.emptyObj()
     }
+    let playerAvatars = []
+    if (!validators.isArrayNullOrEmpty(data.players)) {
+      data.players.map((item, index) => {
+        if (!validators.isStrNullOrEmpty(item.avatar)) {
+          playerAvatars.push(item.avatar)
+        }
+      })
+    }
 
     return {
       id: data.id,
@@ -184,6 +192,7 @@ export default {
       desc: mocks.getDefaultRuleDesc(data.flyTheme.theme),
       mode: validators.isStrNullOrEmpty(data.takePartMode) || data.takePartMode === 'Open' ? "公开" : "私有",
       playersCount: validators.isArrayNullOrEmpty(data.players) ? 0 : data.players.length,
+      playerAvatars: playerAvatars
     }
   },
 

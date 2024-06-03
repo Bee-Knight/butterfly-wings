@@ -6,7 +6,7 @@ X-Token: {{auth_token}}
 {}
 
 ###
-POST {{buttfly}}/user/modify-user
+POST {{buttfly}}/user/modify
 Content-Type: application/json
 X-Token: {{auth_token}}
 

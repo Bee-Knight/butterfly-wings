@@ -101,10 +101,15 @@
 }
 
 .detail-card-extra-players {
-
+  width: auto;
+  height: 28px;
+  display: flex;
+  flex-direction: row;
 }
 
 .detail-card-extra-players-players {
+  width: auto;
+
   display: flex;
   align-items: center;
   gap: 10px;
@@ -118,5 +123,7 @@
 }
 
 .detail-card-extra-players-avatar {
-
+  height: 28px;
+  width: auto;
+  padding-left: 8px;
 }

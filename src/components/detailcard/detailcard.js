@@ -4,11 +4,12 @@ import {AtTag} from 'taro-ui'
 import validators from '../../utils/validator'
 
 import './detailcard.css'
+import {ImageStack} from "../imagestack/imagestack";
 
 class DetailCard extends React.Component {
 
   render() {
-    const {id, cover, title, repliesCount, mode, desc, playersCount} = this.props
+    const {id, cover, title, repliesCount, mode, desc, playersCount, playerAvatars} = this.props
 
     let repliesTag = ''
     if (repliesCount) {
@@ -35,6 +36,9 @@ class DetailCard extends React.Component {
       playersView =
         <View className="detail-card-extra-players">
           <View className="detail-card-extra-players-players">{playersCount}人参与</View>
+          <View className="detail-card-extra-players-avatar">
+            <ImageStack images={playerAvatars}/>
+          </View>
         </View>
     }
 

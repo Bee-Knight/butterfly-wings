@@ -87,7 +87,7 @@ class PostDetail extends React.Component {
   }
 
   render() {
-    const {id, cover, title, repliesCount, mode, desc, playersCount} = this.state.detail
+    const {id, cover, title, repliesCount, mode, desc, playersCount, playerAvatars} = this.state.detail
     let comments = this.state.comments
 
     //导航栏
@@ -115,6 +115,7 @@ class PostDetail extends React.Component {
             mode={mode}
             desc={desc}
             playersCount={playersCount}
+            playerAvatars={playerAvatars}
           />
         </View>
         <View style="height:32px"/>
