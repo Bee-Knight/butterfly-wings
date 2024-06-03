@@ -9,6 +9,7 @@ import validators from './utils/validator'
 import Taro from '@tarojs/taro'
 import navutil from "./utils/navutil";
 import refreshtokenutil from "./utils/refreshtokenutil";
+import mocks from "./utils/mock"
 
 class App extends Component<PropsWithChildren> {
 
@@ -29,7 +30,9 @@ class App extends Component<PropsWithChildren> {
   async refreshToken() {
     if (process.env.TARO_ENV !== 'weapp') {
       const loginresult = await requests.post(api.getRegisterFromWechatAndLogin(), {
-        "openId": "testopenid"
+        openId: "guest",
+        nickname: mocks.getDefaultUserNickname(),
+        avatar: mocks.getDefaultUserAvatar()
       })
       if (!validators.isNull(loginresult) && !validators.isNull(loginresult.data) && validators.isTrue(loginresult.data.success)) {
         Taro.setStorageSync('x-token', loginresult.data.data.token.id)

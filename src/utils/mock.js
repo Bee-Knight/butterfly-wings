@@ -17,7 +17,7 @@ export default {
     return 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg'
   },
   getDefaultUserNickname() {
-    return '飞花君'
+    return '飞花小客'
   },
   getDefaultUserIntroduce() {
     return '该用户暂时还没有介绍哦～'

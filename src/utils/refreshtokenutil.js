@@ -3,6 +3,7 @@ import validators from './validator'
 import requests from './requtil'
 import api from './api'
 import errors from "./commonerror";
+import mocks from "./mock"
 
 export default {
   async check() {
@@ -33,8 +34,8 @@ export default {
     }
     const tokenRes = await requests.post(api.getRegisterFromWechatAndLogin(), {
       openId: loginRes.data.data.openId,
-      "nickname": "微信用户",
-      "avatar": "default-avatar.png"
+      nickname: mocks.getDefaultUserNickname(),
+      avatar: mocks.getDefaultUserAvatar()
     })
     if (validators.isNull(tokenRes) || validators.isNull(tokenRes.data) || validators.isFalse(tokenRes.data.success)) {
       await Taro.showToast({
