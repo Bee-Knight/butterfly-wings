@@ -92,16 +92,16 @@
 
 /*switch style*/
 .wx-switch-input {
-  width: 45px !important;
-  height: 23px !important;
+  width: 44px !important;
+  height: 24px !important;
   box-sizing: border-box;
   position: relative;
   border: 0px !important;
 }
 
 .wx-switch-input::before {
-  width: 45px !important;
-  height: 23px !important;
+  width: 44px !important;
+  height: 24px !important;
   background: #CCCCCC !important;
   border: 0px solid #CCCCCC !important;
   box-shadow: none !important;
@@ -111,7 +111,7 @@
 
 .wx-switch-input::after {
   width: 20px !important;
-  height: 18px !important;
+  height: 20px !important;
   top: 2px !important;
   left: 2px !important;
   opacity: 1 !important;
