@@ -2,11 +2,19 @@ import React from 'react'
 import {Image, View} from '@tarojs/components'
 
 import './commentcard.css'
+import {ModeCard} from "../modecard/modecard";
+import validators from "../../utils/validator"
+import refreshtokenutil from "../../utils/refreshtokenutil";
 
 class CommentCard extends React.Component {
 
   render() {
-    const {id, avatar, nickname, poetry, lastModified, author} = this.props
+    const {id, userId, avatar, nickname, poetry, lastModified, author} = this.props
+    let modeCardView = ''
+    let loginUserId = refreshtokenutil.getUserId()
+    if (!validators.isStrNullOrEmpty(loginUserId) && !validators.isStrNullOrEmpty(userId) && loginUserId === userId) {
+      modeCardView = <ModeCard mode={"您"}/>
+    }
 
     return (
       <View>
@@ -15,6 +23,7 @@ class CommentCard extends React.Component {
           <Image src={avatar} mode="scaleToFill" className="comment-card-user-avatar"/>
           {/*昵称*/}
           <View className="comment-card-user-nickname">{nickname}</View>
+          {modeCardView}
         </View>
 
         <View className="comment-card-detail">

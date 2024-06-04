@@ -6,6 +6,10 @@ import errors from "./commonerror";
 import mocks from "./mock"
 
 export default {
+  getUserId() {
+    return Taro.getStorageSync('x-userId')
+  },
+
   async check() {
     if (process.env.TARO_ENV !== 'weapp') {
       return
@@ -16,6 +20,8 @@ export default {
       const res = await requests.get(api.getUserProfile())
       if (validators.isNull(res) || validators.isNull(res.data) || validators.isFalse(res.data.success)) {
         await this.login()
+      } else {
+        Taro.setStorageSync('x-userId', res.data.data.id)
       }
     } else {
       await this.login()
@@ -44,5 +50,6 @@ export default {
       return
     }
     Taro.setStorageSync('x-token', tokenRes.data.data.token.id)
+    Taro.setStorageSync('x-userId', tokenRes.data.data.user.id)
   }
 }

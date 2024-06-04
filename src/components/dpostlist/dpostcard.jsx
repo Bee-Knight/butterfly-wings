@@ -24,7 +24,7 @@ class DPostCard extends React.Component {
       if (mode === '私有') {
         modeView =
           <View className="d-post-card-detail-mode">
-            <ModeCard mode={mode}/>
+            <ModeCard mode={"私"}/>
           </View>
       }
       card =

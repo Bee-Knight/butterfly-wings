@@ -9,10 +9,11 @@ class ImageStack extends React.Component {
   static defaultProps = {
     size: 28,
     padding: 8,
+    maxLen: 3
   }
 
   render() {
-    const {size, padding, images} = this.props
+    const {size, padding, images, maxLen} = this.props
     if (validators.isArrayNullOrEmpty(images)) {
       return <View/>
     }
@@ -20,6 +21,9 @@ class ImageStack extends React.Component {
     let len = images.length
     let element = []
     images.map((url, index) => {
+      if (element.length >= maxLen) {
+        return
+      }
       let item = <View style={`transform:translateX(${-index * padding}px)`}>
         <Image src={url}
                style={`display: inline-block;width: ${size}px;height: ${size}px;border-radius: 50%;z-index:${index}`}

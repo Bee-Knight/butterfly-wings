@@ -2,13 +2,13 @@ import React from 'react'
 import {Input, View} from '@tarojs/components'
 import './postdetail.css'
 import '../../app.scss'
+import Taro from "@tarojs/taro";
 import {DetailCard} from '../../components/detailcard/detailcard'
 import {CommentList} from '../../components/commentcard/commentlist'
 import requests from '../../utils/requtil'
 import api from '../../utils/api'
 import convertors from '../../utils/convertor'
 import validators from "../../utils/validator";
-import navutil from "../../utils/navutil";
 import {getCurrentInstance} from "@tarojs/runtime";
 import {Nav} from '../../components/nav/nav'
 import toasts from '../../utils/toastutil'
@@ -39,7 +39,7 @@ class PostDetail extends React.Component {
             detail: result
           })
         }
-        if (!validators.isArrayNullOrEmpty(commentResult)) {
+        if (!validators.isNull(result) && !validators.isArrayNullOrEmpty(commentResult)) {
           this.setState({
             comments: commentResult
           })
@@ -48,8 +48,9 @@ class PostDetail extends React.Component {
     })
   }
 
-  onPullDownRefresh() {
-    this.load()
+  async onPullDownRefresh() {
+    await this.load()
+    Taro.stopPullDownRefresh()
   }
 
   async componentDidMount() {
@@ -118,7 +119,13 @@ class PostDetail extends React.Component {
             playerAvatars={playerAvatars}
           />
         </View>
-        <View style="height:32px"/>
+        {/*<View style="height:32px"/>*/}
+
+        <View style="height:13px"/>
+        <View className="post-divider">
+          <View style="height:0.5px;background: #EAEEF1;"/>
+        </View>
+        <View style="height:3.5px"/>
 
         {/*评论列表*/}
         <View className="post-comment-list">

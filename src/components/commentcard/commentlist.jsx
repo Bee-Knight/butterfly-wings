@@ -24,6 +24,7 @@ class CommentList extends React.Component {
           <View>
             <CommentCard
               key={comment.id}
+              userId={comment.userId}
               avatar={comment.avatar}
               nickname={comment.nickname}
               poetry={comment.poetry}
@@ -37,6 +38,7 @@ class CommentList extends React.Component {
           <View>
             <CommentCard
               key={comment.id}
+              userId={comment.userId}
               avatar={comment.avatar}
               nickname={comment.nickname}
               poetry={comment.poetry}

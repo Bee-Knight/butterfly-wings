@@ -177,6 +177,9 @@ export default {
     let playerAvatars = []
     if (!validators.isArrayNullOrEmpty(data.players)) {
       data.players.map((item, index) => {
+        if (playerAvatars.length >= 3) {
+          return
+        }
         if (!validators.isStrNullOrEmpty(item.avatar)) {
           playerAvatars.push(item.avatar)
         }
@@ -207,6 +210,7 @@ export default {
     return data.pollens.map((item, i) => {
       let avatar = validators.isNull(item.player) ? mocks.getDefaultUserAvatar() : item.player.avatar
       let nickname = validators.isNull(item.player) ? mocks.getDefaultUserNickname() : item.player.nickname
+      let userId = validators.isNull(item.player) ? '' : item.player.id
       let author = validators.isStrNullOrEmpty(item.author) ? '' : item.author
       let title = validators.isStrNullOrEmpty(item.title) ? '' : item.title
       let text = '';
@@ -220,6 +224,7 @@ export default {
 
       return {
         id: i,
+        userId: userId,
         avatar: avatar,
         nickname: nickname,
         poetry: item.verse,

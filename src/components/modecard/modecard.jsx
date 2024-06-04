@@ -6,17 +6,19 @@ import './modecard.css'
 
 class ModeCard extends React.Component {
 
-  static defaultProps = {}
+  static defaultProps = {
+    mode: ''
+  }
 
   render() {
     const {mode} = this.props
-    if (validators.isStrNullOrEmpty(mode) || mode !== '私有') {
+    if (validators.isStrNullOrEmpty(mode)) {
       return <View/>
     }
 
     return (
       <View className='mode-card-view'>
-        <Text className='mode-card-text'>私</Text>
+        <Text className='mode-card-text'>{mode}</Text>
       </View>
     )
   }
