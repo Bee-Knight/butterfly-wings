@@ -19,14 +19,12 @@
 
 .post-comment-input {
   background-color: #F5F6F7;
-  border-radius: 28px;
+  border-radius: 25px;
   padding: 8px;
-  padding-left: 14px;
-  padding-right: 14px;
+  padding-left: 16px;
+  padding-right: 16px;
   /*width: 100%;*/
-  font-size: 12px;
-  min-height: 12px;
-  height: 12px;
-
-  /*color: orange;*/
+  font-size: 14px;
+  min-height: 20px;
+  height: 20px;
 }

@@ -12,6 +12,7 @@ import validators from "../../utils/validator";
 import {getCurrentInstance} from "@tarojs/runtime";
 import {Nav} from '../../components/nav/nav'
 import toasts from '../../utils/toastutil'
+import {MComment} from "../../components/mcomment/mcomment";
 
 class PostDetail extends React.Component {
   config = {
@@ -24,6 +25,11 @@ class PostDetail extends React.Component {
     statusBarHeight: 0,
     navBarHeight: 0,
     commentContent: '',
+
+    bottomHeight: 0,
+    adjustPosition: false,
+    cursorSpacing: 0,
+    maxLen: 100
   }
 
   async load() {
@@ -58,6 +64,8 @@ class PostDetail extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.onConfirm = this.onConfirm.bind(this)
     this.load = this.load.bind(this)
+    this.bindFocus = this.bindFocus.bind(this)
+    this.bindBlur = this.bindBlur.bind(this)
   }
 
   handleChange(e) {
@@ -66,6 +74,18 @@ class PostDetail extends React.Component {
     //     commentContent: e.detail.value
     //   })
     // }
+  }
+
+  bindFocus(e) {
+    this.setState({
+      bottomHeight: e.detail.height
+    })
+  }
+
+  bindBlur(e) {
+    this.setState({
+      bottomHeight: 0
+    })
   }
 
   onConfirm(e) {
@@ -134,9 +154,10 @@ class PostDetail extends React.Component {
         <View style="height:20px;width:100%"/>
 
         {/*评论组件*/}
-        <View style="height:44px;width: 100%"/>
-        <View style="position: fixed;bottom: 0px;width: 100%;background-color: #fff">
-          <View style="padding: 8px;padding-left:8px;padding-right:8px">
+        <View style="height:52px;width: 100%"/>
+
+        <View style={`position: fixed;bottom: ${this.state.bottomHeight}px;width: 100%;background-color: #fff`}>
+          <View style="padding: 8px;padding-left:12px;padding-right:12px">
             {/*<View style="display: flex;flex-direction: row">*/}
             <Input
               className='post-comment-input'
@@ -145,6 +166,11 @@ class PostDetail extends React.Component {
               value={this.state.commentContent}
               onInput={this.handleChange}
               onConfirm={this.onConfirm}
+              onFocus={this.bindFocus}
+              onBlur={this.bindBlur}
+              adjustPosition={this.state.adjustPosition}
+              maxlength={this.state.maxLen}
+              cursorSpacing={this.state.cursorSpacing}
             />
             {/*<View style='color: #000;font-size: 12px;width:25%;display:flex;text-align:center;justify-content:center;align-items:center'>*/}
             {/*  确认*/}
@@ -152,6 +178,9 @@ class PostDetail extends React.Component {
             {/*</View>*/}
           </View>
         </View>
+
+        {/*<MComment/>*/}
+
       </View>
     )
   }
