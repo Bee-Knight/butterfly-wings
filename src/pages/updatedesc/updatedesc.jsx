@@ -17,7 +17,8 @@ class UpdateDesc extends React.Component {
 
   state = {
     desc: '',
-    maxlength: 50
+    maxlength: 50,
+    showConfirmBar: false
   }
 
   async componentDidMount() {
@@ -81,6 +82,7 @@ class UpdateDesc extends React.Component {
             value={this.state.desc}
             onInput={this.handleChange}
             maxlength={this.state.maxlength}
+            showConfirmBar={this.state.showConfirmBar}
             focus
           />
           <View style="height:30px;width:100%"/>

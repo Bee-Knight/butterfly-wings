@@ -18,7 +18,8 @@ class UpdateNickname extends React.Component {
   state = {
     nickname: '',
     maxlength: 10,
-    buttonDisable: false
+    buttonDisable: false,
+    showConfirmBar: false
   }
 
   async componentDidMount() {
@@ -93,6 +94,7 @@ class UpdateNickname extends React.Component {
             value={this.state.nickname}
             onInput={this.handleChange}
             maxlength={this.state.maxlength}
+            showConfirmBar={this.state.showConfirmBar}
             focus
           />
           <View style="height:30px;width:100%"/>
