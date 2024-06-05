@@ -17,7 +17,8 @@ class UpdateNickname extends React.Component {
 
   state = {
     nickname: '',
-    maxlength: 10
+    maxlength: 10,
+    buttonDisable: false
   }
 
   async componentDidMount() {
@@ -35,7 +36,12 @@ class UpdateNickname extends React.Component {
     let defaulted = inst.router.params.df
     if (!validators.isStrNullOrEmpty(defaulted) && defaulted === 'false') {
       this.setState({
-        nickname: inst.router.params.nickname
+        nickname: inst.router.params.nickname,
+        buttonDisable: false
+      })
+    } else {
+      this.setState({
+        buttonDisable: true
       })
     }
 
@@ -45,8 +51,10 @@ class UpdateNickname extends React.Component {
 
   handleChange(e) {
     if (!validators.isNull(e.detail)) {
+      let buttonDisable = validators.isStrNullOrEmpty(e.detail.value)
       this.setState({
-        nickname: e.detail.value
+        nickname: e.detail.value,
+        buttonDisable: buttonDisable
       })
     }
   }
@@ -90,6 +98,7 @@ class UpdateNickname extends React.Component {
           <View style="height:30px;width:100%"/>
           <Button
             className='mbutton'
+            disabled={this.state.buttonDisable}
             onClick={this.onConfirm}>
             <Text style="color: white;">确认</Text>
           </Button>

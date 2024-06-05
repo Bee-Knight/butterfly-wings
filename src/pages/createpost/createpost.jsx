@@ -122,7 +122,8 @@ class CreatePost extends React.Component {
           <View className='create-post-mode-view'>
             <View className='create-post-mode-switch-view'>
               <View className='create-post-title'>是否公开</View>
-              <Switch checked color='#ffc062' onChange={this.onSwitchChange}/>
+              {/*<Switch checked color='#ffc062' onChange={this.onSwitchChange}/>*/}
+              <Switch checked color='#82c6b7' onChange={this.onSwitchChange}/>
             </View>
             <View style="height:15px;width:100%"/>
             <Text className='create-post-rule-view-text'>
@@ -140,7 +141,8 @@ class CreatePost extends React.Component {
               <Swiper
                 className='create-post-cover-swiper'
                 indicatorColor='#ffffff'
-                indicatorActiveColor='#ffc062'
+                indicatorActiveColor='#82c6b7'
+                // indicatorActiveColor='#ffc062'
                 circular
                 indicatorDots
                 onChange={this.onCoverChange}>
