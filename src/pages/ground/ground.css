@@ -3,28 +3,34 @@
   height: 100%;
   width: 100%;
 
-  /*margin-top: -70px;*/
-
   background: -webkit-linear-gradient(top, #AAE6D8 0%, rgba(245, 246, 247, 0.00) 32%),
   -webkit-linear-gradient(top, #AAE6D8 0%, rgba(245, 246, 247, 0.00) 32%), #F5F6F7;
+
+  /*background: linear-gradient(180deg, #AAE6D8 0%, rgba(245, 246, 247, 0.00) 32%),*/
+  /*linear-gradient(180deg, #AAE6D8 0%, rgba(245, 246, 247, 0.00) 32%), #F5F6F7;*/
 }
 
 .ground-view {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  /*display: flex;*/
+  /*flex-wrap: wrap;*/
+  /*flex-direction: column;*/
+}
 
-  /*backdrop-filter: blur(15px);*/
+.ground-nav-view {
+  /*设置背景透明而组件不透明*/
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(15px);
+
+  position: fixed;
+  z-index: 99;
+
+  width: 100%;
 }
 
 .ground-nav-title {
-  height: 40px;
   width: 100%;
+
   display: flex;
-
-  /*justify-content: space-between;*/
-  /*align-items: flex-end;*/
-
   align-items: center;
   text-align: center;
 }
@@ -35,6 +41,7 @@
   border-radius: 50%;
   width: 30px;
   height: 30px;
+
   background-color: #53A591;
   color: #FFF;
 
@@ -48,8 +55,6 @@
 }
 
 .ground-nav-title-selector {
-  padding-right: 20px;
-  display: flex;
 }
 
 .ground-d-post-list {

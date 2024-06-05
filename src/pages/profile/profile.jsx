@@ -46,9 +46,6 @@ class Profile extends React.Component {
 
   async componentDidShow() {
     await this.load(true)
-    Taro.eventCenter.on('LOGIN', (res) => {
-      this.load(false)
-    })
   }
 
   async componentDidMount() {
@@ -57,6 +54,10 @@ class Profile extends React.Component {
     this.onChooseAvatar = this.onChooseAvatar.bind(this)
     this.handleNavigateUpdateNickname = this.handleNavigateUpdateNickname.bind(this)
     this.handleNavigateUpdateDesc = this.handleNavigateUpdateDesc.bind(this)
+
+    Taro.eventCenter.on('LOGIN', (res) => {
+      this.load(false)
+    })
   }
 
   onChooseAvatar(e) {

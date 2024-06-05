@@ -18,7 +18,8 @@ class Ground extends React.Component {
 
   state = {
     loading: false,
-    posts: []
+    posts: [],
+    navBackground: "rgba(255, 255, 255, 0)"
   }
 
   async load(refreshToken) {
@@ -40,12 +41,19 @@ class Ground extends React.Component {
 
   async componentDidShow() {
     await this.load(true)
+  }
+
+  async componentDidMount() {
     Taro.eventCenter.on('LOGIN', (res) => {
       this.load(false)
     })
   }
 
-  async componentDidMount() {
+  onPageScroll(e) {
+    let a = Math.min(0.5, 0.5 * e.scrollTop / 100)
+    this.setState({
+      navBackground: "rgba(255, 255, 255, " + a + ")"
+    })
   }
 
   onCreatePost() {
@@ -55,33 +63,37 @@ class Ground extends React.Component {
   }
 
   render() {
-    const {loading, posts} = this.state
+    const {loading, posts, navBackground} = this.state
 
     let statusBarHeightOrDefault = 20
-    if (process.env.TARO_ENV === 'weapp') {
-      let navinfo = navutil.getNavInfo()
-      if (navinfo) {
-        if (!validators.isNull(navinfo.statusBarHeight) && navinfo.statusBarHeight > 0) {
-          statusBarHeightOrDefault = navinfo.statusBarHeight
-        }
-      }
+    let navBarHeightOrDefault = 44
+    let navinfo = navutil.getNavInfo()
+    if (navinfo) {
+      const {statusBarHeight, navBarHeight} = navinfo
+      statusBarHeightOrDefault = statusBarHeight > 0 ? statusBarHeight : statusBarHeightOrDefault
+      navBarHeightOrDefault = navBarHeight > 0 ? navBarHeight : navBarHeightOrDefault
     }
     return (
       <View className="ground-background-view">
         <View className="ground-view">
-
-          <View style={`height:${statusBarHeightOrDefault}px`}/>
-          <View className="ground-nav-title">
-            {/*创建*/}
-            {/*<View className="ground-nav-title-create" onClick={this.onCreatePost}>+</View>*/}
-            <Button className="ground-nav-title-create" onClick={this.onCreatePost}>+</Button>
-            {/*/!*mode筛选器*!/*/}
-            {/*<View className="ground-nav-title-selector">+</View>*/}
+          {/*导航栏*/}
+          <View className="ground-nav-view" style={`height: ${navBarHeightOrDefault}px;background: ${navBackground}`}>
+            <View className="ground-nav-title"
+                  style={`height: ${navBarHeightOrDefault - statusBarHeightOrDefault}px;margin-top:${statusBarHeightOrDefault}px`}>
+              {/*创建*/}
+              {/*<View className="ground-nav-title-create" onClick={this.onCreatePost}>+</View>*/}
+              <Button className="ground-nav-title-create" onClick={this.onCreatePost}>+</Button>
+              {/*/!*mode筛选器*!/*/}
+              {/*<View className="ground-nav-title-selector"></View>*/}
+            </View>
           </View>
-          {/*<View style="height:8px"/>*/}
+
+          {/*填充*/}
+          <View style={`height: ${navBarHeightOrDefault}px;width: 100%;`}/>
 
           {/*填充*/}
           <View style="height:20px"/>
+
           {/*帖子列表*/}
           <View className="ground-d-post-list">
             <DPostList posts={posts} loading={loading}/>
