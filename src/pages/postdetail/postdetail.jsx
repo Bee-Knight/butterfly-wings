@@ -1,5 +1,5 @@
 import React from 'react'
-import {Input, View} from '@tarojs/components'
+import {Button, Image, Input, View} from '@tarojs/components'
 import './postdetail.css'
 import '../../app.scss'
 import Taro from "@tarojs/taro";
@@ -12,8 +12,8 @@ import validators from "../../utils/validator";
 import {getCurrentInstance} from "@tarojs/runtime";
 import {Nav} from '../../components/nav/nav'
 import toasts from '../../utils/toastutil'
-import {MComment} from "../../components/mcomment/mcomment";
 import refreshtokenutil from "../../utils/refreshtokenutil";
+import shareIcon from "../../images/icon_share.png"
 
 class PostDetail extends React.Component {
   config = {
@@ -164,27 +164,23 @@ class PostDetail extends React.Component {
         {/*评论组件*/}
         <View style="height:52px;width: 100%"/>
 
-        <View style={`position: fixed;bottom: ${this.state.bottomHeight}px;width: 100%;background-color: #fff`}>
-          <View style="padding: 8px;padding-left:12px;padding-right:12px">
-            {/*<View style="display: flex;flex-direction: row">*/}
-            <Input
-              className='post-comment-input'
-              type='text'
-              placeholder='快来飞一句吧～'
-              value={this.state.commentContent}
-              onInput={this.handleChange}
-              onConfirm={this.onConfirm}
-              onFocus={this.bindFocus}
-              onBlur={this.bindBlur}
-              adjustPosition={this.state.adjustPosition}
-              maxlength={this.state.maxLen}
-              cursorSpacing={this.state.cursorSpacing}
-            />
-            {/*<View style='color: #000;font-size: 12px;width:25%;display:flex;text-align:center;justify-content:center;align-items:center'>*/}
-            {/*  确认*/}
-            {/*</View>*/}
-            {/*</View>*/}
-          </View>
+        <View className='post-comment-input-view' style={`bottom: ${this.state.bottomHeight}px;`}>
+          <Input
+            className='post-comment-input'
+            type='text'
+            placeholder='快来飞一句吧～'
+            value={this.state.commentContent}
+            onInput={this.handleChange}
+            onConfirm={this.onConfirm}
+            onFocus={this.bindFocus}
+            onBlur={this.bindBlur}
+            adjustPosition={this.state.adjustPosition}
+            maxlength={this.state.maxLen}
+            cursorSpacing={this.state.cursorSpacing}
+          />
+          {/*<Button className="post-comment-share-button" openType="share">*/}
+          {/*  <Image mode='scaleToFill' src={shareIcon} className='post-comment-share-icon'/>*/}
+          {/*</Button>*/}
         </View>
 
         {/*<MComment/>*/}
