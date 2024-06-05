@@ -4,6 +4,7 @@ import requests from './requtil'
 import api from './api'
 import errors from "./commonerror";
 import mocks from "./mock"
+import logs from "./logutil";
 
 export default {
   getUserId() {
@@ -43,9 +44,10 @@ export default {
     const codeRes = await Taro.login()
     const loginRes = await requests.get(api.getCode2Session(codeRes.code))
     if (validators.isNull(loginRes) || validators.isNull(loginRes.data) || validators.isFalse(loginRes.data.success)) {
-      await Taro.showToast({
-        title: errors.getCommonNetworkErr()
-      });
+      logs.logErr("ApiErr", api.getCode2Session(codeRes.code), loginRes)
+      // await Taro.showToast({
+      //   title: errors.getCommonNetworkErr()
+      // });
       return
     }
     const tokenRes = await requests.post(api.getRegisterFromWechatAndLogin(), {
@@ -54,9 +56,10 @@ export default {
       avatar: mocks.getDefaultUserAvatar()
     })
     if (validators.isNull(tokenRes) || validators.isNull(tokenRes.data) || validators.isFalse(tokenRes.data.success)) {
-      await Taro.showToast({
-        title: errors.getCommonNetworkErr()
-      });
+      logs.logErr("ApiErr", api.getRegisterFromWechatAndLogin(), tokenRes)
+      // await Taro.showToast({
+      //   title: errors.getCommonNetworkErr()
+      // });
       return
     }
     Taro.setStorageSync('x-token', tokenRes.data.data.token.id)

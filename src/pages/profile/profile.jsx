@@ -92,15 +92,21 @@ class Profile extends React.Component {
   render() {
     const {avatar, nickname, user_desc, cover} = this.state
 
-    let avatarButton
-    if (process.env.TARO_ENV === 'weapp') {
-      avatarButton =
-        <Button className="profile-avatar-button" openType="chooseAvatar" onChooseAvatar={this.onChooseAvatar}>
-          <Image mode='scaleToFill' src={avatar} className='profile-avatar-image'/>
-        </Button>
-    } else {
-      avatarButton =
-        <Image mode='scaleToFill' src={avatar} className='profile-avatar-image'/>
+    let avatarView = ''
+    if (!validators.isStrNullOrEmpty(avatar)) {
+      if (process.env.TARO_ENV === 'weapp') {
+        avatarView =
+          <View className='profile-avatar'>
+            <Button className="profile-avatar-button" openType="chooseAvatar" onChooseAvatar={this.onChooseAvatar}>
+              <Image mode='scaleToFill' src={avatar} className='profile-avatar-image'/>
+            </Button>
+          </View>
+      } else {
+        avatarView =
+          <View className='profile-avatar'>
+            <Image mode='scaleToFill' src={avatar} className='profile-avatar-image'/>
+          </View>
+      }
     }
 
     return (
@@ -108,13 +114,13 @@ class Profile extends React.Component {
         <View className='profile-cover'>
           <Image mode='scaleToFill' src={cover} className='profile-cover-image'/>
         </View>
-        <View className='profile-avatar'>
-          {avatarButton}
-          {/*<Image mode='scaleToFill' src={avatar} className='profile-avatar-image'/>*/}
-        </View>
+
+        {avatarView}
+
         <View className='profile-nickname' onClick={this.handleNavigateUpdateNickname}>
           {nickname}
         </View>
+
         <View className='profile-userdesc' onClick={this.handleNavigateUpdateDesc}>
           {user_desc}
         </View>

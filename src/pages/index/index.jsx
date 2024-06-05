@@ -108,11 +108,11 @@ class Index extends React.Component {
     {/*导航栏*/
     }
     let nav = <View/>
-    if (process.env.TARO_ENV === 'weapp') {
+    if (process.env.TARO_ENV === 'weapp' && !validators.isStrNullOrEmpty(rec.banner)) {
       nav = <View className="index-nav-title" style={`height: ${this.state.navBarHeight}px`}>
         <View style={`height: ${this.state.statusBarHeight}px`}/>
         {/*<View style="height: 44px"/>*/}
-        <View className="index-nav-title-title">诗辞大会</View>
+        <View className="index-nav-title-title">{rec.banner}</View>
       </View>
     }
 

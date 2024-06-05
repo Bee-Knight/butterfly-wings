@@ -159,6 +159,7 @@ export default {
     }
     let ts = data.date
     return {
+      banner: '诗辞大会',
       title: '今日主题：' + data.flyArena.flyTheme.theme,
       theme: data.flyArena.flyTheme.theme,
       date: ts.substr(0, 4) + '/' + ts.substr(4, 2) + '/' + ts.substr(6, 2),

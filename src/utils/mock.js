@@ -156,6 +156,7 @@ export default {
       : 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/Rectangle%202.png'
     let formatTime = dates.formatSimpleTime(new Date())
     return {
+      banner: '诗辞大会',
       title: '今日主题：灯火',
       theme: '灯火',
       date: formatTime,
