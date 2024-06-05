@@ -13,6 +13,7 @@ import {getCurrentInstance} from "@tarojs/runtime";
 import {Nav} from '../../components/nav/nav'
 import toasts from '../../utils/toastutil'
 import {MComment} from "../../components/mcomment/mcomment";
+import refreshtokenutil from "../../utils/refreshtokenutil";
 
 class PostDetail extends React.Component {
   config = {
@@ -32,11 +33,14 @@ class PostDetail extends React.Component {
     maxLen: 100
   }
 
-  async load() {
+  async load(refreshToken) {
     let inst = getCurrentInstance()
     let id = inst.router.params.id
 
     await requests.get(api.getPostDetail(id), {}).then((res) => {
+      if (validators.isTrue(refreshToken)) {
+        refreshtokenutil.checkResultAndRefreshToken(res)
+      }
       if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
         let result = convertors.getPostDetail(res.data.data)
         let commentResult = convertors.getCommentList(res.data.data)
@@ -55,17 +59,21 @@ class PostDetail extends React.Component {
   }
 
   async onPullDownRefresh() {
-    await this.load()
+    await this.load(true)
     Taro.stopPullDownRefresh()
   }
 
   async componentDidMount() {
-    await this.load()
+    await this.load(true)
     this.handleChange = this.handleChange.bind(this)
     this.onConfirm = this.onConfirm.bind(this)
     this.load = this.load.bind(this)
     this.bindFocus = this.bindFocus.bind(this)
     this.bindBlur = this.bindBlur.bind(this)
+
+    Taro.eventCenter.on('LOGIN', (res) => {
+      this.load(false)
+    })
   }
 
   handleChange(e) {
@@ -102,7 +110,7 @@ class PostDetail extends React.Component {
         this.setState({
           commentContent: ''
         })
-        this.load()
+        this.load(true)
       }
     })
   }

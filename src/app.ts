@@ -41,7 +41,6 @@ class App extends Component<PropsWithChildren> {
     }
 
     await refreshtokenutil.check()
-    Taro.eventCenter.trigger('LOGIN', {})
   }
 
   render() {

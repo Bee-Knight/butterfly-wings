@@ -10,6 +10,7 @@ import Taro from "@tarojs/taro"
 import validators from "../../utils/validator";
 import navutil from "../../utils/navutil";
 import mocks from "../../utils/mock"
+import refreshtokenutil from "../../utils/refreshtokenutil";
 
 class Index extends React.Component {
   config = {
@@ -25,8 +26,11 @@ class Index extends React.Component {
     postView: <View style="height:12px"/>
   }
 
-  async load() {
+  async load(refreshToken) {
     await requests.get(api.getFindTodayFly(), {}).then((res) => {
+      if (validators.isTrue(refreshToken)) {
+        refreshtokenutil.checkResultAndRefreshToken(res)
+      }
       if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
         let result = convertors.getRecCard(res.data.data)
         if (!validators.isNull(result)) {
@@ -68,9 +72,9 @@ class Index extends React.Component {
   }
 
   async componentDidShow() {
-    await this.load()
+    await this.load(true)
     Taro.eventCenter.on('LOGIN', (res) => {
-      this.load()
+      this.load(false)
     })
   }
 

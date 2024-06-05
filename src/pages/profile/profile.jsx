@@ -7,6 +7,7 @@ import requests from '../../utils/requtil'
 import validators from "../../utils/validator";
 import convertors from "../../utils/convertor";
 import Taro from "@tarojs/taro";
+import refreshtokenutil from "../../utils/refreshtokenutil";
 
 class Profile extends React.Component {
   config = {
@@ -22,8 +23,11 @@ class Profile extends React.Component {
     default_desc: false
   }
 
-  async load() {
+  async load(refreshToken) {
     await requests.get(api.getUserProfile(), {}).then((res) => {
+      if (validators.isTrue(refreshToken)) {
+        refreshtokenutil.checkResultAndRefreshToken(res)
+      }
       if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
         let result = convertors.getUserProfile(res.data.data)
         if (!validators.isNull(result)) {
@@ -41,7 +45,10 @@ class Profile extends React.Component {
   }
 
   async componentDidShow() {
-    await this.load()
+    await this.load(true)
+    Taro.eventCenter.on('LOGIN', (res) => {
+      this.load(false)
+    })
   }
 
   async componentDidMount() {

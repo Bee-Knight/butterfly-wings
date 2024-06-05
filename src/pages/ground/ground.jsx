@@ -9,6 +9,7 @@ import requests from "../../utils/requtil";
 import api from "../../utils/api";
 import validators from "../../utils/validator";
 import convertors from "../../utils/convertor";
+import refreshtokenutil from "../../utils/refreshtokenutil";
 
 class Ground extends React.Component {
   config = {
@@ -20,11 +21,13 @@ class Ground extends React.Component {
     posts: []
   }
 
-  async load() {
+  async load(refreshToken) {
     await requests.get(api.getPostListByMode('Open'), {}).then((res) => {
+      if (validators.isTrue(refreshToken)) {
+        refreshtokenutil.checkResultAndRefreshToken(res)
+      }
       if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
         let result = convertors.getDPostList(res.data.data)
-        console.log(result)
         if (!validators.isArrayNullOrEmpty(result)) {
           this.setState({
             posts: result
@@ -36,7 +39,10 @@ class Ground extends React.Component {
   }
 
   async componentDidShow() {
-    await this.load()
+    await this.load(true)
+    Taro.eventCenter.on('LOGIN', (res) => {
+      this.load(false)
+    })
   }
 
   async componentDidMount() {

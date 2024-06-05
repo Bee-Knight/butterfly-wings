@@ -10,6 +10,16 @@ export default {
     return Taro.getStorageSync('x-userId')
   },
 
+  async checkResultAndRefreshToken(res) {
+    if (process.env.TARO_ENV !== 'weapp') {
+      return
+    }
+    // token expired
+    if (!validators.isNull(res.data) && validators.isFalse(res.data.success) && res.data.code === 10009) {
+      await this.login(true)
+    }
+  },
+
   async check() {
     if (process.env.TARO_ENV !== 'weapp') {
       return
@@ -19,16 +29,16 @@ export default {
       console.log('check x-token:' + token)
       const res = await requests.get(api.getUserProfile())
       if (validators.isNull(res) || validators.isNull(res.data) || validators.isFalse(res.data.success)) {
-        await this.login()
+        await this.login(true)
       } else {
         Taro.setStorageSync('x-userId', res.data.data.id)
       }
     } else {
-      await this.login()
+      await this.login(true)
     }
   },
 
-  async login() {
+  async login(sendEvent) {
     Taro.setStorageSync('x-token', '')
     const codeRes = await Taro.login()
     const loginRes = await requests.get(api.getCode2Session(codeRes.code))
@@ -51,5 +61,8 @@ export default {
     }
     Taro.setStorageSync('x-token', tokenRes.data.data.token.id)
     Taro.setStorageSync('x-userId', tokenRes.data.data.user.id)
+    if (validators.isTrue(sendEvent)) {
+      Taro.eventCenter.trigger('LOGIN', {})
+    }
   }
 }
