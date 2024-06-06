@@ -31,5 +31,8 @@ export default {
         showCancel: false
       })
     }
+    return new Promise((resolve, reject) => {
+      resolve()
+    })
   }
 }

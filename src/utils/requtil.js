@@ -23,15 +23,18 @@ const request = function (url, options) {
     data: options.data,
     header: headers,
     success: (res) => {
-      if (validators.isNull(res.data) || validators.isFalse(res.data.success)) {
-        logs.logErr("BizErr", url, res.data)
+      const {data} = res
+      if (validators.isNull(data)) {
+        logs.logErr("APIErr", url, res, options)
+      } else if (!validators.isNull(data) && validators.isFalse(data.success)) {
+        logs.logErr("BizErr", url, res.data, options)
       }
     },
     fail: (err) => {
-      logs.logErr("APIErr", url, err)
+      logs.logErr("APIErr", url, err, options)
     },
     error: (err) => {
-      logs.logErr("APIErr", url, err)
+      logs.logErr("APIErr", url, err, options)
     }
   })
 }

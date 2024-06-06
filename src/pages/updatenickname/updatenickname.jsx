@@ -9,6 +9,7 @@ import api from '../../utils/api'
 import Taro from '@tarojs/taro'
 import {getCurrentInstance} from "@tarojs/runtime";
 import {Nav} from '../../components/nav/nav'
+import toasts from "../../utils/toastutil";
 
 class UpdateNickname extends React.Component {
   config = {
@@ -68,8 +69,13 @@ class UpdateNickname extends React.Component {
     requests.post(api.getModifyUser(), {
       nickname: nickname
     }).then((res) => {
-      console.log(res)
-      Taro.navigateBack({delta: 1})
+      toasts.show(res).then((r) => {
+        if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
+          setTimeout(() => {
+            Taro.navigateBack({delta: 1})
+          }, 200)
+        }
+      })
     })
   }
 

@@ -33,6 +33,8 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
+
+  border: 1px solid #FFF;
 }
 
 .profile-avatar-button::after {

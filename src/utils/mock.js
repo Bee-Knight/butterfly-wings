@@ -20,7 +20,10 @@ export default {
     return 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/profile-cover.png'
   },
   getDefaultUserAvatar() {
-    return 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/deafault-avatar.jpeg'
+    return 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/flower/bard.png'
+  },
+  getDefaultRegisterUserNickname() {
+    return '飞花小客' + new Date().getTime() % 10000
   },
   getDefaultUserNickname() {
     return '飞花小客'

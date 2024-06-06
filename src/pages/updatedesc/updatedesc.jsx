@@ -9,6 +9,7 @@ import api from '../../utils/api'
 import Taro from '@tarojs/taro'
 import {getCurrentInstance} from "@tarojs/runtime";
 import {Nav} from '../../components/nav/nav'
+import toasts from "../../utils/toastutil";
 
 class UpdateDesc extends React.Component {
   config = {
@@ -56,8 +57,13 @@ class UpdateDesc extends React.Component {
     requests.post(api.getModifyUser(), {
       introduction: desc
     }).then((res) => {
-      console.log(res)
-      Taro.navigateBack({delta: 1})
+      toasts.show(res).then((r) => {
+        if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
+          setTimeout(() => {
+            Taro.navigateBack({delta: 1})
+          }, 200)
+        }
+      })
     })
   }
 
