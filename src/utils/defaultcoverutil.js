@@ -13,7 +13,7 @@ export default {
     }
 
     let res = await requests.get(apis.getFindDefaultFlyCovers(), {})
-    if (!validators.isNull(res.data) && validators.isTrue(res.data.success)) {
+    if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
       let result = convertors.getDefaultFlyCoverList(res.data.data)
       if (!validators.isArrayNullOrEmpty(result)) {
         Taro.setStorageSync('coverinfo', {coverList: result})

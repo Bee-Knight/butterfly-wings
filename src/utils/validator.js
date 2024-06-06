@@ -33,6 +33,10 @@ module.exports = {
     return num === undefined || num === null || num === 0
   },
 
+  isNumberGtZero(num) {
+    return !this.isNumberNullOrEmpty(num) && num > 0
+  },
+
   isStrNullOrEmpty(str) {
     return str === undefined || str === null || str === ''
   },

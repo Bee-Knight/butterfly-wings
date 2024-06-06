@@ -17,8 +17,10 @@ class Ground extends React.Component {
   }
 
   state = {
+    //data
     loading: false,
     posts: [],
+    //渐变nav
     navBackground: "rgba(255, 255, 255, 0)"
   }
 

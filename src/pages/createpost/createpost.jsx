@@ -16,13 +16,18 @@ class CreatePost extends React.Component {
   }
 
   state = {
+    //标题
     title: '',
     titleMaxlength: 1,
+    //规则
     ruleCode: 'Common',
     ruleDesc: mocks.getDefaultRuleDesc('主题'),
+    //模式
     mode: 'Open',
+    //封面图
     defaultCoverList: [],
     coverIndex: 0,
+    //确认按钮
     disable: true,
   }
 

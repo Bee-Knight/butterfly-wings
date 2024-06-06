@@ -21,12 +21,20 @@ class PostDetail extends React.Component {
   }
 
   state = {
+    id: '',
+    //if show nav back button
+    showBack: true,
+
+    //data
     detail: {},
     comments: [],
+
+    //navinfo
     statusBarHeight: 0,
     navBarHeight: 0,
-    commentContent: '',
 
+    //评论组件相关
+    commentContent: '',
     bottomHeight: 0,
     adjustPosition: false,
     cursorSpacing: 0,
@@ -34,8 +42,9 @@ class PostDetail extends React.Component {
   }
 
   async load(refreshToken) {
-    let inst = getCurrentInstance()
-    let id = inst.router.params.id
+    const inst = getCurrentInstance()
+    let {id, showBack} = inst.router.params
+    showBack = validators.isNull(showBack) ? true : showBack;
 
     await requests.get(api.getPostDetail(id), {}).then((res) => {
       if (validators.isTrue(refreshToken)) {
@@ -46,6 +55,8 @@ class PostDetail extends React.Component {
         let commentResult = convertors.getCommentList(res.data.data)
         if (!validators.isNull(result)) {
           this.setState({
+            id: id,
+            showBack: showBack,
             detail: result
           })
         }
@@ -115,6 +126,17 @@ class PostDetail extends React.Component {
     })
   }
 
+  // 自定义分享
+  onShareAppMessage() {
+    const {cover, desc, title} = this.state.detail
+    if (!validators.isStrNullOrEmpty(title) && !validators.isStrNullOrEmpty(cover)) {
+      return {
+        title: title,
+        imageUrl: cover
+      };
+    }
+  }
+
   render() {
     const {id, cover, title, repliesCount, mode, desc, playersCount, playerAvatars} = this.state.detail
     let comments = this.state.comments
@@ -178,9 +200,9 @@ class PostDetail extends React.Component {
             maxlength={this.state.maxLen}
             cursorSpacing={this.state.cursorSpacing}
           />
-          {/*<Button className="post-comment-share-button" openType="share">*/}
-          {/*  <Image mode='scaleToFill' src={shareIcon} className='post-comment-share-icon'/>*/}
-          {/*</Button>*/}
+          <Button className="post-comment-share-button" openType="share">
+            <Image mode='scaleToFill' src={shareIcon} className='post-comment-share-icon'/>
+          </Button>
         </View>
 
         {/*<MComment/>*/}

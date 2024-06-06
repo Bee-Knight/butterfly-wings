@@ -18,11 +18,16 @@ class Index extends React.Component {
   }
 
   state = {
+    //data
     loading: false,
     posts: [],
     rec: {},
+
+    //navinfo
     statusBarHeight: 0,
     navBarHeight: 0,
+
+    //post list view
     postView: <View style="height:12px"/>
   }
 

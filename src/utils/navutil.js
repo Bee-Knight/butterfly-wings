@@ -18,20 +18,22 @@ export default {
       statusBarHeightOrDefault = sysInfo.statusBarHeight
     } else {
       const {statusBarHeight} = Taro.getSystemInfoSync()
-      if (statusBarHeight > 0) {
+      if (statusBarHeight && statusBarHeight > 0) {
         statusBarHeightOrDefault = statusBarHeight
       }
     }
 
     // 获取胶囊信息
-    const {width, height, left, top, right} = Taro.getMenuButtonBoundingClientRect()
-    console.log(Taro.getMenuButtonBoundingClientRect())
+    const menuButtonBoundingClientRect = Taro.getMenuButtonBoundingClientRect()
+    const {width, height, left, top, right} = menuButtonBoundingClientRect
+    console.log(menuButtonBoundingClientRect)
     let navBarHeight = top > statusBarHeightOrDefault && height > 0
       ? statusBarHeightOrDefault + (top - statusBarHeightOrDefault) * 3 + height
       : statusBarHeightOrDefault + 44
     let result = {
       statusBarHeight: statusBarHeightOrDefault,
-      navBarHeight: navBarHeight
+      navBarHeight: navBarHeight,
+      menuButtonInfo: menuButtonBoundingClientRect
     }
     Taro.setStorageSync('navinfo', result)
     return result
