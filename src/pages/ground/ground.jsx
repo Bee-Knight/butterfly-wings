@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, View} from '@tarojs/components'
+import {Button, Image, Text, View} from '@tarojs/components'
 import './ground.css'
 // import mocks from "../../utils/mock"
 import Taro from "@tarojs/taro"
@@ -10,6 +10,7 @@ import api from "../../utils/api";
 import validators from "../../utils/validator";
 import convertors from "../../utils/convertor";
 import refreshtokenutil from "../../utils/refreshtokenutil";
+import createIcon from "../../images/icon_create.png"
 
 class Ground extends React.Component {
   config = {
@@ -84,7 +85,10 @@ class Ground extends React.Component {
                   style={`height: ${navBarHeightOrDefault - statusBarHeightOrDefault}px;margin-top:${statusBarHeightOrDefault}px`}>
               {/*创建*/}
               {/*<View className="ground-nav-title-create" onClick={this.onCreatePost}>+</View>*/}
-              <Button className="ground-nav-title-create" onClick={this.onCreatePost}>+</Button>
+              <Button className="ground-nav-title-create" onClick={this.onCreatePost}>
+                {/*+*/}
+                <Image src={createIcon} className="ground-nav-title-create-icon" mode="scaleToFill"/>
+              </Button>
               {/*/!*mode筛选器*!/*/}
               {/*<View className="ground-nav-title-selector"></View>*/}
             </View>

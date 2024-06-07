@@ -48,7 +48,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+
+  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ground-nav-title-create::after {
+  border: none;
+}
+
+.ground-nav-title-create-icon {
+  width: 16px;
+  height: 16px;
 }
 
 .ground-nav-title-create-icon {
