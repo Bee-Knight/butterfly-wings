@@ -117,6 +117,8 @@
   border-bottom-left-radius: 24px;
   border-top-right-radius: 24px;
   filter: blur(10px);
+  /*解决ios低版本blur存在渲染残留的问题*/
+  transform:translateZ(0px);
 
   z-index: 0;
 }

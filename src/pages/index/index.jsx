@@ -9,7 +9,6 @@ import './index.css'
 import Taro from "@tarojs/taro"
 import validators from "../../utils/validator";
 import navutil from "../../utils/navutil";
-import mocks from "../../utils/mock"
 import refreshtokenutil from "../../utils/refreshtokenutil";
 
 class Index extends React.Component {
@@ -116,11 +115,12 @@ class Index extends React.Component {
     }
     let nav = <View/>
     if (process.env.TARO_ENV === 'weapp' && !validators.isStrNullOrEmpty(rec.banner)) {
-      nav = <View className="index-nav-title" style={`height: ${this.state.navBarHeight}px`}>
-        <View style={`height: ${this.state.statusBarHeight}px`}/>
-        {/*<View style="height: 44px"/>*/}
-        <View className="index-nav-title-title">{rec.banner}</View>
-      </View>
+      nav =
+        <View className="index-nav-title" style={`height: ${this.state.navBarHeight}px`}>
+          <View style={`height: ${this.state.statusBarHeight}px`}/>
+          {/*<View style="height: 44px"/>*/}
+          <View className="index-nav-title-title">{rec.banner}</View>
+        </View>
     }
 
     // let postView = <View/>;
