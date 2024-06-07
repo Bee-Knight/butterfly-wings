@@ -41,7 +41,7 @@ class MComment extends React.Component {
           autoHeight={this.state.autoHeight}
           autoFocus={this.state.autoFocus}
           cursorSpacing={this.state.cursorSpacing}
-          placeholder="快来飞一句吧~"
+          placeholder="快来飞一句吧～"
           adjustPosition={this.state.adjustPosition}
           maxlength={this.state.maxLen}
           onFocus={this.bindFocus}

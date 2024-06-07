@@ -38,7 +38,10 @@ class PostDetail extends React.Component {
     bottomHeight: 0,
     adjustPosition: false,
     cursorSpacing: 0,
-    maxLen: 100
+    maxLen: 100,
+
+    //loading
+    loading: true,
   }
 
   async load(refreshToken) {
@@ -57,6 +60,7 @@ class PostDetail extends React.Component {
           this.setState({
             id: id,
             showBack: showBack,
+            loading: false,
             detail: result
           })
         }
@@ -112,6 +116,9 @@ class PostDetail extends React.Component {
     if (validators.isStrNullOrEmpty(content)) {
       return
     }
+    if (validators.isNull(this.state.detail) || validators.isStrNullOrEmpty(this.state.detail.id)) {
+      return
+    }
     requests.post(api.getFlyPost(), {
       flyArenaId: this.state.detail.id,
       pollen: content
@@ -141,19 +148,41 @@ class PostDetail extends React.Component {
     const {id, cover, title, repliesCount, mode, desc, playersCount, playerAvatars} = this.state.detail
     let comments = this.state.comments
 
-    //导航栏
-    // let nav = <View/>
-    // if (process.env.TARO_ENV === 'weapp') {
-    //   nav = <View className="index-nav-title" style={`height: ${this.state.navBarHeight}px`}>
-    //     <View style={`height: ${this.state.statusBarHeight}px`}/>
-    //   </View>
-    // }
+    let divider = <View/>
+    let minput = <View/>
+    if (!this.state.loading) {
+      divider =
+        <View className="post-divider">
+          <View style="height:0.5px;background: #EAEEF1;"/>
+        </View>
+
+      minput =
+        <View className='post-comment-input-view'
+              style={`bottom: ${this.state.bottomHeight}px;`}>
+          <Input
+            className='post-comment-input'
+            type='text'
+            placeholder='快来飞一句吧～'
+            value={this.state.commentContent}
+            onInput={this.handleChange}
+            onConfirm={this.onConfirm}
+            onFocus={this.bindFocus}
+            onBlur={this.bindBlur}
+            adjustPosition={this.state.adjustPosition}
+            maxlength={this.state.maxLen}
+            cursorSpacing={this.state.cursorSpacing}
+          />
+          <Button className="post-comment-share-button" openType="share">
+            <Image mode='scaleToFill' src={shareIcon} className='post-comment-share-icon'/>
+          </Button>
+        </View>
+    }
+
 
     return (
       <View className="post-detail-parent">
         {/*导航栏*/}
-        {/*{nav}*/}
-        <Nav left='14' title={title}/>
+        <Nav left='14' title='飞花令'/>
         <View style="height:16px"/>
 
         {/*飞花令详情*/}
@@ -172,9 +201,7 @@ class PostDetail extends React.Component {
         {/*<View style="height:32px"/>*/}
 
         <View style="height:13px"/>
-        <View className="post-divider">
-          <View style="height:0.5px;background: #EAEEF1;"/>
-        </View>
+        {divider}
         <View style="height:3.5px"/>
 
         {/*评论列表*/}
@@ -185,26 +212,7 @@ class PostDetail extends React.Component {
 
         {/*评论组件*/}
         <View style="height:52px;width: 100%"/>
-
-        <View className='post-comment-input-view' style={`bottom: ${this.state.bottomHeight}px;`}>
-          <Input
-            className='post-comment-input'
-            type='text'
-            placeholder='快来飞一句吧～'
-            value={this.state.commentContent}
-            onInput={this.handleChange}
-            onConfirm={this.onConfirm}
-            onFocus={this.bindFocus}
-            onBlur={this.bindBlur}
-            adjustPosition={this.state.adjustPosition}
-            maxlength={this.state.maxLen}
-            cursorSpacing={this.state.cursorSpacing}
-          />
-          <Button className="post-comment-share-button" openType="share">
-            <Image mode='scaleToFill' src={shareIcon} className='post-comment-share-icon'/>
-          </Button>
-        </View>
-
+        {minput}
         {/*<MComment/>*/}
 
       </View>

@@ -31,13 +31,19 @@
   /*background-color: white;*/
 }
 
-.create-post-rule-view {
+/*plcaeholder color*/
+.create-post-title-view-input-placeholder {
+  color: #82c6b7
+}
 
+.create-post-rule-view {
 }
 
 .create-post-rule-view-text {
   font-size: 14px;
-  color: grey
+  color: grey;
+  /*color: #666666*/
+  /*color: #82c6b7*/
 }
 
 .create-post-mode-view {
@@ -59,14 +65,18 @@
 .create-post-cover-swiper-view {
   border-radius: 15px;
   overflow: hidden;
-
   width: 100%
 }
 
 .create-post-cover-swiper {
   border-radius: 15px;
-
+  overflow: hidden;
   width: 100%
+}
+
+.create-post-cover-swiper-image {
+  border-radius: 15px;
+  width: 100%;
 }
 
 .create-post-button {

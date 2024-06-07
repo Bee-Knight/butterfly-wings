@@ -64,7 +64,7 @@ class Index extends React.Component {
             <View>
               <View style="height:24px"/>
               <View className="index-post-create-hint" onClick={this.onClickHint}>
-                还没有参与过飞花令~快来<Text style='color:#4c99c3'>“发现”</Text>吧~
+                还没有参与过飞花令～快来<Text style='color:#4c99c3'>“发现”</Text>吧～
                 {/*{mocks.getDefaultCreatePostHint()}*/}
               </View>
               <View style="height:12px"/>

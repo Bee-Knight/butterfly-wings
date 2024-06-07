@@ -58,6 +58,7 @@ export default {
         author: text,
         flyRule: item.flyArena.flyRule,
         desc: mocks.getDefaultRuleDesc(item.flyArena.flyTheme.theme),
+        playersCount: validators.arrLength(item.players)
       }
     })
     if (!validators.isArrayNullOrEmpty(result)) {
@@ -100,6 +101,7 @@ export default {
         author: text,
         flyRule: item.flyRule,
         desc: mocks.getDefaultRuleDesc(item.flyTheme.theme),
+        playersCount: validators.arrLength(item.players)
       }
     })
     if (!validators.isArrayNullOrEmpty(result)) {
@@ -162,7 +164,8 @@ export default {
       banner: '诗辞大会',
       title: '今日主题：' + data.flyArena.flyTheme.theme,
       theme: data.flyArena.flyTheme.theme,
-      date: ts.substr(0, 4) + '/' + ts.substr(4, 2) + '/' + ts.substr(6, 2),
+      // date: ts.substr(0, 4) + '/' + ts.substr(4, 2) + '/' + ts.substr(6, 2),
+      date: dates.formatSimpleTime(new Date()),
       url: validators.isStrNullOrEmpty(data.style.background) ? mocks.getMockRecCard().url : data.style.background,
       id: data.flyArena.id
     }

@@ -2,7 +2,7 @@ import dates from './dateutil'
 
 export default {
   getDefaultCreatePostHint() {
-    return '还没有参与过飞花令~快来“发现”吧~'
+    return '还没有参与过飞花令～快来“发现”吧～'
   },
   getDefaultModeDesc() {
     return '“公开”所有用户均可参与，“私有”其他用户申请通过方可参与。'
@@ -11,7 +11,7 @@ export default {
     return '分享带有「' + str + '」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。'
   },
   getDefaultFlyPoetry() {
-    return '还没有开始飞～快来飞一句吧~'
+    return '还没有开始飞～快来飞一句吧～'
   },
   getDefaultFlyCover() {
     return 'https://img.cjyun.org.cn/a/10008/201805/90a8a8e76ab9de005e34f0778367ae22.jpeg'

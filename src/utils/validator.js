@@ -41,6 +41,10 @@ module.exports = {
     return str === undefined || str === null || str === ''
   },
 
+  arrLength(arr) {
+    return this.isArrayNullOrEmpty(arr) ? 0 : arr.length
+  },
+
   emptyObj() {
     return {}
   },

@@ -107,7 +107,8 @@ class CreatePost extends React.Component {
               value={this.state.title}
               onInput={this.handleChange}
               maxlength={this.state.titleMaxlength}
-              placeholder='请输入飞花主题~限一字符'
+              placeholderClass='create-post-title-view-input-placeholder'
+              placeholder='请输入飞花主题～限一字符'
               focus
             />
           </View>
@@ -154,7 +155,7 @@ class CreatePost extends React.Component {
                 {
                   this.state.defaultCoverList.map(image =>
                     <SwiperItem>
-                      <Image src={image} mode="scaleToFill"/>
+                      <Image className='create-post-cover-swiper-image' src={image} mode="scaleToFill"/>
                     </SwiperItem>
                   )
                 }

@@ -30,6 +30,7 @@ class DPostList extends React.Component {
               theme={post.theme}
               lastModified={post.lastModified}
               mode={post.mode}
+              playersCount={post.playersCount}
               key={post.id}
               id={post.id}
             />
@@ -46,6 +47,7 @@ class DPostList extends React.Component {
               theme={post.theme}
               lastModified={post.lastModified}
               mode={post.mode}
+              playersCount={post.playersCount}
               key={post.id}
               id={post.id}
             />

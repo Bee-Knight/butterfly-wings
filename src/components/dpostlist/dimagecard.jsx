@@ -13,7 +13,7 @@ class DImageCard extends React.Component {
         <View className="d-image-card-theme">{theme}</View>
 
         {/*封面*/}
-        <Image src={url} className="d-image-card-cover-image"/>
+        <Image src={url} className="d-image-card-cover-image" mode="scaleToFill"/>
       </View>
     )
   }

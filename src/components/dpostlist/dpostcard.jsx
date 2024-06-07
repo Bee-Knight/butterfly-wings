@@ -14,7 +14,7 @@ class DPostCard extends React.Component {
   }
 
   render() {
-    const {type, title, url, desc, theme, lastModified, mode} = this.props
+    const {type, title, url, desc, theme, lastModified, mode, playersCount} = this.props
 
     let card = null
     if (type === 'image') {
@@ -53,6 +53,7 @@ class DPostCard extends React.Component {
             <View className="d-post-card-detail-extra">
               <View className="d-post-card-detail-extra-date">{lastModified}</View>
               {/*<View className="d-post-card-detail-extra-mode">{mode}</View>*/}
+              <View className="d-post-card-detail-extra-mode">{playersCount}人参与</View>
             </View>
           </View>
         </View>
