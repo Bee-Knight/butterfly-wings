@@ -8,7 +8,7 @@ export default {
     return '“公开”所有用户均可参与，“私有”其他用户申请通过方可参与。'
   },
   getDefaultRuleDesc(str) {
-    return '分享带有「' + str + '」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。'
+    return '分享带有「' + str + '」字的一句古诗词即可。体裁为诗、词、曲，不允许成语、词语，不允许从中截断。'
   },
   getDefaultFlyPoetry() {
     return '还没有开始飞～快来飞一句吧～'
@@ -73,7 +73,7 @@ export default {
       cover: 'https://img.cjyun.org.cn/a/10008/201805/90a8a8e76ab9de005e34f0778367ae22.jpeg',
       title: '飞花令：春',
       repliesCount: 2863,
-      desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+      desc: '分享带有「夏」字的一句古诗词即可。体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
       mode: '公开',
       playersCount: 593
     }
@@ -100,7 +100,7 @@ export default {
         type: 'post',
         title: '飞花令：春',
         theme: '春',
-        desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+        desc: '分享带有「夏」字的一句古诗词即可。体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
         lastModified: '5天前',
         mode: '公开'
       },
@@ -120,7 +120,7 @@ export default {
         type: 'post',
         title: '飞花令：春',
         theme: '春',
-        desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+        desc: '分享带有「夏」字的一句古诗词即可。体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
         lastModified: '5天前',
         mode: '公开'
       },
@@ -130,7 +130,7 @@ export default {
         type: 'post',
         title: '飞花令：春',
         theme: '春',
-        desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
+        desc: '分享带有「夏」字的一句古诗词即可。体裁为诗、词、曲，不允许成语、词语，不允许从中截断。',
         lastModified: '5天前',
         mode: '公开'
       },
@@ -147,7 +147,7 @@ export default {
         type: 'post',
         title: '飞花令：春',
         theme: '春',
-        desc: '分享带有「夏」字的一句古诗词即可。至少5字，体裁为诗、词、曲，体裁为诗、词、曲。',
+        desc: '分享带有「夏」字的一句古诗词即可。体裁为诗、词、曲，体裁为诗、词、曲。',
         lastModified: '5天前',
         mode: '公开'
       },
@@ -159,7 +159,7 @@ export default {
       : 'https://pic-artastic.oss-cn-shanghai.aliyuncs.com/Rectangle%202.png'
     let formatTime = dates.formatSimpleTime(new Date())
     return {
-      banner: '诗辞大会',
+      banner: '飞花一夏',
       title: '今日主题：灯火',
       theme: '灯火',
       date: formatTime,

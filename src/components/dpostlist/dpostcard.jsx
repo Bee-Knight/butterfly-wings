@@ -29,14 +29,14 @@ class DPostCard extends React.Component {
       }
       card =
         <View className="d-post-card-view" onClick={this.handleNavigate}>
-          {/*主题*/}
-          <View className="d-post-card-cover-theme">{theme}</View>
+          {/*主题 一期隐藏*/}
+          {/*<View className="d-post-card-cover-theme">{theme}</View>*/}
 
           <View className="d-post-card-cover-view">
             {/*封面*/}
             <Image src={url} mode="scaleToFill" className="d-post-card-cover-image"/>
-            {/*遮罩*/}
-            <View className="d-post-card-cover-mask"/>
+            {/*遮罩 一期隐藏*/}
+            {/*<View className="d-post-card-cover-mask"/>*/}
           </View>
 
           <View className="d-post-card-detail">
@@ -45,6 +45,7 @@ class DPostCard extends React.Component {
               {modeView}
               <View className="d-post-card-detail-title">{title}</View>
             </View>
+
             <View style="height:8px"/>
             {/*描述*/}
             <View className="d-post-card-detail-desc">{desc}</View>

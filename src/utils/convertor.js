@@ -61,9 +61,9 @@ export default {
         playersCount: validators.arrLength(item.players)
       }
     })
-    if (!validators.isArrayNullOrEmpty(result)) {
-      result.sort((a, b) => b.sortIndex - a.sortIndex)
-    }
+    // if (!validators.isArrayNullOrEmpty(result)) {
+    //   result.sort((a, b) => b.sortIndex - a.sortIndex)
+    // }
     return result
   },
 
@@ -104,9 +104,9 @@ export default {
         playersCount: validators.arrLength(item.players)
       }
     })
-    if (!validators.isArrayNullOrEmpty(result)) {
-      result.sort((a, b) => b.sortIndex - a.sortIndex)
-    }
+    // if (!validators.isArrayNullOrEmpty(result)) {
+    //   result.sort((a, b) => b.sortIndex - a.sortIndex)
+    // }
     return result
   },
 
@@ -146,9 +146,9 @@ export default {
         desc: mocks.getDefaultRuleDesc(item.flyArena.flyTheme.theme),
       }
     })
-    if (!validators.isArrayNullOrEmpty(result)) {
-      result.sort((a, b) => b.sortIndex - a.sortIndex)
-    }
+    // if (!validators.isArrayNullOrEmpty(result)) {
+    //   result.sort((a, b) => b.sortIndex - a.sortIndex)
+    // }
     return result
   },
 
@@ -161,7 +161,7 @@ export default {
     }
     let ts = data.date
     return {
-      banner: '诗辞大会',
+      banner: '飞花一夏',
       title: '今日主题：' + data.flyArena.flyTheme.theme,
       theme: data.flyArena.flyTheme.theme,
       // date: ts.substr(0, 4) + '/' + ts.substr(4, 2) + '/' + ts.substr(6, 2),
