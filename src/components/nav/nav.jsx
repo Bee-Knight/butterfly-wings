@@ -4,18 +4,26 @@ import {Image, View} from '@tarojs/components'
 
 import './nav.css'
 import navutil from "../../utils/navutil";
-import arrow from "../../images/arrow.png"
+// import arrow from "../../images/arrow.png"
+import arrow from "../../images/left.png"
 
 class Nav extends React.Component {
   static defaultProps = {
     left: 20,
-    title: ''
+    title: '',
+    visibility: 'visible'
   }
 
   handleNavigateBack = () => {
-    Taro.navigateBack({
-      delta: 1
-    })
+    if (Taro.getCurrentPages().length <= 1) {
+      Taro.reLaunch({
+        url: '/pages/index/index'
+      })
+    } else {
+      Taro.navigateBack({
+        delta: 1
+      })
+    }
   }
 
   render() {
@@ -27,24 +35,26 @@ class Nav extends React.Component {
       let titleView = <View/>
       if (this.props.title !== '') {
         titleView =
-          <View
-            style={`padding-top: ${top}px;height: ${height}px;width: 100%;position: absolute;z-index: 99;pointer-events: none;`}>
-            <View
-              style={`display:flex;height: ${height}px;width: 100%;align-items: center;text-align: center;justify-content: center;`}>
+          <View className="nav-title-view" style={`padding-top: ${top}px;height: ${height}px;`}>
+            <View className="nav-title-text-view" style={`height: ${height}px;`}>
               <View style='font-size: 16px;'>{this.props.title}</View>
             </View>
           </View>
       }
       result =
         <View>
-          <View
-            style={`height: ${navBarHeight}px;width: 100%;position:fixed;display:flex;background-color:white;z-index: 99`}>
+          <View className="nav-view" style={`height:${navBarHeight}px;`}>
             {/*标题*/}
             {titleView}
 
             {/*返回按钮*/}
-            <View style={`padding-top: ${top}px;height: ${height}px;width: 100%;`} onClick={this.handleNavigateBack}>
-              <Image style={`width: ${height}px;height: ${height}px;margin-left: ${this.props.left}px;`} src={arrow}/>
+            <View className="nav-back-view"
+                  style={`padding-top:${top}px;height:${height}px;width: 100%;visibility:${this.props.visibility}`}
+                  onClick={this.handleNavigateBack}>
+              <View className="nav-back-image-view"
+                    style={`width:${height}px;height:${height}px;margin-left:${this.props.left}px;`}>
+                <Image style={`width: 75%;height: 75%;`} src={arrow}/>
+              </View>
             </View>
           </View>
           {/*填充*/}

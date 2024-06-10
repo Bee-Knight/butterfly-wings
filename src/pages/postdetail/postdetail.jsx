@@ -22,8 +22,6 @@ class PostDetail extends React.Component {
 
   state = {
     id: '',
-    //if show nav back button
-    showBack: true,
 
     //data
     detail: {},
@@ -46,8 +44,7 @@ class PostDetail extends React.Component {
 
   async load(refreshToken) {
     const inst = getCurrentInstance()
-    let {id, showBack} = inst.router.params
-    showBack = validators.isNull(showBack) ? true : showBack;
+    let {id} = inst.router.params
 
     await requests.get(api.getPostDetail(id), {}).then((res) => {
       if (validators.isTrue(refreshToken)) {
@@ -59,7 +56,6 @@ class PostDetail extends React.Component {
         if (!validators.isNull(result)) {
           this.setState({
             id: id,
-            showBack: showBack,
             loading: false,
             detail: result
           })
@@ -177,7 +173,6 @@ class PostDetail extends React.Component {
           </Button>
         </View>
     }
-
 
     return (
       <View className="post-detail-parent">

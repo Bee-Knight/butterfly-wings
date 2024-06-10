@@ -1,0 +1,33 @@
+.nav-view {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  background-color: white;
+  z-index: 99;
+}
+
+.nav-title-view {
+  width: 100%;
+  position: absolute;
+  z-index: 99;
+  pointer-events: none;
+}
+
+.nav-title-text-view {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.nav-back-view {
+  z-index: 99;
+}
+
+.nav-back-image-view {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}

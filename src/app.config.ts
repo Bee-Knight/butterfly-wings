@@ -17,20 +17,20 @@ export default defineAppConfig({
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "images/icon_tabbar_1.png",
-        "selectedIconPath": "images/icon_tabbar_1.png",
+        "iconPath": "images/icon_tabbar_1_unselected.png",
+        "selectedIconPath": "images/icon_tabbar_1_selected.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/ground/ground",
-        "iconPath": "images/icon_tabbar_2.png",
-        "selectedIconPath": "images/icon_tabbar_2.png",
+        "iconPath": "images/icon_tabbar_2_unselected.png",
+        "selectedIconPath": "images/icon_tabbar_2_selected.png",
         "text": "发现"
       },
       {
         "pagePath": "pages/profile/profile",
-        "iconPath": "images/icon_tabbar_3.png",
-        "selectedIconPath": "images/icon_tabbar_3.png",
+        "iconPath": "images/icon_tabbar_3_unselected.png",
+        "selectedIconPath": "images/icon_tabbar_3_selected.png",
         "text": "我的"
       }
     ]
