@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Text, Textarea, View} from '@tarojs/components'
+import {Button, Input, Text, Textarea, View} from '@tarojs/components'
 import './updatedesc.css'
 import '../../app.scss'
 import navutil from "../../utils/navutil";
@@ -34,10 +34,10 @@ class UpdateDesc extends React.Component {
     }
 
     let inst = getCurrentInstance()
-    let defaulted = inst.router.params.df
-    if (!validators.isStrNullOrEmpty(defaulted) && defaulted === 'false') {
+    const {desc, df} = inst.router.params
+    if (!validators.isStrNullOrEmpty(df) && df === 'false') {
       this.setState({
-        desc: inst.router.params.desc
+        desc: desc
       })
     }
     this.handleChange = this.handleChange.bind(this)
@@ -46,8 +46,10 @@ class UpdateDesc extends React.Component {
 
   handleChange(e) {
     if (!validators.isNull(e.detail)) {
+      let desc = validators.strLength(e.detail.value) > this.state.maxlength
+        ? e.detail.value.slice(0, this.state.maxlength) : e.detail.value
       this.setState({
-        desc: e.detail.value
+        desc: desc
       })
     }
   }
@@ -91,6 +93,9 @@ class UpdateDesc extends React.Component {
             showConfirmBar={this.state.showConfirmBar}
             focus
           />
+          <View className='minput-desc-limit'>
+            {validators.isStrNullOrEmpty(this.state.desc) ? 0 : this.state.desc.length}/{this.state.maxlength}
+          </View>
           <View style="height:30px;width:100%"/>
           <Button
             className='mbutton-desc'

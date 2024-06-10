@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Input, Text, View, Textarea} from '@tarojs/components'
+import {Button, Input, Text, Textarea, View} from '@tarojs/components'
 import './updatenickname.css'
 import '../../app.scss'
 import navutil from "../../utils/navutil";
@@ -19,7 +19,7 @@ class UpdateNickname extends React.Component {
   state = {
     nickname: '',
     maxlength: 10,
-    buttonDisable: false,
+    buttonDisable: true,
     showConfirmBar: false
   }
 
@@ -34,18 +34,14 @@ class UpdateNickname extends React.Component {
       }
     }
 
-    let inst = getCurrentInstance()
-    let defaulted = inst.router.params.df
-    if (!validators.isStrNullOrEmpty(defaulted) && defaulted === 'false') {
-      this.setState({
-        nickname: inst.router.params.nickname,
-        buttonDisable: false
-      })
-    } else {
-      this.setState({
-        buttonDisable: true
-      })
-    }
+    // let inst = getCurrentInstance()
+    // let defaulted = inst.router.params.df
+    // if (!validators.isStrNullOrEmpty(defaulted) && defaulted === 'false') {
+    //   this.setState({
+    //     nickname: inst.router.params.nickname,
+    //     buttonDisable: false
+    //   })
+    // }
 
     this.handleChange = this.handleChange.bind(this)
     this.onConfirm = this.onConfirm.bind(this)
@@ -54,8 +50,10 @@ class UpdateNickname extends React.Component {
   handleChange(e) {
     if (!validators.isNull(e.detail)) {
       let buttonDisable = validators.isStrNullOrEmpty(e.detail.value)
+      let nickname = validators.strLength(e.detail.value) > this.state.maxlength
+        ? e.detail.value.slice(0, this.state.maxlength) : e.detail.value
       this.setState({
-        nickname: e.detail.value,
+        nickname: nickname,
         buttonDisable: buttonDisable
       })
     }
@@ -94,21 +92,29 @@ class UpdateNickname extends React.Component {
         <Nav title='修改昵称'/>
         {/*{nav}*/}
         <View className='user-nickname-update'>
-          <Textarea
-            className='minput'
-            type='text'
-            value={this.state.nickname}
-            onInput={this.handleChange}
-            maxlength={this.state.maxlength}
-            showConfirmBar={this.state.showConfirmBar}
-            focus
-          />
+          <View className='minput-view'>
+            <Input
+              className='minput'
+              type='text'
+              value={this.state.nickname}
+              onInput={this.handleChange}
+              maxlength={this.state.maxlength}
+              showConfirmBar={this.state.showConfirmBar}
+              placeholderClass='minput-placeholder'
+              placeholder='请输入新的昵称～不能为空'
+              focus
+            />
+            <View className='minput-limit'>
+              {validators.isStrNullOrEmpty(this.state.nickname) ? 0 : this.state.nickname.length}/{this.state.maxlength}
+            </View>
+          </View>
+          <View style="height:100px;width:100%"/>
           <View style="height:30px;width:100%"/>
           <Button
             className='mbutton'
             disabled={this.state.buttonDisable}
             onClick={this.onConfirm}>
-            <Text style="color: white;">确认</Text>
+            <Text className='mbutton-nickname-text'>确认</Text>
           </Button>
         </View>
       </View>

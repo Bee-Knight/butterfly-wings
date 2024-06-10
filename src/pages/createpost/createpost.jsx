@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Image, Input, Swiper, SwiperItem, Switch, Text, View} from '@tarojs/components'
+import {Button, Image, Input, Swiper, SwiperItem, Text, Switch, View} from '@tarojs/components'
 import './createpost.css'
 import validators from "../../utils/validator";
 import mocks from "../../utils/mock"
@@ -48,14 +48,13 @@ class CreatePost extends React.Component {
   }
 
   handleChange(e) {
-    let disable = false
-    if (validators.isStrNullOrEmpty(e.detail.value)) {
-      disable = true
+    if (!validators.isNull(e.detail)) {
+      let buttonDisable = validators.isStrNullOrEmpty(e.detail.value)
+      this.setState({
+        title: e.detail.value,
+        disable: buttonDisable
+      })
     }
-    this.setState({
-      title: e.detail.value,
-      disable: disable
-    })
   }
 
   onSwitchChange(e) {
@@ -95,29 +94,36 @@ class CreatePost extends React.Component {
   render() {
     return (
       <View>
-        <Nav title='飞花一夏'/>
+        <Nav left='14' title='飞花一夏'/>
         <View className='create-post-parent-view'>
 
+          {/*主题*/}
           <View className='create-post-title-view'>
             <View className='create-post-title'>主题</View>
-            <View style="height:15px;width:100%"/>
-            <Input
-              className='create-post-title-view-input'
-              type='text'
-              value={this.state.title}
-              onInput={this.handleChange}
-              maxlength={this.state.titleMaxlength}
-              placeholderClass='create-post-title-view-input-placeholder'
-              placeholder='请输入飞花主题～限一字符'
-              focus
-            />
+            <View style="height:10px;width:100%"/>
+            <View className='create-post-title-input-view'>
+              <Input
+                className='create-post-title-input'
+                type='text'
+                value={this.state.title}
+                onInput={this.handleChange}
+                maxlength={this.state.titleMaxlength}
+                placeholderClass='create-post-title-view-input-placeholder'
+                placeholder='请输入飞花主题～限一字符'
+                focus
+              />
+              <View className='create-post-title-limit'>
+                {validators.isStrNullOrEmpty(this.state.title) ? 0 : this.state.title.length}/{this.state.titleMaxlength}
+              </View>
+            </View>
           </View>
 
           <View style="height:30px;width:100%"/>
 
+          {/*规则*/}
           <View className='create-post-rule-view'>
             <View className='create-post-title'>规则</View>
-            <View style="height:15px;width:100%"/>
+            <View style="height:10px;width:100%"/>
             <Text className='create-post-rule-view-text'>
               {this.state.ruleDesc}
             </Text>
@@ -125,30 +131,30 @@ class CreatePost extends React.Component {
 
           <View style="height:30px;width:100%"/>
 
-          <View className='create-post-mode-view'>
-            <View className='create-post-mode-switch-view'>
-              <View className='create-post-title'>是否公开</View>
-              {/*<Switch checked color='#ffc062' onChange={this.onSwitchChange}/>*/}
-              <Switch checked color='#82c6b7' onChange={this.onSwitchChange}/>
-            </View>
-            <View style="height:15px;width:100%"/>
-            <Text className='create-post-rule-view-text'>
-              {mocks.getDefaultModeDesc()}
-            </Text>
-          </View>
+          {/*公开*/}
+          {/*<View className='create-post-mode-view'>*/}
+          {/*  <View className='create-post-mode-switch-view'>*/}
+          {/*    <View className='create-post-title'>是否公开</View>*/}
+          {/*    /!*<Switch checked color='#ffc062' onChange={this.onSwitchChange}/>*!/*/}
+          {/*    <Switch checked color='#53A591' onChange={this.onSwitchChange}/>*/}
+          {/*  </View>*/}
+          {/*  <View style="height:10px;width:100%"/>*/}
+          {/*  <Text className='create-post-rule-view-text'>*/}
+          {/*    {mocks.getDefaultModeDesc()}*/}
+          {/*  </Text>*/}
+          {/*</View>*/}
 
-          <View style="height:30px;width:100%"/>
+          {/*<View style="height:32px;width:100%"/>*/}
 
           <View className='create-post-cover-view'>
             <View className='create-post-title'>封面图</View>
-            <View style="height:15px;width:100%"/>
+            <View style="height:10px;width:100%"/>
 
             <View className='create-post-cover-swiper-view'>
               <Swiper
                 className='create-post-cover-swiper'
                 indicatorColor='#ffffff'
-                indicatorActiveColor='#82c6b7'
-                // indicatorActiveColor='#ffc062'
+                indicatorActiveColor='#53A591'
                 circular
                 indicatorDots
                 onChange={this.onCoverChange}>
@@ -164,16 +170,16 @@ class CreatePost extends React.Component {
             </View>
           </View>
 
-          <View style="height:30px;width:100%"/>
+          <View style="height:32px;width:100%"/>
 
           <Button
             className='create-post-button'
             onClick={this.onConfirm}
             disabled={this.state.disable}>
-            <Text style="color: white;">确认</Text>
+            <Text className='create-post-button-text'>确认</Text>
           </Button>
 
-          <View style="height:30px;width:100%"/>
+          <View style="height:40px;width:100%"/>
         </View>
       </View>
     )
