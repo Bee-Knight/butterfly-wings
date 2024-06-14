@@ -9,6 +9,8 @@ import Taro from "@tarojs/taro";
 import {Nav} from "../../components/nav/nav";
 import toasts from "../../utils/toastutil"
 import defaultcoverutil from "../../utils/defaultcoverutil";
+import refreshtokenutil from "../../utils/refreshtokenutil";
+import files from "../../utils/fileutil"
 
 class CreatePost extends React.Component {
   config = {
@@ -28,6 +30,7 @@ class CreatePost extends React.Component {
     defaultCoverList: [],
     coverIndex: 0,
     defaultCover: '',
+    customCover: false,
     //确认按钮
     disable: true,
   }
@@ -85,6 +88,7 @@ class CreatePost extends React.Component {
         if (!validators.isArrayNullOrEmpty(tempFilePaths)) {
           this.setState({
             defaultCover: tempFilePaths[0],
+            customCover: true
           }, () => {
             console.log(tempFilePaths);
           })
@@ -101,29 +105,82 @@ class CreatePost extends React.Component {
       }
     })
     this.setState({
-      defaultCover: this.state.defaultCoverList[(index + 1) % this.state.defaultCoverList.length]
+      defaultCover: this.state.defaultCoverList[(index + 1) % this.state.defaultCoverList.length],
+      customCover: false
     })
   }
 
   onConfirm(e) {
-    if (validators.isStrNullOrEmpty(this.state.title)) {
+    if (validators.isStrNullOrEmpty(this.state.title) ||
+      validators.isStrNullOrEmpty(this.state.defaultCover)) {
       return
     }
-    let bg = this.state.defaultCoverList[this.state.coverIndex]
-    requests.post(api.getCreatePost(), {
-      theme: this.state.title,
-      flyRule: "Common",
-      mode: this.state.mode,
-      background: bg
-    }).then((res) => {
-      toasts.show(res, "创建成功").then((r) => {
-        if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
-          setTimeout(() => {
-            Taro.navigateBack({delta: 1})
-          }, 350)
+    if (this.state.customCover) {
+      let index = this.state.defaultCover.lastIndexOf('.')
+      let suffix = ''
+      if (index !== -1) {
+        suffix = this.state.defaultCover.substring(index)
+      }
+      Taro.uploadFile({
+        url: api.getPutFile(),
+        filePath: this.state.defaultCover,
+        name: 'file',
+        formData: {
+          fileName: new Date().getTime() + suffix
+        },
+        header: {
+          'X-Token': refreshtokenutil.getToken()
+        },
+        success: (res) => {
+          console.log('uploadFile success:', res)
+          let fileUrl = ''
+          if (!validators.isStrNullOrEmpty(res.data)) {
+            let data = JSON.parse(res.data)
+            if (!validators.isNull(data) &&
+              validators.isTrue(data.success) &&
+              !validators.isStrNullOrEmpty(data.data)) {
+              fileUrl = data.data
+            }
+          }
+          if (!validators.isStrNullOrEmpty(fileUrl)) {
+            requests.post(api.getCreatePost(), {
+              theme: this.state.title,
+              flyRule: "Common",
+              mode: this.state.mode,
+              background: files.getFileDomainPrefix() + fileUrl
+            }).then((result) => {
+              toasts.show(result, "创建成功").then((r) => {
+                if (!validators.isNull(result) &&
+                  !validators.isNull(result.data) &&
+                  validators.isTrue(result.data.success)) {
+                  setTimeout(() => {
+                    Taro.navigateBack({delta: 1})
+                  }, 350)
+                }
+              })
+            })
+          }
+        },
+        fail: (err) => {
+          console.error('uploadFile fail:', err)
         }
       })
-    })
+    } else {
+      requests.post(api.getCreatePost(), {
+        theme: this.state.title,
+        flyRule: "Common",
+        mode: this.state.mode,
+        background: this.state.defaultCover,
+      }).then((res) => {
+        toasts.show(res, "创建成功").then((r) => {
+          if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
+            setTimeout(() => {
+              Taro.navigateBack({delta: 1})
+            }, 350)
+          }
+        })
+      })
+    }
   }
 
   render() {

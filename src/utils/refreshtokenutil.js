@@ -10,6 +10,10 @@ export default {
     return Taro.getStorageSync('x-userId')
   },
 
+  getToken() {
+    return Taro.getStorageSync("x-token")
+  },
+
   async checkResultAndRefreshToken(res) {
     if (process.env.TARO_ENV !== 'weapp') {
       return
