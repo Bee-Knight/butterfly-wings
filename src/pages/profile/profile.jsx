@@ -8,6 +8,7 @@ import validators from "../../utils/validator";
 import convertors from "../../utils/convertor";
 import Taro from "@tarojs/taro";
 import refreshtokenutil from "../../utils/refreshtokenutil";
+import base64 from "../../utils/base64util"
 
 class Profile extends React.Component {
   config = {
@@ -80,13 +81,13 @@ class Profile extends React.Component {
 
   handleNavigateUpdateNickname = () => {
     Taro.navigateTo({
-      url: '/pages/updatenickname/updatenickname?nickname=' + this.state.nickname + '&df=' + this.state.default_nn,
+      url: '/pages/updatenickname/updatenickname?nickname=' + base64.weEncode(this.state.nickname) + '&df=' + this.state.default_nn,
     })
   }
 
   handleNavigateUpdateDesc = () => {
     Taro.navigateTo({
-      url: '/pages/updatedesc/updatedesc?desc=' + this.state.user_desc + '&df=' + this.state.default_desc,
+      url: '/pages/updatedesc/updatedesc?desc=' + base64.weEncode(this.state.user_desc) + '&df=' + this.state.default_desc,
     })
   }
 

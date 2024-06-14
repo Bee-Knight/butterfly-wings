@@ -10,6 +10,7 @@ import Taro from '@tarojs/taro'
 import {getCurrentInstance} from "@tarojs/runtime";
 import {Nav} from '../../components/nav/nav'
 import toasts from "../../utils/toastutil";
+import base64 from "../../utils/base64util"
 
 class UpdateDesc extends React.Component {
   config = {
@@ -37,7 +38,7 @@ class UpdateDesc extends React.Component {
     const {desc, df} = inst.router.params
     if (!validators.isStrNullOrEmpty(df) && df === 'false') {
       this.setState({
-        desc: desc
+        desc: base64.weDecode(desc)
       })
     }
     this.handleChange = this.handleChange.bind(this)
