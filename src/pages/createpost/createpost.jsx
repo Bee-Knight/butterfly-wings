@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Image, Input, Swiper, SwiperItem, Text, Switch, View} from '@tarojs/components'
+import {Button, Image, Input, Text, View} from '@tarojs/components'
 import './createpost.css'
 import validators from "../../utils/validator";
 import mocks from "../../utils/mock"
@@ -27,14 +27,17 @@ class CreatePost extends React.Component {
     //封面图
     defaultCoverList: [],
     coverIndex: 0,
+    defaultCover: '',
     //确认按钮
     disable: true,
   }
 
   async load() {
     let result = await defaultcoverutil.getDefaultCoverList()
+    let defaultCover = !validators.isArrayNullOrEmpty(result) ? result[new Date().getTime() % result.length] : ''
     this.setState({
-      defaultCoverList: result
+      defaultCoverList: result,
+      defaultCover: defaultCover
     })
   }
 
@@ -45,6 +48,8 @@ class CreatePost extends React.Component {
     this.load = this.load.bind(this)
     this.onSwitchChange = this.onSwitchChange.bind(this)
     this.onCoverChange = this.onCoverChange.bind(this)
+    this.onSwitchCover = this.onSwitchCover.bind(this)
+    this.onUploadCover = this.onUploadCover.bind(this)
   }
 
   handleChange(e) {
@@ -67,6 +72,36 @@ class CreatePost extends React.Component {
   onCoverChange(e) {
     this.setState({
       coverIndex: e.detail.current
+    })
+  }
+
+  onUploadCover(e) {
+    Taro.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: (res) => {
+        let tempFilePaths = res.tempFilePaths
+        if (!validators.isArrayNullOrEmpty(tempFilePaths)) {
+          this.setState({
+            defaultCover: tempFilePaths[0],
+          }, () => {
+            console.log(tempFilePaths);
+          })
+        }
+      }
+    })
+  }
+
+  onSwitchCover(e) {
+    let index = 0
+    this.state.defaultCoverList.forEach((a, i) => {
+      if (a === this.state.defaultCover) {
+        index = i
+      }
+    })
+    this.setState({
+      defaultCover: this.state.defaultCoverList[(index + 1) % this.state.defaultCoverList.length]
     })
   }
 
@@ -150,27 +185,37 @@ class CreatePost extends React.Component {
             <View className='create-post-title'>封面图</View>
             <View style="height:10px;width:100%"/>
 
-            <View className='create-post-cover-swiper-view'>
-              <Swiper
-                className='create-post-cover-swiper'
-                indicatorColor='#ffffff'
-                indicatorActiveColor='#53A591'
-                circular
-                indicatorDots
-                onChange={this.onCoverChange}>
-                {
-                  this.state.defaultCoverList.map(image =>
-                    <SwiperItem>
-                      <Image className='create-post-cover-swiper-image' src={image} mode="scaleToFill"/>
-                    </SwiperItem>
-                  )
-                }
-              </Swiper>
-
+            {/*轮播选图*/}
+            {/*<View className='create-post-cover-swiper-view'>*/}
+            {/*  <Swiper*/}
+            {/*    className='create-post-cover-swiper'*/}
+            {/*    indicatorColor='#ffffff'*/}
+            {/*    indicatorActiveColor='#53A591'*/}
+            {/*    circular*/}
+            {/*    indicatorDots*/}
+            {/*    onChange={this.onCoverChange}>*/}
+            {/*    {*/}
+            {/*      this.state.defaultCoverList.map(image =>*/}
+            {/*        <SwiperItem>*/}
+            {/*          <Image className='create-post-cover-swiper-image' src={image} mode="scaleToFill"/>*/}
+            {/*        </SwiperItem>*/}
+            {/*      )*/}
+            {/*    }*/}
+            {/*  </Swiper>*/}
+            {/*</View>*/}
+            <View className='create-post-cover-image-select-view'>
+              <View className='create-post-cover-image-view'>
+                <Image className='create-post-cover-image' src={this.state.defaultCover} mode="scaleToFill"/>
+              </View>
+              <View className='create-post-cover-button-select-view'>
+                <Button className='create-post-cover-button-1' onClick={this.onUploadCover}>相册上传</Button>
+                <View style='width:100%;height:16px'/>
+                <Button className='create-post-cover-button-2' onClick={this.onSwitchCover}>图库随机</Button>
+              </View>
             </View>
           </View>
 
-          <View style="height:32px;width:100%"/>
+          <View style="height:40px;width:100%"/>
 
           <Button
             className='create-post-button'
@@ -179,7 +224,7 @@ class CreatePost extends React.Component {
             <Text className='create-post-button-text'>确认</Text>
           </Button>
 
-          <View style="height:40px;width:100%"/>
+          <View style="height:32px;width:100%"/>
         </View>
       </View>
     )
