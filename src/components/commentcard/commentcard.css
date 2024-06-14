@@ -41,7 +41,8 @@
   align-items: flex-start;
 
   color: #000;
-  font-family: "PingFang SC";
+  /*font-family: "PingFang SC";*/
+  font-family: "NotoSerifCJKsc";
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

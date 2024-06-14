@@ -19,6 +19,11 @@ class App extends Component<PropsWithChildren> {
   async componentDidMount() {
     navutil.getNavInfo()
     await this.refreshToken()
+    // Taro.loadFontFace({
+    //   family: 'NotoSerifCJKsc',
+    //   source: 'url("https://butterflys.oss-cn-shanghai.aliyuncs.com/NotoSerifCJKsc-Medium.otf")',
+    //   success: console.log
+    // })
   }
 
   componentDidShow() {

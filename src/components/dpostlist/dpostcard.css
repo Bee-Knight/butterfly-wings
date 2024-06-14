@@ -75,7 +75,8 @@
   height: 26px;
 
   color: #332A28;
-  font-family: "Source Han Serif CN";
+  /*font-family: "Source Han Serif CN";*/
+  font-family: "NotoSerifCJKsc";
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -93,7 +94,8 @@
 
 .d-post-card-detail-desc {
   color: #595250;
-  font-family: "Source Han Serif CN";
+  /*font-family: "Source Han Serif CN";*/
+  font-family: "NotoSerifCJKsc";
   font-size: 12px;
   font-style: normal;
   font-weight: 500;

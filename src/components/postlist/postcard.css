@@ -64,7 +64,8 @@
   /*margin-top: 134px;*/
   /*margin-left: 34px;*/
   color: #FFFFFF;
-  font-family: "Source Han Serif CN";
+  /*font-family: "Source Han Serif CN";*/
+  font-family: "NotoSerifCJKsc";
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -98,7 +99,8 @@
   align-items: flex-start;
 
   color: #1A1818;
-  font-family: "FZShengShiKaiShuS-R-GB";
+  /*font-family: "FZShengShiKaiShuS-R-GB";*/
+  font-family: "NotoSerifCJKsc";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
