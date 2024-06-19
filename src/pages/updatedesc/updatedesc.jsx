@@ -20,7 +20,8 @@ class UpdateDesc extends React.Component {
   state = {
     desc: '',
     maxlength: 50,
-    showConfirmBar: false
+    showConfirmBar: false,
+    buttonDisable: false,
   }
 
   async componentDidMount() {
@@ -56,6 +57,14 @@ class UpdateDesc extends React.Component {
   }
 
   onConfirm(e) {
+    this.setState({
+      buttonDisable: true
+    })
+    setTimeout(() => {
+      this.setState({
+        buttonDisable: false
+      })
+    }, 200)
     let desc = validators.isStrNullOrEmpty(this.state.desc) ? '' : this.state.desc
     requests.post(api.getModifyUser(), {
       introduction: desc
@@ -100,6 +109,7 @@ class UpdateDesc extends React.Component {
           <View style="height:30px;width:100%"/>
           <Button
             className='mbutton-desc'
+            disabled={this.state.buttonDisable}
             onClick={this.onConfirm}>
             <Text className='mbutton-desc-text'>确认</Text>
           </Button>

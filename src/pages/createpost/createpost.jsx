@@ -115,6 +115,9 @@ class CreatePost extends React.Component {
       validators.isStrNullOrEmpty(this.state.defaultCover)) {
       return
     }
+    this.setState({
+      disable: true
+    })
     if (this.state.customCover) {
       let index = this.state.defaultCover.lastIndexOf('.')
       let suffix = ''
@@ -160,9 +163,15 @@ class CreatePost extends React.Component {
               })
             })
           }
+          this.setState({
+            disable: false
+          })
         },
         fail: (err) => {
           console.error('uploadFile fail:', err)
+          this.setState({
+            disable: false
+          })
         }
       })
     } else {
@@ -172,6 +181,11 @@ class CreatePost extends React.Component {
         mode: this.state.mode,
         background: this.state.defaultCover,
       }).then((res) => {
+        setTimeout(() => {
+          this.setState({
+            disable: false
+          })
+        }, 200)
         toasts.show(res, "创建成功").then((r) => {
           if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
             setTimeout(() => {

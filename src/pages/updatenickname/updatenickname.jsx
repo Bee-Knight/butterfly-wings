@@ -63,9 +63,16 @@ class UpdateNickname extends React.Component {
     if (validators.isStrNullOrEmpty(this.state.nickname)) {
       return
     }
-    let nickname = this.state.nickname
+    this.setState({
+      buttonDisable: true
+    })
+    setTimeout(() => {
+      this.setState({
+        buttonDisable: false
+      })
+    }, 200)
     requests.post(api.getModifyUser(), {
-      nickname: nickname
+      nickname: this.state.nickname
     }).then((res) => {
       toasts.show(res).then((r) => {
         if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {

@@ -57,6 +57,11 @@
   border: none;
 }
 
+.mbutton-desc[disabled] {
+  background-color: #eaeaea;
+  cursor: not-allowed;
+}
+
 .mbutton-desc-text {
   color: #FFF;
   font-family: "PingFang SC";
