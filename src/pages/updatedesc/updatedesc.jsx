@@ -60,15 +60,15 @@ class UpdateDesc extends React.Component {
     this.setState({
       buttonDisable: true
     })
-    setTimeout(() => {
-      this.setState({
-        buttonDisable: false
-      })
-    }, 200)
     let desc = validators.isStrNullOrEmpty(this.state.desc) ? '' : this.state.desc
     requests.post(api.getModifyUser(), {
       introduction: desc
     }).then((res) => {
+      setTimeout(() => {
+        this.setState({
+          buttonDisable: false
+        })
+      }, 200)
       toasts.show(res).then((r) => {
         if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
           setTimeout(() => {

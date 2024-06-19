@@ -66,14 +66,14 @@ class UpdateNickname extends React.Component {
     this.setState({
       buttonDisable: true
     })
-    setTimeout(() => {
-      this.setState({
-        buttonDisable: false
-      })
-    }, 200)
     requests.post(api.getModifyUser(), {
       nickname: this.state.nickname
     }).then((res) => {
+      setTimeout(() => {
+        this.setState({
+          buttonDisable: false
+        })
+      }, 200)
       toasts.show(res).then((r) => {
         if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
           setTimeout(() => {

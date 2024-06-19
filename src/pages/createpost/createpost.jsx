@@ -152,20 +152,26 @@ class CreatePost extends React.Component {
               mode: this.state.mode,
               background: files.getFileDomainPrefix() + fileUrl
             }).then((result) => {
+              setTimeout(() => {
+                this.setState({
+                  disable: false
+                })
+              }, 200)
               toasts.show(result, "创建成功").then((r) => {
                 if (!validators.isNull(result) &&
                   !validators.isNull(result.data) &&
                   validators.isTrue(result.data.success)) {
                   setTimeout(() => {
                     Taro.navigateBack({delta: 1})
-                  }, 350)
+                  }, 200)
                 }
               })
             })
+          } else {
+            this.setState({
+              disable: false
+            })
           }
-          this.setState({
-            disable: false
-          })
         },
         fail: (err) => {
           console.error('uploadFile fail:', err)
@@ -190,7 +196,7 @@ class CreatePost extends React.Component {
           if (!validators.isNull(res) && !validators.isNull(res.data) && validators.isTrue(res.data.success)) {
             setTimeout(() => {
               Taro.navigateBack({delta: 1})
-            }, 350)
+            }, 200)
           }
         })
       })
